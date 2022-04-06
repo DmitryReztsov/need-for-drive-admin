@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/need-for-drive-admin/static/css/main.c08df1ee.css",
+    "main.js": "/need-for-drive-admin/static/js/main.9af268ff.js",
+    "index.html": "/need-for-drive-admin/index.html",
+    "static/media/logo.svg": "/need-for-drive-admin/static/media/logo.147b69e27a34d50ba6cf2efe76977670.svg",
+    "main.c08df1ee.css.map": "/need-for-drive-admin/static/css/main.c08df1ee.css.map",
+    "main.9af268ff.js.map": "/need-for-drive-admin/static/js/main.9af268ff.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c08df1ee.css",
+    "static/js/main.9af268ff.js"
+  ]
+}
