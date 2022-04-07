@@ -1,11 +1,11 @@
 import {flexbox} from '../../../styles/templates/flex';
 
 export const navBar = {
-  bgcolor: 'common.white',
 };
 
 export const navBarTitle = {
   p: '23px 0 23px 49px',
+  height: '68px',
   boxShadow: 26,
 };
 
