@@ -14,7 +14,7 @@ export const loginFormTitle = {
 export const loginFormFields = {
   p: '16.5px 18px 20.5px 18px',
   '&>div': {
-    '&:first-child': {
+    '&:first-of-type': {
       mb: '15px',
     },
   },

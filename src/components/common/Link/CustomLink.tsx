@@ -8,7 +8,6 @@ interface ICustomLinkProps {
   children: React.ReactNode,
   sx?: SxProps<Theme>,
   link?: string,
-
 }
 
 function CustomLink({children, sx, link}: ICustomLinkProps) {
