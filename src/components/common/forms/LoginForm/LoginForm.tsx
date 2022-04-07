@@ -7,8 +7,10 @@ import {
   loginFormFields, loginFormFooter, loginFormLink, loginFormTitle,
 } from './LoginFormStyle';
 import CustomLink from '../../Link/CustomLink';
+import {useNavigate} from 'react-router-dom';
 
 function LoginForm() {
+  const navigate = useNavigate();
   return (
     <Box component="form" sx={loginForm}>
       <Box sx={loginFormTitle}>
@@ -44,6 +46,7 @@ function LoginForm() {
             variant="contained"
             color={'secondary'}
             sx={loginFormButton}
+            onClick={() => navigate('/admin/cars')}
           >
             Войти
           </Button>
