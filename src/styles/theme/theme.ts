@@ -27,9 +27,14 @@ export const theme = createTheme({
     secondary: {
       main: '#007BFF',
     },
+    error: {
+      main: '#C4183C',
+    },
     grey: {
       100: '#F5F6F8',
       200: '#FBFBFB',
+      300: '#CACEDB',
+      700: '#818EA3',
     },
     text: {
       primary: '#3D5170',
@@ -45,5 +50,11 @@ theme.shadows.push(
   ' 0px 3.5px 35px rgba(90, 97, 105, 0.1)', // 25
   'inset 0px -1px 0px #E1E5EB', // 26
   'inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF', // 27
+  '0px 1px 75px rgba(90, 97, 105, 0.11),' +
+  '0px 2px 4px rgba(90, 97, 105, 0.12),' +
+  '0px 7.5px 11px rgba(90, 97, 105, 0.1),' +
+  '0px 3.5px 17.5px rgba(165, 182, 201, 0.1)', // 28
+  '0.5px 0px 0px #CACEDB, -0.5px 0px 0px #CACEDB', // 29
+  '0px 2.5px 9.5px rgba(90, 97, 105, 0.12)', // 30
 );
 
