@@ -19,4 +19,5 @@ export const adminLayoutWindow = {
 
 export const adminLayoutMain = {
   ...flex(),
+  ...flexbox(),
 };

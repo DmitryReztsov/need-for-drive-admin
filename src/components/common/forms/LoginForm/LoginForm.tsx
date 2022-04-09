@@ -46,7 +46,7 @@ function LoginForm() {
             variant="contained"
             color={'secondary'}
             sx={loginFormButton}
-            onClick={() => navigate('/admin/cars')}
+            onClick={() => navigate('/admin')}
           >
             Войти
           </Button>

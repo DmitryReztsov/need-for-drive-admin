@@ -1,22 +1,28 @@
 import React from 'react';
-import {Badge, Box, Input} from '@mui/material';
+import {Avatar, Badge, Box, FormLabel, Input, MenuItem, Select} from '@mui/material';
 import Container from '../../Container/Container';
 import {
-  header, headerBadge, headerBody, headerNotification,
-  headerNotificationIcon, headerSearch, headerSearchIcon,
-  headerSearchInput,
-} from './HeaderStyles';
+  header, headerAvatar, headerBadge, headerBody, headerNotification,
+  headerNotificationIcon, headerProfile, headerSearch, headerSearchIcon,
+  headerSearchInput, headerSelect,
+} from './HeaderStyle';
 import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import avatar from '../../../content/png/avatar.png';
+import {useNavigate} from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
   return (
-    <Box sx={header}>
+    <Box component={'header'} sx={header}>
       <Container>
         <Box sx={headerBody}>
           <Box sx={headerSearch}>
-            <SearchIcon sx={headerSearchIcon} />
+            <FormLabel htmlFor="search" sx={headerSearchIcon}>
+              <SearchIcon />
+            </FormLabel>
             <Input
+              id={'search'}
               type={'search'}
               sx={headerSearchInput}
               placeholder={'Поиск...'}
@@ -35,7 +41,22 @@ function Header() {
               <NotificationsIcon sx={headerNotificationIcon} />
             </Badge>
           </Box>
-          <Box>
+          <Box sx={headerProfile}>
+            <Avatar sx={headerAvatar} alt="avatar" src={avatar} />
+            <Select
+              sx={headerSelect}
+              defaultValue={'Admin'}
+            >
+              <MenuItem value={'Admin'}>
+                Admin
+              </MenuItem>
+              <MenuItem
+                value={'Выйти'}
+                onClick={() => navigate('/')}
+              >
+                Выйти
+              </MenuItem>
+            </Select>
           </Box>
         </Box>
       </Container>
