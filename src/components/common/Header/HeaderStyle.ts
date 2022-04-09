@@ -1,4 +1,5 @@
 import {flex, flexbox} from '../../../styles/templates/flex';
+import {transition} from '../../../styles/templates/transition';
 
 export const header = {
   ...flexbox(),
@@ -19,6 +20,13 @@ export const headerSearch = {
 
 export const headerSearchIcon = {
   color: 'grey.300',
+  ...flexbox('center', 'center'),
+  cursor: 'pointer',
+  ...transition(),
+  '&:hover': {
+    color: 'secondary.main',
+    ...transition(),
+  },
 };
 
 export const headerSearchInput = {
@@ -33,10 +41,17 @@ export const headerNotification = {
   boxShadow: 29,
   alignSelf: 'stretch',
   ...flexbox('center', 'center'),
+  cursor: 'pointer',
+  '&:hover': {
+    '& svg': {
+      color: 'secondary.main',
+    },
+  },
 };
 
 export const headerNotificationIcon = {
   color: 'grey.700',
+
 };
 
 export const headerBadge = {
@@ -45,6 +60,28 @@ export const headerBadge = {
     height: '14px',
     padding: '0px',
     transform: 'scale(1) translate(30%, 30%)',
+  },
+};
+
+export const headerProfile = {
+  ...flexbox('stretch', 'center'),
+  pl: '26.5px',
+  columnGap: '8px',
+};
+
+export const headerAvatar = {
+  width: '40px',
+  height: '40px',
+};
+
+export const headerSelect = {
+  '& div': {
+    width: '70px',
+    mr: '26px',
+    pl: '6px',
+  },
+  '& fieldset': {
+    border: 'none',
   },
 };
 

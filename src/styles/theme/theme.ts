@@ -16,6 +16,9 @@ export const theme = createTheme({
       'Roboto',
       'Helvetica Neue',
     ].join(','),
+    h1: {
+      fontSize: '3rem',
+    },
     h2: {
       fontSize: '1.5rem',
     },
@@ -41,6 +44,20 @@ export const theme = createTheme({
       secondary: '#495057',
     },
   },
+  components: {
+    // Name of the component
+    MuiInput: {
+      styleOverrides: {
+        // Name of the slot
+        root: {
+          // Some CSS
+          '&:after': {
+            borderBottom: '2px solid #007BFF',
+          },
+        },
+      },
+    },
+  },
 });
 
 theme.shadows.push(
@@ -56,5 +73,6 @@ theme.shadows.push(
   '0px 3.5px 17.5px rgba(165, 182, 201, 0.1)', // 28
   '0.5px 0px 0px #CACEDB, -0.5px 0px 0px #CACEDB', // 29
   '0px 2.5px 9.5px rgba(90, 97, 105, 0.12)', // 30
+  '0px -0.5px 0px #D7DAE3', // 31
 );
 

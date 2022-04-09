@@ -1,8 +1,13 @@
+import {transition} from '../../../../styles/templates/transition';
+
 export const navBarItem = {
   p: '21px 0 21px 49px',
   boxShadow: 26,
+  cursor: 'pointer',
+  ...transition(),
   '&:hover': {
     boxShadow: 27,
+    ...transition(),
     bgcolor: 'grey.200',
   },
 };
