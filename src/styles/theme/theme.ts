@@ -57,6 +57,49 @@ export const theme = createTheme({
         },
       },
     },
+    MuiPagination: {
+      styleOverrides: {
+        root: {
+          '& li': {
+            '& div': {
+              height: 'auto',
+              display: 'inline-flex',
+              justifyContent: 'center',
+              '&:hover': {
+                color: '#007BFF',
+                backgroundColor: 'transparent',
+              },
+            },
+          },
+        },
+      },
+    },
+    MuiPaginationItem: {
+      styleOverrides: {
+        root: {
+          fontSize: '0.9375rem',
+          lineHeight: '1.078rem',
+          minWidth: '18px',
+          height: '18px',
+          borderRadius: '18px',
+          margin: '0 1px',
+          padding: '0px',
+          color: '#007BFF',
+          '&:hover': {
+            color: '#FFF',
+            backgroundColor: '#007BFF',
+          },
+          '&.Mui-selected': {
+            color: '#FFF',
+            backgroundColor: '#007BFF',
+            '&:hover': {
+              color: '#007BFF',
+              backgroundColor: '#FFF',
+            },
+          },
+        },
+      },
+    },
   },
 });
 
