@@ -15,30 +15,37 @@ const navItems = [
   {
     icon: <BlogIcon />,
     text: 'Карточка автомобиля',
+    href: '/#/admin/car/1',
   },
   {
     icon: <BlogPostsIcon />,
     text: 'Список авто',
+    href: '/#/admin/car',
   },
   {
     icon: <PostIcon />,
     text: 'Заказы',
+    href: '/#/admin/order',
   },
   {
     icon: <OverviewIcon />,
     text: 'Menu 4',
+    href: '/#/admin/',
   },
   {
     icon: <FormsIcon />,
     text: 'Menu 5',
+    href: '/#/admin/',
   },
   {
     icon: <PersonIcon />,
     text: 'Menu 6',
+    href: '/#/admin/',
   },
   {
     icon: <ErrorIcon />,
     text: 'Menu 7',
+    href: '/#/admin/',
   },
 ];
 
@@ -52,7 +59,10 @@ function NavBar() {
       </Box>
       <Stack>
         {navItems.map((item) => {
-          return <NavBarItem component={item.icon}>
+          return <NavBarItem
+            component={item.icon}
+            href={item.href}
+          >
             {item.text}
           </NavBarItem>;
         })}
