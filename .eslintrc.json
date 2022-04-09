@@ -1,7 +1,38 @@
 {
-    "extends": ["google"],
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+        "google",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint"
+    ],
     "rules": {
         "indent": ["error", 2],
-        "require-jsdoc": "off"
+        "require-jsdoc": "off",
+        "max-len": [
+            "error", {"code": 100}
+        ],
+        "quote-props": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            },
+            "babel-module": {}
+        }
     }
 }
