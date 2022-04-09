@@ -4,15 +4,17 @@ import {navBarContent, navBarItem} from './NavBarItemStyle';
 
 interface INavBarItemProps {
   component: ReactComponentElement<any>,
-  children: React.ReactNode
+  children: React.ReactNode,
+  href?: string,
 }
 
-function NavBarItem({component, children}: INavBarItemProps) {
+function NavBarItem({component, children, href}: INavBarItemProps) {
   return (
     <Link
       sx={navBarItem}
       underline="none"
       color={'text.primary'}
+      href={href || ''}
     >
       <Box sx={navBarContent}>
         {component}
