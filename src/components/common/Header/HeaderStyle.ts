@@ -10,7 +10,7 @@ export const header = {
 
 export const headerBody = {
   ...flexbox('space-between', 'center'),
-  ...flex(),
+  height: '100%',
 };
 
 export const headerSearch = {

@@ -16,6 +16,7 @@ export const navBarContent = {
   position: 'relative',
   fontSize: '0.9375rem',
   lineHeight: '1.08rem',
+  letterSpacing: '-0.234375px',
   '& svg': {
     position: 'absolute',
     left: '-25.5px',

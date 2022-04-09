@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Typography} from '@mui/material';
-import Container from '../../Container/Container';
+import Container from '../containers/Container/Container';
 import {
   footer, footerBody, footerCopyright, footerMenu,
 } from './FooterStyle';

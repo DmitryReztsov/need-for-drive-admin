@@ -7,6 +7,7 @@ import Car from '../pages/Admin/Cars/Car/Car';
 import {Box} from '@mui/material';
 import {app} from './AppStyle';
 import Home from '../pages/Home/Home';
+import Orders from '../pages/Orders/Orders';
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Home />} />
-          <Route path="car" element={<Cars />} />
           <Route path="car/:id" element={<Car />} />
+          <Route path="car" element={<Cars />} />
+          <Route path="order" element={<Orders />} />
         </Route>
       </Routes>
     </Box>

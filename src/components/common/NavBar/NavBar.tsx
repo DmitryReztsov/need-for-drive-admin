@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Fade, Stack} from '@mui/material';
+import {Box, Stack} from '@mui/material';
 import Title from '../Title/Title';
 import {navBar, navBarTitle, navBarTitleStyles} from './NavBarStyle';
 import {ReactComponent as BlogIcon} from '../../../content/svg/icons/blog-icon.svg';

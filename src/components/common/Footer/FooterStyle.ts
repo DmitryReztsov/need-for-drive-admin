@@ -9,7 +9,7 @@ export const footer = {
 
 export const footerBody = {
   ...flexbox('space-between', 'center'),
-  ...flex(),
+  height: '100%',
 };
 
 export const footerMenu = {

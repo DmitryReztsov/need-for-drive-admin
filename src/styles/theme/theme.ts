@@ -74,5 +74,10 @@ theme.shadows.push(
   '0.5px 0px 0px #CACEDB, -0.5px 0px 0px #CACEDB', // 29
   '0px 2.5px 9.5px rgba(90, 97, 105, 0.12)', // 30
   '0px -0.5px 0px #D7DAE3', // 31
+  '0px 2px 0px rgba(90, 97, 105, 0.11),' +
+  ' 0px 4px 8px rgba(90, 97, 105, 0.12),' +
+  ' 0px 10px 10px rgba(90, 97, 105, 0.06),' +
+  ' 0px 7px 70px rgba(90, 97, 105, 0.1)', // 32
+  '0px -0.5px 0px #E0E2E8, 0px 0.5px 0px #E0E2E8', // 33
 );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Avatar, Badge, Box, FormLabel, Input, MenuItem, Select} from '@mui/material';
-import Container from '../../Container/Container';
+import Container from '../containers/Container/Container';
 import {
   header, headerAvatar, headerBadge, headerBody, headerNotification,
   headerNotificationIcon, headerProfile, headerSearch, headerSearchIcon,
