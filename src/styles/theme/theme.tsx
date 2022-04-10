@@ -1,4 +1,5 @@
 import createTheme from '@mui/material/styles/createTheme';
+import {ReactComponent as DropdownIcon} from '../../content/svg/icons/dropdown.svg';
 
 export const theme = createTheme({
   breakpoints: {
@@ -37,7 +38,10 @@ export const theme = createTheme({
       100: '#F5F6F8',
       200: '#FBFBFB',
       300: '#CACEDB',
+      400: '#BECAD6',
       700: '#818EA3',
+      800: '#889098',
+      900: '#121212',
     },
     text: {
       primary: '#3D5170',
@@ -88,6 +92,11 @@ export const theme = createTheme({
           '&:hover': {
             color: '#FFF',
             backgroundColor: '#007BFF',
+            '& svg': {
+              '& path': {
+                fill: '#FFF',
+              },
+            },
           },
           '&.Mui-selected': {
             color: '#FFF',
@@ -100,9 +109,46 @@ export const theme = createTheme({
         },
       },
     },
+    MuiSelect: {
+      defaultProps: {
+        IconComponent: DropdownIcon,
+      },
+      styleOverrides: {
+        iconOutlined: {
+          top: 'calc(50% - 3.5px)',
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          minWidth: '110.5px',
+          fontSize: '0.6875rem',
+          lineHeight: '0.8125rem',
+          letterSpacing: '-0.345714px',
+          color: '#868E96',
+          borderColor: '#BECAD6',
+          '& div.MuiSelect-outlined.MuiSelect-select': {
+            padding: '8px 14px',
+            minHeight: '0px',
+          },
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          padding: '8px 10px',
+          minWidth: '110px',
+          fontSize: '0.7rem',
+          lineHeight: '0.81rem',
+          boxShadow: 'none',
+          textTransform: 'none',
+        },
+      },
+    },
   },
 });
-
 theme.shadows.push(
   '0px 1px 0px rgba(90, 97, 105, 0.11),' +
   ' 0px 2px 4px rgba(90, 97, 105, 0.12),' +

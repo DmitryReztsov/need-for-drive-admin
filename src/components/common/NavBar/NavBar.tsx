@@ -2,13 +2,13 @@ import React from 'react';
 import {Box, Stack} from '@mui/material';
 import Title from '../Title/Title';
 import {navBar, navBarTitle, navBarTitleStyles} from './NavBarStyle';
-import {ReactComponent as BlogIcon} from '../../../content/svg/icons/blog-icon.svg';
-import {ReactComponent as BlogPostsIcon} from '../../../content/svg/icons/blog-posts-icon.svg';
-import {ReactComponent as PostIcon} from '../../../content/svg/icons/post-icon.svg';
-import {ReactComponent as OverviewIcon} from '../../../content/svg/icons/overview-icon.svg';
-import {ReactComponent as FormsIcon} from '../../../content/svg/icons/forms-n-components-icon.svg';
-import {ReactComponent as PersonIcon} from '../../../content/svg/icons/person-icon.svg';
-import {ReactComponent as ErrorIcon} from '../../../content/svg/icons/error-icon.svg';
+import {ReactComponent as BlogIcon} from '../../../content/svg/icons/blog.svg';
+import {ReactComponent as BlogPostsIcon} from '../../../content/svg/icons/blog-posts.svg';
+import {ReactComponent as PostIcon} from '../../../content/svg/icons/post.svg';
+import {ReactComponent as OverviewIcon} from '../../../content/svg/icons/overview.svg';
+import {ReactComponent as FormsIcon} from '../../../content/svg/icons/forms-n-components.svg';
+import {ReactComponent as PersonIcon} from '../../../content/svg/icons/person.svg';
+import {ReactComponent as ErrorIcon} from '../../../content/svg/icons/error.svg';
 import NavBarItem from './NavBarItem/NavBarItem';
 
 const navItems = [
@@ -61,6 +61,7 @@ function NavBar() {
         {navItems.map((item) => {
           return <NavBarItem
             component={item.icon}
+            key={item.text}
             href={item.href}
           >
             {item.text}

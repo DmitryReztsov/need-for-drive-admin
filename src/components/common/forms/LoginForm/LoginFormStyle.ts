@@ -47,9 +47,4 @@ export const loginFormLink = {
 };
 
 export const loginFormButton = {
-  p: '8px 40px 8px 40px',
-  fontSize: '0.7rem',
-  lineHeight: '0.81rem',
-  boxShadow: 'none',
-  textTransform: 'none',
 };

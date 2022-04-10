@@ -66,7 +66,6 @@ export const headerBadge = {
 export const headerProfile = {
   ...flexbox('stretch', 'center'),
   pl: '26.5px',
-  columnGap: '8px',
 };
 
 export const headerAvatar = {
@@ -75,13 +74,17 @@ export const headerAvatar = {
 };
 
 export const headerSelect = {
+  fontSize: '0.9375rem',
+  lineHeight: '1.078rem',
   '& div': {
     width: '70px',
     mr: '26px',
-    pl: '6px',
   },
   '& fieldset': {
     border: 'none',
+  },
+  '& svg': {
+    top: '4.61px',
   },
 };
 

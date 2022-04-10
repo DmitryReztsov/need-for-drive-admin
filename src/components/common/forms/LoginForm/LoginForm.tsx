@@ -25,6 +25,7 @@ function LoginForm() {
             required
             placeholder={'Введите Email...'}
             color={'secondary'}
+            fullWidth
           />
         </FormControl>
         <FormControl sx={loginFormField} fullWidth>
@@ -34,6 +35,7 @@ function LoginForm() {
             type={'password'}
             required
             placeholder={'Введите пароль...'}
+            fullWidth
           />
         </FormControl>
         <Box sx={loginFormFooter}>

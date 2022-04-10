@@ -10,6 +10,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import avatar from '../../../content/png/avatar.png';
 import {useNavigate} from 'react-router-dom';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 function Header() {
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ function Header() {
             <Select
               sx={headerSelect}
               defaultValue={'Admin'}
+              IconComponent={ArrowDropDownIcon}
             >
               <MenuItem value={'Admin'}>
                 Admin
