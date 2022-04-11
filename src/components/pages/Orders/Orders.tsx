@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Box, Button, MenuItem, Select} from '@mui/material';
+import {Box, Button} from '@mui/material';
 import {orders, pageFiltersBox} from './OrdersStyle';
 import Container from '../../common/containers/Container/Container';
 import PageHeader from '../../page/PageHeader/PageHeader';
@@ -9,7 +9,6 @@ import PagePagination from '../../page/PagePagination/PagePagination';
 import PageData from '../../page/PageData/PageData';
 import Filter from '../../common/inputs/Filter/Filter';
 import {cityData, nameData, order, statusData, timeData} from './orderMocks';
-import {loginFormButton} from '../../common/forms/LoginForm/LoginFormStyle';
 import OrderData from './OrderData/OrderData';
 
 function Orders() {

@@ -14,16 +14,11 @@ export const orderDataImage = {
   pl: '138px',
   height: '100px',
   backgroundPosition: 'top 0px left 0px',
-  backgroundSize: '138px auto',
+  backgroundSize: 'auto 100px',
   backgroundRepeat: 'no-repeat',
 };
 
 export const orderDataText = {
-  fontSize: '0.8125rem',
-  lineHeight: '0.95rem',
-  fontFamily: 'Roboto',
-  color: 'grey.800',
-  letterSpacing: '-0.408571px',
   '& p': {
     mb: '6px',
     '&:last-child': {
@@ -31,3 +26,11 @@ export const orderDataText = {
     },
   },
 };
+
+export const orderDataPrice = {
+  fontSize: '1.5rem',
+  lineHeight: '1.75rem',
+  color: 'grey.900',
+  letterSpacing: '-0.754286px',
+};
+

@@ -1,5 +1,6 @@
 import createTheme from '@mui/material/styles/createTheme';
 import {ReactComponent as DropdownIcon} from '../../content/svg/icons/dropdown.svg';
+import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 
 export const theme = createTheme({
   breakpoints: {
@@ -26,8 +27,17 @@ export const theme = createTheme({
     h3: {
       fontSize: '1.1rem',
     },
+    body2: {
+      fontSize: '0.8125rem',
+      lineHeight: '0.95rem',
+      fontFamily: 'Roboto',
+      letterSpacing: '-0.408571px',
+    },
   },
   palette: {
+    primary: {
+      main: '#0EC261',
+    },
     secondary: {
       main: '#007BFF',
     },
@@ -39,6 +49,7 @@ export const theme = createTheme({
       200: '#FBFBFB',
       300: '#CACEDB',
       400: '#BECAD6',
+      600: '#5A6169',
       700: '#818EA3',
       800: '#889098',
       900: '#121212',
@@ -144,6 +155,44 @@ export const theme = createTheme({
           lineHeight: '0.81rem',
           boxShadow: 'none',
           textTransform: 'none',
+          '&.MuiButton-outlined': {
+            borderColor: '#BECAD6',
+            color: '#5A6169',
+            '& span': {
+              marginRight: '1px',
+              '& svg': {
+                fontSize: '0.75rem',
+              },
+            },
+          },
+        },
+      },
+    },
+    MuiCheckbox: {
+      defaultProps: {
+        icon: <CheckBoxOutlineBlankOutlinedIcon color={'disabled'}/>,
+        color: 'secondary',
+      },
+      styleOverrides: {
+        root: {
+          padding: '3.5px',
+          '& svg': {
+            fontSize: '0.8125rem',
+          },
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          marginRight: '0px',
+          '& span': {
+            fontSize: '0.625rem',
+            fontFamily: 'Roboto',
+            lineHeight: '0.73rem',
+            letterSpacing: '-0.175439px',
+            color: '#121212',
+          },
         },
       },
     },
