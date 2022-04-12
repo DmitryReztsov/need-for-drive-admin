@@ -1,7 +1,8 @@
 import {transition} from '../../../../styles/templates/transition';
+import {theme} from '../../../../styles/theme/theme';
 
 export const navBarItem = {
-  p: '21px 0 21px 49px',
+  p: '21px 10px 21px 49px',
   boxShadow: 26,
   cursor: 'pointer',
   ...transition(),
@@ -9,6 +10,9 @@ export const navBarItem = {
     boxShadow: 27,
     ...transition(),
     bgcolor: 'grey.200',
+  },
+  [theme.breakpoints.down('md')]: {
+    p: '16px 20px 16px 49px',
   },
 };
 

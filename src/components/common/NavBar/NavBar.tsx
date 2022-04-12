@@ -49,7 +49,11 @@ const navItems = [
   },
 ];
 
-function NavBar() {
+interface INavBarProps {
+  close?: () => void,
+}
+
+function NavBar({close}: INavBarProps) {
   return (
     <Box sx={navBar}>
       <Box sx={navBarTitle}>
@@ -63,6 +67,7 @@ function NavBar() {
             component={item.icon}
             key={item.text}
             href={item.href}
+            close={close}
           >
             {item.text}
           </NavBarItem>;
