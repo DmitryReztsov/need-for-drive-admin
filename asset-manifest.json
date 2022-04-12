@@ -1,14 +1,24 @@
 {
   "files": {
     "main.css": "/need-for-drive-admin/static/css/main.c08df1ee.css",
-    "main.js": "/need-for-drive-admin/static/js/main.9af268ff.js",
+    "main.js": "/need-for-drive-admin/static/js/main.ef21c1a5.js",
     "index.html": "/need-for-drive-admin/index.html",
-    "static/media/logo.svg": "/need-for-drive-admin/static/media/logo.147b69e27a34d50ba6cf2efe76977670.svg",
+    "static/media/logo.svg": "/need-for-drive-admin/static/media/logo.536cc332fcdc66db857045fb68c7494c.svg",
+    "static/media/forms-n-components.svg": "/need-for-drive-admin/static/media/forms-n-components.0758ecaa79d00e53ea0bef30c77770c5.svg",
+    "static/media/person.svg": "/need-for-drive-admin/static/media/person.b5edcf3a5c37010920a841fc94f8b172.svg",
+    "static/media/blog.svg": "/need-for-drive-admin/static/media/blog.16dfa0fb17d2c01d6a3e1e0c900fc233.svg",
+    "static/media/overview.svg": "/need-for-drive-admin/static/media/overview.abd8d55ec7b07759290fd09e927b1fba.svg",
+    "static/media/error.svg": "/need-for-drive-admin/static/media/error.08eae30ae394d4f281d54dcd0dcf8d45.svg",
+    "static/media/blog-posts.svg": "/need-for-drive-admin/static/media/blog-posts.e0c5563f839969edc2b4396b50f792c8.svg",
+    "static/media/post.svg": "/need-for-drive-admin/static/media/post.6c12ceca840789466264c04f38b9f843.svg",
+    "static/media/arrow-right.svg": "/need-for-drive-admin/static/media/arrow-right.ba68a4cf57d907918afcb63407a7d8a5.svg",
+    "static/media/arrow-left.svg": "/need-for-drive-admin/static/media/arrow-left.ccf6f3ac1b6104cb84bfb96fa92fafc7.svg",
+    "static/media/dropdown.svg": "/need-for-drive-admin/static/media/dropdown.551085a20b618db60dfab9248ea8125e.svg",
     "main.c08df1ee.css.map": "/need-for-drive-admin/static/css/main.c08df1ee.css.map",
-    "main.9af268ff.js.map": "/need-for-drive-admin/static/js/main.9af268ff.js.map"
+    "main.ef21c1a5.js.map": "/need-for-drive-admin/static/js/main.ef21c1a5.js.map"
   },
   "entrypoints": [
     "static/css/main.c08df1ee.css",
-    "static/js/main.9af268ff.js"
+    "static/js/main.ef21c1a5.js"
   ]
 }
