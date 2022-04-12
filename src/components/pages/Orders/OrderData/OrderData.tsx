@@ -3,7 +3,9 @@ import {
   Box, Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, Typography,
 } from '@mui/material';
 import {
-  orderData, orderDataImage, orderDataInfo, orderDataPrice, orderDataText,
+  orderData, orderDataButtons, orderDataImage,
+  orderDataInfo, orderDataOptions, orderDataPrice,
+  orderDataText,
 } from './OrderDataStyle';
 import {formatDate} from '../../../../utils/time';
 import {Check} from '@mui/icons-material';
@@ -59,26 +61,24 @@ function OrderData({order}: IOrderDataProps) {
           </Typography>
         </Typography>
       </Box>
-      <Box>
-        <FormGroup>
-          <FormControlLabel
-            control={<Checkbox disabled={!isFullTank} defaultChecked={isFullTank} />}
-            label="Полный бак"
-          />
-          <FormControlLabel
-            control={<Checkbox disabled={!isNeedChildChair} defaultChecked={isNeedChildChair} />}
-            label="Детское кресло"
-          />
-          <FormControlLabel
-            control={<Checkbox disabled={!isRightWheel} defaultChecked={isRightWheel} />}
-            label="Правый руль"
-          />
-        </FormGroup>
-      </Box>
+      <FormGroup sx={orderDataOptions}>
+        <FormControlLabel
+          control={<Checkbox disabled={!isFullTank} defaultChecked={isFullTank} />}
+          label="Полный бак"
+        />
+        <FormControlLabel
+          control={<Checkbox disabled={!isNeedChildChair} defaultChecked={isNeedChildChair} />}
+          label="Детское кресло"
+        />
+        <FormControlLabel
+          control={<Checkbox disabled={!isRightWheel} defaultChecked={isRightWheel} />}
+          label="Правый руль"
+        />
+      </FormGroup>
       <Typography sx={orderDataPrice}>
         {`${price.toLocaleString()} ₽`}
       </Typography>
-      <ButtonGroup variant="outlined">
+      <ButtonGroup variant="outlined" sx={orderDataButtons}>
         <Button
           startIcon={<Check color={'primary'} />}
           color={'secondary'}>

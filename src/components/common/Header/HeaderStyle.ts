@@ -1,5 +1,6 @@
 import {flex, flexbox} from '../../../styles/templates/flex';
 import {transition} from '../../../styles/templates/transition';
+import {theme} from '../../../styles/theme/theme';
 
 export const header = {
   ...flexbox(),
@@ -29,6 +30,15 @@ export const headerSearchIcon = {
   },
 };
 
+export const headerBurgerIcon = {
+  mr: '8px',
+  '&:hover': {
+    '& svg': {
+      color: 'secondary.main',
+    },
+  },
+};
+
 export const headerSearchInput = {
   p: '5px',
   '&::before': {
@@ -46,6 +56,9 @@ export const headerNotification = {
     '& svg': {
       color: 'secondary.main',
     },
+  },
+  [theme.breakpoints.down('sm')]: {
+    px: '16px',
   },
 };
 

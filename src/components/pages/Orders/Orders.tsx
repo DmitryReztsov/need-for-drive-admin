@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Box, Button} from '@mui/material';
-import {orders, pageFiltersBox} from './OrdersStyle';
+import {orders, pageFiltersBox, pageFiltersButton} from './OrdersStyle';
 import Container from '../../common/containers/Container/Container';
 import PageHeader from '../../page/PageHeader/PageHeader';
 import PageContent from '../../page/PageContent/PageContent';
@@ -53,6 +53,7 @@ function Orders() {
             <Button
               variant="contained"
               color={'secondary'}
+              sx={pageFiltersButton}
             >
               Применить
             </Button>

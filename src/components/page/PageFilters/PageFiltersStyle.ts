@@ -1,4 +1,5 @@
 import {flexbox} from '../../../styles/templates/flex';
+import {theme} from '../../../styles/theme/theme';
 
 export const pageFilters = {
   p: '16px 0 14px 0',
@@ -11,4 +12,8 @@ export const pageFiltersContainer = {
 
 export const pageFiltersBody = {
   ...flexbox('space-between', 'center'),
+  [theme.breakpoints.down('sm')]: {
+    ...flexbox('center', 'center', 'column'),
+    rowGap: '8px',
+  },
 };

@@ -1,13 +1,24 @@
 import {flex, flexbox} from '../../../../styles/templates/flex';
+import {theme} from '../../../../styles/theme/theme';
 
 export const orderData = {
   ...flex(),
   ...flexbox('space-between', 'center'),
+  flexWrap: 'wrap',
+  pb: '178px',
+  [theme.breakpoints.down('lg')]: {
+    ...flexbox('center', 'center', 'column'),
+    pb: '30px',
+  },
 };
 
 export const orderDataInfo = {
   ...flexbox('center', 'center'),
   columnGap: '16px',
+  [theme.breakpoints.down('sm')]: {
+    ...flexbox('center', 'center', 'column'),
+    rowGap: '8px',
+  },
 };
 
 export const orderDataImage = {
@@ -24,6 +35,9 @@ export const orderDataText = {
     '&:last-child': {
       mb: '0px',
     },
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
 };
 
@@ -32,5 +46,24 @@ export const orderDataPrice = {
   lineHeight: '1.75rem',
   color: 'grey.900',
   letterSpacing: '-0.754286px',
+  [theme.breakpoints.down('lg')]: {
+    mt: '16px',
+  },
+};
+
+export const orderDataOptions = {
+  [theme.breakpoints.down('lg')]: {
+    flexDirection: 'row',
+    columnGap: '20px',
+  },
+  [theme.breakpoints.down('sm')]: {
+    mt: '16px',
+  },
+};
+
+export const orderDataButtons = {
+  [theme.breakpoints.down('lg')]: {
+    mt: '16px',
+  },
 };
 

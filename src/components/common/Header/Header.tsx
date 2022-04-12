@@ -1,23 +1,30 @@
 import React from 'react';
-import {Avatar, Badge, Box, FormLabel, Input, MenuItem, Select} from '@mui/material';
+import {Avatar, Badge, Box, FormLabel, Input, MenuItem, Select, useMediaQuery} from '@mui/material';
 import Container from '../containers/Container/Container';
 import {
-  header, headerAvatar, headerBadge, headerBody, headerNotification,
+  header, headerAvatar, headerBadge, headerBody, headerBurgerIcon, headerNotification,
   headerNotificationIcon, headerProfile, headerSearch, headerSearchIcon,
   headerSearchInput, headerSelect,
 } from './HeaderStyle';
 import SearchIcon from '@mui/icons-material/Search';
+import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import avatar from '../../../content/png/avatar.png';
 import {useNavigate} from 'react-router-dom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-function Header() {
+interface IHeaderProps {
+  openMenu: () => void,
+}
+
+function Header({openMenu}: IHeaderProps) {
   const navigate = useNavigate();
+  const matches = useMediaQuery('(max-width:600px)');
   return (
     <Box component={'header'} sx={header}>
       <Container>
         <Box sx={headerBody}>
+          {matches && <MenuIcon onClick={openMenu} sx={headerBurgerIcon} />}
           <Box sx={headerSearch}>
             <FormLabel htmlFor="search" sx={headerSearchIcon}>
               <SearchIcon />
