@@ -27,7 +27,6 @@ export const footerMenu = {
   [theme.breakpoints.down('sm')]: {
     ...flexbox('center', 'center', 'column'),
     rowGap: '8px',
-    mb: '8px',
   },
 };
 

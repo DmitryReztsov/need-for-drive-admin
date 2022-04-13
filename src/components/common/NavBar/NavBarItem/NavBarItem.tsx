@@ -1,6 +1,7 @@
 import React, {ReactComponentElement} from 'react';
 import {Box, Link} from '@mui/material';
 import {navBarContent, navBarItem} from './NavBarItemStyle';
+import {hashPath} from '../../../../utils/config';
 
 interface INavBarItemProps {
   component: ReactComponentElement<any>,
@@ -15,7 +16,7 @@ function NavBarItem({component, children, href, close}: INavBarItemProps) {
       sx={navBarItem}
       underline="none"
       color={'text.primary'}
-      href={href || ''}
+      href={href ? (hashPath + href) : ''}
       onClick={close}
     >
       <Box sx={navBarContent}>

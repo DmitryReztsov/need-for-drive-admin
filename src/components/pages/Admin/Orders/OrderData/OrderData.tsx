@@ -7,10 +7,10 @@ import {
   orderDataInfo, orderDataOptions, orderDataPrice,
   orderDataText,
 } from './OrderDataStyle';
-import {formatDate} from '../../../../utils/time';
 import {Check} from '@mui/icons-material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ClearIcon from '@mui/icons-material/Clear';
+import {formatDate} from '../../../../../utils/time';
 
 interface IOrderDataProps {
   order: any,
@@ -26,7 +26,7 @@ function OrderData({order}: IOrderDataProps) {
       <Box sx={orderDataInfo}>
         <Box sx={{...orderDataImage, backgroundImage: `url(${carId.thumbnail.path})`}}>
         </Box>
-        <Typography variant={'body2'} sx={orderDataText}>
+        <Typography component={'div'} variant={'body2'} sx={orderDataText}>
           <Typography variant={'body2'}>
             <Typography
               component={'span'}

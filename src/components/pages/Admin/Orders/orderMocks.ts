@@ -117,3 +117,8 @@ export const order = {
   'isRightWheel': true,
   'id': '6245e67173b6110018101c32',
 };
+
+let orders: any[] = [];
+orders.length = 10;
+
+export const ordersArray = orders.fill(order, 0, 9);

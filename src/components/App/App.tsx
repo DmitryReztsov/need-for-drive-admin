@@ -6,8 +6,8 @@ import Cars from '../pages/Admin/Cars/Cars';
 import Car from '../pages/Admin/Cars/Car/Car';
 import {Box} from '@mui/material';
 import {app} from './AppStyle';
-import Home from '../pages/Home/Home';
-import Orders from '../pages/Orders/Orders';
+import Home from '../pages/Admin/Home/Home';
+import Orders from '../pages/Admin/Orders/Orders';
 
 function App() {
   return (

@@ -99,6 +99,13 @@ export const headerSelect = {
   '& svg': {
     top: '4.61px',
   },
+  [theme.breakpoints.down('sm')]: {
+    minWidth: '50px',
+    '& div': {
+      width: '0px',
+      mr: '0px',
+    },
+  },
 };
 
 

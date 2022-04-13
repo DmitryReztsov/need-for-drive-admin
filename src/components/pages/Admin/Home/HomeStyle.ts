@@ -1,4 +1,4 @@
-import {flex, flexbox} from '../../../styles/templates/flex';
+import {flex, flexbox} from '../../../../styles/templates/flex';
 
 export const home = {
   ...flex(),

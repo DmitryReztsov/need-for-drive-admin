@@ -12,7 +12,7 @@ function Footer() {
       <Container>
         <Box sx={footerBody}>
           <Box sx={footerMenu}>
-            <CustomLink href={'/need-for-drive-admin/#/admin'}>
+            <CustomLink href={'admin'}>
               Главная страница
             </CustomLink>
             <CustomLink>

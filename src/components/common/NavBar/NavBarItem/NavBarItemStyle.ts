@@ -14,6 +14,9 @@ export const navBarItem = {
   [theme.breakpoints.down('md')]: {
     p: '16px 20px 16px 49px',
   },
+  [theme.breakpoints.down('sm')]: {
+    p: '16px 49px',
+  },
 };
 
 export const navBarContent = {

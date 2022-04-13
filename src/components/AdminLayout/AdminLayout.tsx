@@ -19,6 +19,7 @@ function AdminLayout() {
           anchor={'left'}
           onClose={() => setOpened(false)}
           onOpen={() => setOpened(true)}
+          sx={{height: 'auto'}}
         >
           <Box sx={adminLayoutNavBar}>
             <NavBar close={() => setOpened(false)} />

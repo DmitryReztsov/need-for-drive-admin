@@ -56,9 +56,9 @@ function Header({openMenu}: IHeaderProps) {
               defaultValue={'Admin'}
               IconComponent={ArrowDropDownIcon}
             >
-              <MenuItem value={'Admin'}>
+              {!matches && <MenuItem value={'Admin'}>
                 Admin
-              </MenuItem>
+              </MenuItem>}
               <MenuItem
                 value={'Выйти'}
                 onClick={() => navigate('/')}

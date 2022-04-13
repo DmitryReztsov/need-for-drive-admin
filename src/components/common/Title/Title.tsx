@@ -1,8 +1,8 @@
 import React from 'react';
 import {Box, Typography} from '@mui/material';
-import {ReactComponent as Logo} from '../../../content/svg/logo.svg';
 import {SxProps} from '@mui/system';
 import {Theme} from '@mui/material/styles';
+import {Logo} from '../../../content/svg/Icons';
 
 interface ITitleProps {
   sx?: SxProps<Theme>,

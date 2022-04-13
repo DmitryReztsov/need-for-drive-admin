@@ -1,18 +1,42 @@
 import React from 'react';
-import {Box} from '@mui/material';
-import {pageFilters, pageFiltersBody, pageFiltersContainer} from './PageFiltersStyle';
+import {Box, Button} from '@mui/material';
+import {
+  pageFilters,
+  pageFiltersBody,
+  pageFiltersBox,
+  pageFiltersButton,
+  pageFiltersContainer,
+} from './PageFiltersStyle';
 import Container from '../../common/containers/Container/Container';
+import Filter from '../../common/inputs/Filter/Filter';
 
 interface IPageFiltersProps {
-  children: React.ReactNode,
+  filters: any,
 }
 
-function PageFilters({children}: IPageFiltersProps) {
+function PageFilters({filters}: IPageFiltersProps) {
   return (
     <Box sx={pageFilters}>
       <Container sx={pageFiltersContainer}>
         <Box sx={pageFiltersBody}>
-          {children}
+          <Box sx={pageFiltersBox}>
+            {filters.map((filter: any) => {
+              return <Filter
+                key={filter.id}
+                id={filter.id}
+                value={filter.value}
+                change={filter.cb}
+                data={filter.data}
+              />;
+            })}
+          </Box>
+          <Button
+            variant="contained"
+            color={'secondary'}
+            sx={pageFiltersButton}
+          >
+            Применить
+          </Button>
         </Box>
       </Container>
     </Box>

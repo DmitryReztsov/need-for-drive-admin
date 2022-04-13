@@ -3,6 +3,7 @@ import {Link} from '@mui/material';
 import {SxProps} from '@mui/system';
 import {Theme} from '@mui/material/styles';
 import {linkStyles} from './CustomLinkStyle';
+import {hashPath} from '../../../utils/config';
 
 interface ICustomLinkProps {
   children: React.ReactNode,
@@ -13,7 +14,7 @@ interface ICustomLinkProps {
 function CustomLink({children, sx, href}: ICustomLinkProps) {
   return (
     <Link
-      href={href || '#'}
+      href={href ? (hashPath + href) : ''}
       color="secondary"
       underline="hover"
       sx={{...linkStyles, ...sx}}
