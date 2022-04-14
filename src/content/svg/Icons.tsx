@@ -6,3 +6,4 @@ export {ReactComponent as FormsIcon} from './icons/forms-n-components.svg';
 export {ReactComponent as PersonIcon} from './icons/person.svg';
 export {ReactComponent as ErrorIcon} from './icons/error.svg';
 export {ReactComponent as Logo} from './logo.svg';
+export {ReactComponent as DropdownIcon} from './icons/dropdown.svg';

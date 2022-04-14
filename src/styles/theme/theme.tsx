@@ -1,6 +1,7 @@
-import {ReactComponent as DropdownIcon} from '../../content/svg/icons/dropdown.svg';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
 import {createTheme} from '@mui/material';
+import React from 'react';
+import {DropdownIcon} from '../../content/svg/Icons';
 
 export const theme = createTheme({
   breakpoints: {
