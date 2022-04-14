@@ -8,6 +8,7 @@ import {Box} from '@mui/material';
 import {app} from './AppStyle';
 import Home from '../pages/Admin/Home/Home';
 import Orders from '../pages/Admin/Orders/Orders';
+import ErrorPage from '../pages/Admin/ErrorPage/ErrorPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="car/:id" element={<Car />} />
           <Route path="car" element={<Cars />} />
           <Route path="order" element={<Orders />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
     </Box>

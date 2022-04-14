@@ -20,7 +20,9 @@ export const theme = createTheme({
       'Helvetica Neue',
     ].join(','),
     h1: {
-      fontSize: '3rem',
+      fontSize: '3.125rem',
+      lineHeight: '3.5625rem',
+      letterSpacing: '-2.5px',
     },
     h2: {
       fontSize: '1.5rem',

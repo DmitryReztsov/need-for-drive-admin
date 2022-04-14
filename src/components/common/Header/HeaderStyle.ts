@@ -111,6 +111,7 @@ export const headerSelect = {
     '& div': {
       width: '0px',
       mr: '0px',
+      color: 'transparent',
     },
   },
 };
