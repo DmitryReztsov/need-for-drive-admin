@@ -19,6 +19,11 @@ export const loginTitle = {
   ...flexbox('center'),
 };
 
+export const loginTitleStyles = {
+  ...flexbox('stretch', 'center'),
+  columnGap: '11.5px',
+};
+
 export const loginFormContainer = {
   mt: '16.5px',
 };

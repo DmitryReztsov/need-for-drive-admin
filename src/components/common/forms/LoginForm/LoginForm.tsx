@@ -7,8 +7,10 @@ import {
   loginFormFields, loginFormFooter, loginFormLink, loginFormTitle,
 } from './LoginFormStyle';
 import CustomLink from '../../Link/CustomLink';
+import {useNavigate} from 'react-router-dom';
 
 function LoginForm() {
+  const navigate = useNavigate();
   return (
     <Box component="form" sx={loginForm}>
       <Box sx={loginFormTitle}>
@@ -23,6 +25,7 @@ function LoginForm() {
             required
             placeholder={'Введите Email...'}
             color={'secondary'}
+            fullWidth
           />
         </FormControl>
         <FormControl sx={loginFormField} fullWidth>
@@ -32,6 +35,7 @@ function LoginForm() {
             type={'password'}
             required
             placeholder={'Введите пароль...'}
+            fullWidth
           />
         </FormControl>
         <Box sx={loginFormFooter}>
@@ -44,6 +48,7 @@ function LoginForm() {
             variant="contained"
             color={'secondary'}
             sx={loginFormButton}
+            onClick={() => navigate('/admin')}
           >
             Войти
           </Button>

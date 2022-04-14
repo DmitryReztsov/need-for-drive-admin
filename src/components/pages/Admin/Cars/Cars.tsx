@@ -2,7 +2,9 @@ import React from 'react';
 
 function Cars() {
   return (
-    <div></div>
+    <div>
+      Машины
+    </div>
   );
 }
 
