@@ -26,9 +26,9 @@ function Header({openMenu}: IHeaderProps) {
         <Box sx={headerBody}>
           {matches && <MenuIcon onClick={openMenu} sx={headerBurgerIcon} />}
           <Box sx={headerSearch}>
-            <FormLabel htmlFor="search" sx={headerSearchIcon}>
+            {!matches && <FormLabel htmlFor="search" sx={headerSearchIcon}>
               <SearchIcon />
-            </FormLabel>
+            </FormLabel>}
             <Input
               id={'search'}
               type={'search'}

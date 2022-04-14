@@ -36,5 +36,8 @@ export const footerCopyright = {
   lineHeight: '1.025rem',
   fontWeight: 500,
   fontFamily: 'Roboto',
+  [theme.breakpoints.down('sm')]: {
+    lineHeight: '1.5rem',
+  },
 };
 

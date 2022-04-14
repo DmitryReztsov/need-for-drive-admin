@@ -44,6 +44,10 @@ export const headerSearchInput = {
   '&::before': {
     border: 'none',
   },
+  [theme.breakpoints.down('sm')]: {
+    ...flex(),
+    mr: '10px',
+  },
 };
 
 export const headerNotification = {
@@ -79,6 +83,9 @@ export const headerBadge = {
 export const headerProfile = {
   ...flexbox('stretch', 'center'),
   pl: '26.5px',
+  [theme.breakpoints.down('sm')]: {
+    pl: '12px',
+  },
 };
 
 export const headerAvatar = {
@@ -100,7 +107,7 @@ export const headerSelect = {
     top: '4.61px',
   },
   [theme.breakpoints.down('sm')]: {
-    minWidth: '50px',
+    minWidth: '30px',
     '& div': {
       width: '0px',
       mr: '0px',

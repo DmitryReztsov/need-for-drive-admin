@@ -54,7 +54,7 @@ export const orderDataPrice = {
 
 export const orderDataOptions = {
   [theme.breakpoints.down('lg')]: {
-    flexDirection: 'row',
+    ...flexbox('center', 'center', 'row'),
     columnGap: '20px',
   },
   [theme.breakpoints.down('sm')]: {

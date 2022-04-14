@@ -27,7 +27,7 @@ export const pageFiltersBox = {
     ...flexbox('center'),
     rowGap: '8px',
     '&>div': {
-      ...flex(1, 1, '30%'),
+      ...flex(1, 1, '40%'),
     },
   },
 };

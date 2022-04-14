@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Typography} from '@mui/material';
-import {home, homeBody} from './HomeStyle';
+import {home, homeBody, homeText, homeTitle} from './HomeStyle';
 import Container from '../../../common/containers/Container/Container';
 
 function Home() {
@@ -8,10 +8,10 @@ function Home() {
     <Box sx={home}>
       <Container>
         <Box sx={homeBody}>
-          <Typography variant={'h1'}>
+          <Typography variant={'h1'} sx={homeTitle}>
             Добро пожаловать в Need for car!
           </Typography>
-          <Typography>
+          <Typography sx={homeText}>
             Выбери раздел в меню слева для начала работы
           </Typography>
         </Box>
