@@ -5,8 +5,17 @@ import {
   footer, footerBody, footerCopyright, footerMenu,
 } from './FooterStyle';
 import CustomLink from '../Link/CustomLink';
+import {authAPI} from '../../../services/Auth';
+import {deleteStorageTokenData, getToken} from '../../../utils/localStorage';
 
 function Footer() {
+  const [authLogout, {}] = authAPI.useAuthLogoutMutation();
+
+  function clickHandler() {
+    authLogout(getToken()!);
+    deleteStorageTokenData();
+  }
+
   return (
     <Box component={'footer'} sx={footer}>
       <Container>
@@ -15,7 +24,7 @@ function Footer() {
             <CustomLink href={'admin'}>
               Главная страница
             </CustomLink>
-            <CustomLink>
+            <CustomLink click={clickHandler}>
               Ссылка
             </CustomLink>
           </Box>
