@@ -2,17 +2,21 @@ import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
 import {API_KEY, BASE_URL, SECRET} from '../utils/config';
 import {IToken} from '../models/IToken';
 import {ICredentials} from '../models/ICredentials';
+import {getToken} from '../utils/localStorage';
+import {IRate} from '../models/IRate';
 
 const loginToken = btoa(`127a2d:${SECRET}`);
+const accessToken = getToken();
+console.log(process.env);
+console.log(SECRET);
 
-export const authAPI = createApi({
-  reducerPath: 'authAPI',
-  baseQuery: fetchBaseQuery({baseUrl: BASE_URL + '/auth'}),
-  tagTypes: ['Auth'],
+export const api = createApi({
+  baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),
+  tagTypes: ['Auth', 'Rate'],
   endpoints: (build) => ({
     authLogin: build.mutation<IToken, ICredentials>({
       query: (credentials) => ({
-        url: '/login',
+        url: '/auth/login',
         method: 'POST',
         body: credentials,
         headers: {
@@ -24,7 +28,7 @@ export const authAPI = createApi({
     }),
     authLogout: build.mutation<null, string>({
       query: (token) => ({
-        url: '/logout',
+        url: '/auth/logout',
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -32,6 +36,16 @@ export const authAPI = createApi({
         },
       }),
       invalidatesTags: ['Auth'],
+    }),
+    getRate: build.query<IRate, string>({
+      query: (id) => ({
+        url: `/db/rate/${id}`,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'X-Api-Factory-Application-Id': API_KEY,
+        },
+      }),
+      providesTags: (result) => ['Rate'],
     }),
   }),
 });

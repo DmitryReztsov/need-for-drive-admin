@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {cityData, nameData, ordersArray, statusData, timeData} from './orderMocks';
 import OrderData from './OrderData/OrderData';
 import Page from '../../../page/Page';
+import {api} from '../../../../services/Api';
 
 function Orders() {
   const [date, setDate] = useState<number>(0);
@@ -9,6 +10,7 @@ function Orders() {
   const [city, setCity] = useState<string>('Все города');
   const [status, setStatus] = useState<string>('Любой');
   const [activeIndex, setActiveIndex] = useState<number>(1);
+  const {data, isLoading, error} = api.useGetRateQuery('6259003d73b61100181028d9');
   let order = ordersArray[0];
 
   const filters = [
@@ -41,6 +43,9 @@ function Orders() {
   useEffect(() => {
     order = ordersArray[activeIndex - 1];
   }, [activeIndex]);
+  useEffect(() => {
+    // console.log(data);
+  }, []);
   return (
     <Page
       header={'Заказы'}

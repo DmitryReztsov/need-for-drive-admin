@@ -8,14 +8,14 @@ import {
 } from './LoginFormStyle';
 import CustomLink from '../../Link/CustomLink';
 import {useNavigate} from 'react-router-dom';
-import {authAPI} from '../../../../services/Auth';
 import {setStorageTokenData} from '../../../../utils/localStorage';
+import {api} from '../../../../services/Api';
 
 function LoginForm() {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [authLogin, {data, error}] = authAPI.useAuthLoginMutation();
+  const [authLogin, {data, error}] = api.useAuthLoginMutation();
 
   async function clickHandler() {
     await authLogin({username, password});

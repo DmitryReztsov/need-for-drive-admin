@@ -5,11 +5,11 @@ import {
   footer, footerBody, footerCopyright, footerMenu,
 } from './FooterStyle';
 import CustomLink from '../Link/CustomLink';
-import {authAPI} from '../../../services/Auth';
 import {deleteStorageTokenData, getToken} from '../../../utils/localStorage';
+import {api} from '../../../services/Api';
 
 function Footer() {
-  const [authLogout, {}] = authAPI.useAuthLogoutMutation();
+  const [authLogout, {}] = api.useAuthLogoutMutation();
 
   function clickHandler() {
     authLogout(getToken()!);
