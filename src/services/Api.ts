@@ -7,8 +7,6 @@ import {IRate} from '../models/IRate';
 
 const loginToken = btoa(`127a2d:${SECRET}`);
 const accessToken = getToken();
-console.log(process.env);
-console.log(SECRET);
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),

@@ -44,7 +44,7 @@ function Orders() {
     order = ordersArray[activeIndex - 1];
   }, [activeIndex]);
   useEffect(() => {
-    // console.log(data);
+    console.log(data);
   }, []);
   return (
     <Page
