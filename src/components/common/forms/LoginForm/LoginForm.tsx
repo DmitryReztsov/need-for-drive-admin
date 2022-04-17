@@ -15,7 +15,7 @@ function LoginForm() {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [authLogin, {data, error, isLoading}] = authAPI.useAuthLoginMutation();
+  const [authLogin, {data, error}] = authAPI.useAuthLoginMutation();
 
   async function clickHandler() {
     await authLogin({username, password});
