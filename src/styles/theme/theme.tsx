@@ -1,6 +1,7 @@
-import createTheme from '@mui/material/styles/createTheme';
-import {ReactComponent as DropdownIcon} from '../../content/svg/icons/dropdown.svg';
 import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlineBlankOutlined';
+import {createTheme} from '@mui/material';
+import React from 'react';
+import {DropdownIcon} from '../../content/svg/Icons';
 
 export const theme = createTheme({
   breakpoints: {
@@ -19,7 +20,9 @@ export const theme = createTheme({
       'Helvetica Neue',
     ].join(','),
     h1: {
-      fontSize: '3rem',
+      fontSize: '3.125rem',
+      lineHeight: '3.5625rem',
+      letterSpacing: '-2.5px',
     },
     h2: {
       fontSize: '1.5rem',

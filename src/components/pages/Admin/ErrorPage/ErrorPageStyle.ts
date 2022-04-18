@@ -1,19 +1,26 @@
 import {flex, flexbox} from '../../../../styles/templates/flex';
 import {theme} from '../../../../styles/theme/theme';
 
-export const home = {
+export const errorPage = {
   ...flex(),
   ...flexbox('center', 'center'),
 };
 
-export const homeBody = {
+export const errorPageBody = {
   ...flex(),
   ...flexbox('center', 'center', 'column'),
   textAlign: 'center',
   transform: 'translateY(-10vh)',
 };
 
-export const homeTitle = {
+export const errorPageCode = {
+  fontSize: '4.6875rem',
+  lineHeight: '5.5rem',
+  letterSpacing: '-5.76923px',
+};
+
+export const errorPageTitle = {
+  mt: '13px',
   [theme.breakpoints.down('lg')]: {
     fontSize: '2.5rem',
   },
@@ -22,7 +29,7 @@ export const homeTitle = {
   },
 };
 
-export const homeText = {
+export const errorPageText = {
   mt: '15px',
   fontSize: '1.25rem',
   lineHeight: '1.4375rem',
@@ -30,5 +37,9 @@ export const homeText = {
   [theme.breakpoints.down('lg')]: {
     fontSize: '1rem',
   },
+};
+
+export const errorPageButton = {
+  mt: '34px',
 };
 
