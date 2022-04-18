@@ -11,7 +11,7 @@ function Home() {
           <Typography variant={'h1'} sx={homeTitle}>
             Добро пожаловать в Need for car!
           </Typography>
-          <Typography sx={homeText}>
+          <Typography sx={homeText} color={'grey.700'}>
             Выбери раздел в меню слева для начала работы
           </Typography>
         </Box>

@@ -1,2 +1,4 @@
-export const baseURL = 'https://api-factory.simbirsoft1.com';
-export const hashPath = '/need-for-drive-admin/#/';
+export const BASE_URL = 'https://api-factory.simbirsoft1.com/api';
+export const HASH_PATH = '/need-for-drive-admin/#/';
+export const SECRET = process.env.REACT_APP_SECRET;
+export const API_KEY = process.env.REACT_APP_APPLICATION_ID!;

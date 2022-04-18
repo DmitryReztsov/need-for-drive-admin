@@ -11,6 +11,12 @@ export const loginFormTitle = {
   textAlign: 'center',
 };
 
+export const loginFormErrorText = {
+  fontSize: '0.65rem',
+  lineHeight: '0.75rem',
+  mb: '8.5px',
+};
+
 export const loginFormFields = {
   p: '16.5px 18px 20.5px 18px',
   '&>div': {
