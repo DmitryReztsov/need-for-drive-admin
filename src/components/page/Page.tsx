@@ -29,11 +29,13 @@ function Page({children, filters, header, activeIndex, setActiveIndex, pages}: I
           <PageData>
             {children}
           </PageData>
-          <PagePagination
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-            pages={pages}
-          />
+          {(pages !== 1) &&
+            <PagePagination
+              activeIndex={activeIndex}
+              setActiveIndex={setActiveIndex}
+              pages={pages}
+            />
+          }
         </PageContent>
       </Container>
     </Box>

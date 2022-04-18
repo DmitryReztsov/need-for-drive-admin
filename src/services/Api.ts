@@ -4,17 +4,20 @@ import {IToken} from '../models/IToken';
 import {ICredentials} from '../models/ICredentials';
 import {getToken} from '../utils/localStorage';
 import {IRate} from '../models/IRate';
+import {IOrder} from '../models/IOrder';
+import {PATHS} from './paths';
+import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 
 const loginToken = btoa(`127a2d:${SECRET}`);
 const accessToken = getToken();
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),
-  tagTypes: ['Auth', 'Rate'],
+  tagTypes: ['Auth', 'Rate', 'Order'],
   endpoints: (build) => ({
     authLogin: build.mutation<IToken, ICredentials>({
       query: (credentials) => ({
-        url: '/auth/login',
+        url: PATHS.LOGIN,
         method: 'POST',
         body: credentials,
         headers: {
@@ -26,7 +29,7 @@ export const api = createApi({
     }),
     authLogout: build.mutation<null, string>({
       query: (token) => ({
-        url: '/auth/logout',
+        url: PATHS.LOGOUT,
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -35,9 +38,23 @@ export const api = createApi({
       }),
       invalidatesTags: ['Auth'],
     }),
+    getOrders: build.query<IOrder [], number>({
+      query: (limit) => ({
+        url: PATHS.ORDER,
+        params: {
+          limit,
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'X-Api-Factory-Application-Id': API_KEY,
+        },
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      providesTags: (result) => ['Order'],
+    }),
     getRate: build.query<IRate, string>({
       query: (id) => ({
-        url: `/db/rate/${id}`,
+        url: PATHS.RATE + id,
         headers: {
           Authorization: `Bearer ${accessToken}`,
           'X-Api-Factory-Application-Id': API_KEY,

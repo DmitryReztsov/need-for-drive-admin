@@ -4,97 +4,131 @@ import {
 } from '@mui/material';
 import {
   orderData, orderDataButtons, orderDataImage,
-  orderDataInfo, orderDataOptions, orderDataPrice,
+  orderDataInfo, orderDataOptions, orderDataPrice, orderDataRow,
   orderDataText,
 } from './OrderDataStyle';
 import {Check} from '@mui/icons-material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ClearIcon from '@mui/icons-material/Clear';
 import {formatDate} from '../../../../../utils/time';
+import noImage from '../../../../../content/png/no_image_available.png';
+import {IOrder} from '../../../../../models/IOrder';
 
 interface IOrderDataProps {
-  order: any,
+  orders: IOrder [],
+  activeIndex: number,
 }
 
-function OrderData({order}: IOrderDataProps) {
-  const {
-    cityId, pointId, carId, dateFrom, dateTo,
-    color, price, isFullTank, isNeedChildChair, isRightWheel,
-  } = order;
+function OrderData({orders, activeIndex}: IOrderDataProps) {
   return (
     <Box sx={orderData}>
-      <Box sx={orderDataInfo}>
-        <Box sx={{...orderDataImage, backgroundImage: `url(${carId.thumbnail.path})`}}>
-        </Box>
-        <Typography component={'div'} variant={'body2'} sx={orderDataText}>
-          <Typography variant={'body2'}>
-            <Typography
-              component={'span'}
-              variant={'body2'}
-              color={'grey.900'}
+      {orders.map((order, i) => {
+        if (i !== (activeIndex - 1)) return;
+        const {
+          id, cityId, pointId, carId, dateFrom, dateTo,
+          color, price, isFullTank, isNeedChildChair, isRightWheel,
+        } = order;
+        return <Box sx={orderDataRow} key={id}>
+          <Box sx={orderDataInfo}>
+            <Box
+              sx={
+                {
+                  ...orderDataImage,
+                  backgroundImage: `url(${carId ? carId.thumbnail.path : noImage})`,
+                }
+              }
             >
-              {carId.name.toUpperCase()}
+            </Box>
+            <Typography component={'div'} variant={'body2'} sx={orderDataText}>
+              <Typography variant={'body2'}>
+                <Typography
+                  component={'span'}
+                  variant={'body2'}
+                  color={'grey.900'}
+                >
+                  {carId ? carId.name.toUpperCase() : 'Неизвестная машина'}
+                </Typography>
+                &nbsp;в&nbsp;
+                <Typography
+                  component={'span'}
+                  variant={'body2'}
+                  color={'grey.900'}
+                >
+                  {cityId ? cityId.name : 'Неопределнный город'}
+                </Typography>
+                , {pointId ? pointId.address : 'Неопределнный адрес'}
+                <br/>
+              </Typography>
+              <Typography variant={'body2'}>
+                {formatDate(dateFrom)} - {formatDate(dateTo)}
+              </Typography>
+              <Typography variant={'body2'}>
+                Цвет:&nbsp;
+                <Typography
+                  component={'span'}
+                  variant={'body2'}
+                  color={'grey.900'}
+                >
+                  {color}
+                </Typography>
+              </Typography>
             </Typography>
-            &nbsp;в&nbsp;
-            <Typography
-              component={'span'}
-              variant={'body2'}
-              color={'grey.900'}
-            >
-              {cityId.name}
-            </Typography>
-            , {pointId.address}
-            <br/>
+          </Box>
+          <FormGroup sx={orderDataOptions}>
+            <FormControlLabel
+              // добавлен false чтобы закрыть предупреждение компилятора
+              control={
+                <Checkbox
+                  onClick={(e) => e.preventDefault()}
+                  disabled={!isFullTank}
+                  checked={isFullTank || false}
+                />
+              }
+              label="Полный бак"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  onClick={(e) => e.preventDefault()}
+                  disabled={!isNeedChildChair}
+                  checked={isNeedChildChair || false}
+                />
+              }
+              label="Детское кресло"
+            />
+            <FormControlLabel
+              control={
+                <Checkbox
+                  onClick={(e) => e.preventDefault()}
+                  disabled={!isRightWheel}
+                  checked={isRightWheel || false}
+                />
+              }
+              label="Правый руль"
+            />
+          </FormGroup>
+          <Typography sx={orderDataPrice}>
+            {`${price.toLocaleString()} ₽`}
           </Typography>
-          <Typography variant={'body2'}>
-            {formatDate(dateFrom)} - {formatDate(dateTo)}
-          </Typography>
-          <Typography variant={'body2'}>
-            Цвет:&nbsp;
-            <Typography
-              component={'span'}
-              variant={'body2'}
-              color={'grey.900'}
-            >
-              {color}
-            </Typography>
-          </Typography>
-        </Typography>
-      </Box>
-      <FormGroup sx={orderDataOptions}>
-        <FormControlLabel
-          control={<Checkbox disabled={!isFullTank} defaultChecked={isFullTank} />}
-          label="Полный бак"
-        />
-        <FormControlLabel
-          control={<Checkbox disabled={!isNeedChildChair} defaultChecked={isNeedChildChair} />}
-          label="Детское кресло"
-        />
-        <FormControlLabel
-          control={<Checkbox disabled={!isRightWheel} defaultChecked={isRightWheel} />}
-          label="Правый руль"
-        />
-      </FormGroup>
-      <Typography sx={orderDataPrice}>
-        {`${price.toLocaleString()} ₽`}
-      </Typography>
-      <ButtonGroup variant="outlined" sx={orderDataButtons}>
-        <Button
-          startIcon={<Check color={'primary'} />}
-          color={'secondary'}>
-          Готово
-        </Button>
-        <Button
-          startIcon={<ClearIcon color={'error'} />}
-          color={'secondary'}>
-          Отмена
-        </Button>
-        <Button
-          startIcon={<MoreVertIcon />}
-          color={'secondary'}>
-          Изменить
-        </Button>
-      </ButtonGroup>
+          <ButtonGroup variant="outlined" sx={orderDataButtons}>
+            <Button
+              startIcon={<Check color={'primary'} />}
+              color={'secondary'}>
+              Готово
+            </Button>
+            <Button
+              startIcon={<ClearIcon color={'error'} />}
+              color={'secondary'}>
+              Отмена
+            </Button>
+            <Button
+              startIcon={<MoreVertIcon />}
+              color={'secondary'}>
+              Изменить
+            </Button>
+          </ButtonGroup>
+        </Box>;
+      })}
     </Box>
   );
 }

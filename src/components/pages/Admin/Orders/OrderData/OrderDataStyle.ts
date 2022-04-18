@@ -1,8 +1,12 @@
 import {flex, flexbox} from '../../../../../styles/templates/flex';
 import {theme} from '../../../../../styles/theme/theme';
 
-
 export const orderData = {
+  ...flex(),
+  ...flexbox('stretch', 'stretch', 'column'),
+};
+
+export const orderDataRow = {
   ...flex(),
   ...flexbox('space-between', 'center'),
   flexWrap: 'wrap',
@@ -23,11 +27,15 @@ export const orderDataInfo = {
 };
 
 export const orderDataImage = {
-  pl: '138px',
+  width: '138px',
   height: '100px',
-  backgroundPosition: 'top 0px left 0px',
-  backgroundSize: 'auto 100px',
+  backgroundPosition: 'center',
+  backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
+  [theme.breakpoints.down('sm')]: {
+    width: '200px',
+    height: '150px',
+  },
 };
 
 export const orderDataText = {

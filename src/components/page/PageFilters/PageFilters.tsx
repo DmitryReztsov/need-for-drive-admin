@@ -4,7 +4,7 @@ import {
   pageFilters,
   pageFiltersBody,
   pageFiltersBox,
-  pageFiltersButton,
+  pageFiltersButtons,
   pageFiltersContainer,
 } from './PageFiltersStyle';
 import Container from '../../common/containers/Container/Container';
@@ -30,13 +30,22 @@ function PageFilters({filters}: IPageFiltersProps) {
               />;
             })}
           </Box>
-          <Button
-            variant="contained"
-            color={'secondary'}
-            sx={pageFiltersButton}
-          >
-            Применить
-          </Button>
+          <Box sx={pageFiltersButtons}>
+            <Button
+              variant="contained"
+              color={'error'}
+              // sx={pageFiltersButton}
+            >
+              Сбросить
+            </Button>
+            <Button
+              variant="contained"
+              color={'secondary'}
+              // sx={pageFiltersButton}
+            >
+              Применить
+            </Button>
+          </Box>
         </Box>
       </Container>
     </Box>
