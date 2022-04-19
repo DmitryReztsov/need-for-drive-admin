@@ -1,22 +1,34 @@
 import React from 'react';
 import {MenuItem, Select, SelectChangeEvent} from '@mui/material';
 
-interface IFilterProps {
-  change: (e: SelectChangeEvent<any>) => void,
-  value: any,
+type IFilterDataType = {[key: string]: any} | string | number;
+
+interface IFilterProps<T> {
   id: string,
-  data: {value: any, text: string} [],
+  value: string | number,
+  all: string,
+  data: T [],
+  change: (e: SelectChangeEvent<any>) => void,
 }
 
-function Filter({change, value, id, data}: IFilterProps) {
+function Filter<T extends IFilterDataType>({id, value, all, data, change}: IFilterProps<T>) {
   return (
     <Select
       id={id}
       value={value}
       onChange={change}
+      defaultValue={all}
     >
-      {data.map((item, i) => {
-        return <MenuItem key={item.text + i} value={item.value}>{item.text}</MenuItem>;
+      <MenuItem
+        key={all}
+        value={all}
+      >
+        {all}
+      </MenuItem>
+      {data.map((item) => {
+        return (typeof item === 'string' || typeof item === 'number') ?
+          <MenuItem key={item} value={item}>{item.toString()}</MenuItem> :
+          <MenuItem key={item.id} value={item.id}>{item.address || item.name}</MenuItem>;
       })}
     </Select>
   );

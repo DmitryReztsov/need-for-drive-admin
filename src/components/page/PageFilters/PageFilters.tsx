@@ -9,9 +9,10 @@ import {
 } from './PageFiltersStyle';
 import Container from '../../common/containers/Container/Container';
 import Filter from '../../common/inputs/Filter/Filter';
+import {IFilter} from '../../pages/Admin/Orders/Orders';
 
 interface IPageFiltersProps {
-  filters: any,
+  filters: IFilter [],
 }
 
 function PageFilters({filters}: IPageFiltersProps) {
@@ -27,6 +28,7 @@ function PageFilters({filters}: IPageFiltersProps) {
                 value={filter.value}
                 change={filter.cb}
                 data={filter.data}
+                all={filter.all}
               />;
             })}
           </Box>

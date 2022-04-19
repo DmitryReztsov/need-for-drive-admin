@@ -10,7 +10,7 @@ import {page} from './PageStyle';
 
 interface IPageProps {
   children: React.ReactNode,
-  filters: any,
+  filters: any [],
   header: string,
   activeIndex: number,
   setActiveIndex: Dispatch<SetStateAction<number>>,

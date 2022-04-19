@@ -1,59 +1,81 @@
-import React, {useState} from 'react';
-import {cityData, nameData, statusData, timeData} from './orderMocks';
+import React, {useEffect, useState} from 'react';
 import OrderData from './OrderData/OrderData';
 import Page from '../../../page/Page';
 import {api} from '../../../../services/Api';
 import {Box, Skeleton} from '@mui/material';
 import {IOrder} from '../../../../models/IOrder';
+import useFilter from '../../../../hooks/useFilter';
+
+export interface IFilter {
+  id: string,
+  value: string,
+  all: string,
+  cb: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  data: any [],
+}
 
 function Orders() {
-  const [date, setDate] = useState<number>(0);
-  const [name, setName] = useState<string>('Все модели');
+  const {data: orders, isLoading: orderLoading, error: orderError} = api.useGetOrdersQuery(20);
+  const {data: cars} = api.useGetCarsQuery(10);
+  const {data: cities} = api.useGetCitiesQuery();
+  const {data: orderStatuses} = api.useGetOrderStatusesQuery();
+  const [date, setDate] = useState<string>('За все время');
+  const [car, setCar] = useState<string>('Все модели');
   const [city, setCity] = useState<string>('Все города');
   const [status, setStatus] = useState<string>('Любой');
   const [activeIndex, setActiveIndex] = useState<number>(1);
-  const {data, isLoading, error} = api.useGetOrdersQuery(20);
+  const [filteredArray, setFilteredArray] = useState<IOrder[]>([]);
 
-  const filters = [
+  const filters: IFilter [] = [
     {
-      id: 'date',
+      id: 'createdAt',
       value: date,
-      cb: (e: React.ChangeEvent<HTMLInputElement>) => setDate(+e.target.value),
-      data: timeData,
+      all: 'За все время',
+      cb: (e: React.ChangeEvent<HTMLInputElement>) => setDate(e.target.value),
+      data: ['За последний месяц', 'За неделю'],
     },
     {
-      id: 'name',
-      value: name,
-      cb: (e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value),
-      data: nameData,
+      id: 'carId',
+      value: car,
+      all: 'Все модели',
+      cb: (e: React.ChangeEvent<HTMLInputElement>) => setCar(e.target.value),
+      data: cars || [],
     },
     {
-      id: 'city',
+      id: 'cityId',
       value: city,
+      all: 'Все города',
       cb: (e: React.ChangeEvent<HTMLInputElement>) => setCity(e.target.value),
-      data: cityData,
+      data: cities || [],
     },
     {
-      id: 'status',
+      id: 'orderStatusId',
       value: status,
+      all: 'Любой',
       cb: (e: React.ChangeEvent<HTMLInputElement>) => setStatus(e.target.value),
-      data: statusData,
+      data: orderStatuses || [],
     },
   ];
 
+  useEffect(() => {
+    console.log(date, car, city, status, orders);
+    orders && setFilteredArray(useFilter(orders, filters));
+    setActiveIndex(1);
+  }, [date, car, city, status, orders]);
   return (
     <Page
       header={'Заказы'}
       filters={filters}
       activeIndex={activeIndex}
       setActiveIndex={setActiveIndex}
-      pages={data?.length || 1}
+      pages={filteredArray?.length || 1}
     >
-      {isLoading ? <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} /> :
-        error ?
+      {orderLoading ?
+        <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} /> :
+        orderError ?
           <Box>Возникла ошибка</Box> :
-          data ?
-            <OrderData orders={data} activeIndex={activeIndex} /> :
+          orders ?
+            <OrderData orders={filteredArray} activeIndex={activeIndex} /> :
             <Box>Заказов нет</Box>
       }
     </Page>

@@ -7,13 +7,16 @@ import {IRate} from '../models/IRate';
 import {IOrder} from '../models/IOrder';
 import {PATHS} from './paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+import {ICar} from '../models/ICar';
+import {ICity} from '../models/ICity';
+import {IOrderStatus} from '../models/IOrderStatus';
 
 const loginToken = btoa(`127a2d:${SECRET}`);
 const accessToken = getToken();
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),
-  tagTypes: ['Auth', 'Rate', 'Order'],
+  tagTypes: ['Auth', 'Order', 'Rate', 'Car', 'City', 'OrderStatus'],
   endpoints: (build) => ({
     authLogin: build.mutation<IToken, ICredentials>({
       query: (credentials) => ({
@@ -38,7 +41,7 @@ export const api = createApi({
       }),
       invalidatesTags: ['Auth'],
     }),
-    getOrders: build.query<IOrder [], number>({
+    getOrders: build.query<IOrder [], Void<number>>({
       query: (limit) => ({
         url: PATHS.ORDER,
         params: {
@@ -51,6 +54,42 @@ export const api = createApi({
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       providesTags: (result) => ['Order'],
+    }),
+    getCars: build.query<ICar [], Void<number>>({
+      query: (limit) => ({
+        url: PATHS.CAR,
+        params: {
+          limit,
+        },
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'X-Api-Factory-Application-Id': API_KEY,
+        },
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      providesTags: (result) => ['Car'],
+    }),
+    getCities: build.query<ICity [], void>({
+      query: () => ({
+        url: PATHS.CITY,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'X-Api-Factory-Application-Id': API_KEY,
+        },
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      providesTags: (result) => ['City'],
+    }),
+    getOrderStatuses: build.query<IOrderStatus [], void>({
+      query: () => ({
+        url: PATHS.ORDER_STATUS,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          'X-Api-Factory-Application-Id': API_KEY,
+        },
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      providesTags: (result) => ['OrderStatus'],
     }),
     getRate: build.query<IRate, string>({
       query: (id) => ({
