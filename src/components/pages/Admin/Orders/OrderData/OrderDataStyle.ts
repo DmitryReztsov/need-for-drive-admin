@@ -10,10 +10,9 @@ export const orderDataRow = {
   ...flex(),
   ...flexbox('space-between', 'center'),
   flexWrap: 'wrap',
-  pb: '178px',
+  pb: '32px',
   [theme.breakpoints.down('lg')]: {
     ...flexbox('center', 'center', 'column'),
-    pb: '30px',
   },
 };
 

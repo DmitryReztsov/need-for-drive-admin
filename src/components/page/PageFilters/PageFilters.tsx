@@ -13,9 +13,11 @@ import {IFilter} from '../../pages/Admin/Orders/Orders';
 
 interface IPageFiltersProps {
   filters: IFilter [],
+  apply: () => void,
+  reset: () => void,
 }
 
-function PageFilters({filters}: IPageFiltersProps) {
+function PageFilters({filters, apply, reset}: IPageFiltersProps) {
   return (
     <Box sx={pageFilters}>
       <Container sx={pageFiltersContainer}>
@@ -36,6 +38,7 @@ function PageFilters({filters}: IPageFiltersProps) {
             <Button
               variant="contained"
               color={'error'}
+              onClick={reset}
               // sx={pageFiltersButton}
             >
               Сбросить
@@ -43,6 +46,7 @@ function PageFilters({filters}: IPageFiltersProps) {
             <Button
               variant="contained"
               color={'secondary'}
+              onClick={apply}
               // sx={pageFiltersButton}
             >
               Применить

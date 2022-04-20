@@ -26,22 +26,27 @@ export const navItems = [
   },
   {
     icon: OverviewIcon,
-    text: 'Menu 4',
-    href: '',
+    text: 'Список городов',
+    href: 'admin/city',
   },
   {
     icon: FormsIcon,
-    text: 'Menu 5',
-    href: '',
+    text: 'Пункты выдачи',
+    href: 'admin/point',
   },
   {
     icon: PersonIcon,
-    text: 'Menu 6',
-    href: '',
+    text: 'Тарифы',
+    href: 'admin/rate',
   },
   {
     icon: ErrorIcon,
-    text: 'Menu 7',
-    href: '',
+    text: 'Типы тарифов',
+    href: 'admin/rateType',
+  },
+  {
+    icon: ErrorIcon,
+    text: 'Список статусов',
+    href: 'admin/orderStatus',
   },
 ];

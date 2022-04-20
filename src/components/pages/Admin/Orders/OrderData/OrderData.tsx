@@ -23,7 +23,7 @@ function OrderData({orders, activeIndex}: IOrderDataProps) {
   return (
     <Box sx={orderData}>
       {orders
-        .filter((order, i) => i === (activeIndex - 1))
+        .filter((order, i) => (i >= 5 * (activeIndex - 1)) && (i < 5 * activeIndex))
         .map((order) => {
           const {
             id, cityId, pointId, carId, dateFrom, dateTo,
@@ -109,7 +109,7 @@ function OrderData({orders, activeIndex}: IOrderDataProps) {
               />
             </FormGroup>
             <Typography sx={orderDataPrice}>
-              {`${price.toLocaleString()} ₽`}
+              {price ? `${price.toLocaleString()} ₽` : 'Не указана'}
             </Typography>
             <ButtonGroup variant="outlined" sx={orderDataButtons}>
               <Button
