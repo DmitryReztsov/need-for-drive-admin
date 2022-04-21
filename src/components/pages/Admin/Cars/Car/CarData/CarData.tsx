@@ -3,37 +3,38 @@ import {
   Box, Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, Typography,
 } from '@mui/material';
 import {
-  orderData, orderDataButtons, orderDataImage,
-  orderDataInfo, orderDataOptions, orderDataPrice, orderDataRow,
-  orderDataText,
-} from './OrderDataStyle';
+  carData,
+  orderDataButtons, orderDataImage,
+  orderDataInfo, orderDataOptions, orderDataPrice,
+  orderDataRow, orderDataText,
+} from './CarDataStyle';
 import {Check} from '@mui/icons-material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import ClearIcon from '@mui/icons-material/Clear';
 import noImage from '../../../../../content/png/no_image_available.png';
-import {IOrder} from '../../../../../models/IOrder';
-import OrderDataTime from './OrderDataTime/OrderDataTime';
+import {ICar} from '../../../../../../models/ICar';
 
 interface IOrderDataProps {
-  orders: IOrder[],
+  cars: ICar[],
   activeIndex: number,
 }
 
-function OrderData({orders, activeIndex}: IOrderDataProps) {
+function CarData({cars, activeIndex}: IOrderDataProps) {
   return (
-    <Box sx={orderData}>
-      {orders
-        .filter((order, i) => (i >= 5 * (activeIndex - 1)) && (i < 5 * activeIndex))
-        .map((order) => {
+    <Box sx={carData}>
+      {cars
+        .filter((car, i) => (i >= 5 * (activeIndex - 1)) && (i < 5 * activeIndex))
+        .map((car) => {
           const {
-            id, cityId, pointId, carId, dateFrom, dateTo,
-            color, price, isFullTank, isNeedChildChair, isRightWheel,
-          } = order;
+            id, priceMin, priceMax, name,
+            number, categoryId: {name: categoryName},
+            thumbnail: {path}, tank, colors,
+          } = car;
           return <Box sx={orderDataRow} key={id}>
             <Box sx={orderDataInfo}>
               <Box sx={
                 {...orderDataImage,
-                  backgroundImage: `url(${carId ? carId.thumbnail.path : noImage})`,
+                  backgroundImage: `url(${path ? path : noImage})`,
                 }}
               >
               </Box>
@@ -44,7 +45,7 @@ function OrderData({orders, activeIndex}: IOrderDataProps) {
                     variant={'body2'}
                     color={'grey.900'}
                   >
-                    {carId ? carId.name.toUpperCase() : 'Неизвестная машина'}
+                    {name ? name.toUpperCase() : 'Неизвестная машина'}
                   </Typography>
                 &nbsp;в&nbsp;
                   <Typography
@@ -129,4 +130,4 @@ function OrderData({orders, activeIndex}: IOrderDataProps) {
   );
 }
 
-export default OrderData;
+export default CarData;

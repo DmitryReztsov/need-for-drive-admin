@@ -1,7 +1,8 @@
 import {IFilter} from '../components/pages/Admin/Orders/Orders';
-import {filterTimestamp, MONTH} from '../utils/time';
+import {filterTimestamp} from '../utils/time';
+import {initialState} from '../store/slices/filter/filterSlice';
 
-const defaultFilter = ['За все время', 'Все модели', 'Все города', 'Любой'];
+const defaultFilter = Object.values(initialState);
 
 export default function useFilter(array: any [], filters: IFilter []) {
   let resultArray: any [] = array.slice();
