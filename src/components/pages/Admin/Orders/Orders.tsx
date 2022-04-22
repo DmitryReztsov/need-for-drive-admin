@@ -1,15 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import OrderData from './OrderData/OrderData';
 import Page from '../../../page/Page';
-import {IOrder} from '../../../../models/IOrder';
-import useFilter from '../../../../hooks/useFilter';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/reduxHooks';
 import {initialState, setFilter, clearFilters} from '../../../../store/slices/filter/filterSlice';
-import {orderApi} from '../../../../services/endpoints/order';
+import {IOrderQueryParams, orderApi} from '../../../../services/endpoints/order';
 import {carApi} from '../../../../services/endpoints/car';
 import {cityApi} from '../../../../services/endpoints/city';
 import {orderStatusApi} from '../../../../services/endpoints/orderStatus';
+import useSetParams from '../../../../hooks/useSetParams';
 
 export interface IFilter {
   id: string,
@@ -22,68 +21,65 @@ export interface IFilter {
 function Orders() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {
-    data: orders, isLoading: orderLoading, error: orderError,
-  } = orderApi.useGetOrdersQuery(100);
-  const {data: cars} = carApi.useGetCarsQuery();
+  const {data: cars} = carApi.useGetCarsQuery({limit: 0});
   const {data: cities} = cityApi.useGetCitiesQuery();
   const {data: orderStatuses} = orderStatusApi.useGetOrderStatusesQuery();
-  const {date, car, city, status} = useAppSelector((state) => state.filterReducer);
-  const [activeIndex, setActiveIndex] = useState<number>(1);
-  const [filteredArray, setFilteredArray] = useState<IOrder[]>([]);
+  const {
+    createdAt, carId, cityId, orderStatusId,
+  } = useAppSelector((state) => state.filterReducer);
+  const [page, setPage] = useState<number>(1);
+  const [queryParams, setQueryParams] = useState<Void<IOrderQueryParams>>();
+  const {
+    data, isLoading: orderLoading, error: orderError,
+  } = orderApi.useGetOrdersQuery({page, ...queryParams});
 
   const filters: IFilter [] = [
     {
       id: 'createdAt',
-      value: date,
-      all: initialState.date,
+      value: createdAt,
+      all: initialState.createdAt,
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setFilter(['date', e.target.value]));
+        dispatch(setFilter(['createdAt', e.target.value]));
       },
       data: ['За последний месяц', 'За неделю'],
     },
     {
       id: 'carId',
-      value: car,
-      all: initialState.car,
+      value: carId,
+      all: initialState.carId,
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setFilter(['car', e.target.value]));
+        dispatch(setFilter(['carId', e.target.value]));
       },
-      data: cars || [],
+      data: cars?.cars || [],
     },
     {
       id: 'cityId',
-      value: city,
-      all: initialState.city,
+      value: cityId,
+      all: initialState.cityId,
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setFilter(['city', e.target.value]));
+        dispatch(setFilter(['cityId', e.target.value]));
       },
       data: cities || [],
     },
     {
       id: 'orderStatusId',
-      value: status,
-      all: initialState.status,
+      value: orderStatusId,
+      all: initialState.orderStatusId,
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setFilter(['status', e.target.value]));
+        dispatch(setFilter(['orderStatusId', e.target.value]));
       },
       data: orderStatuses || [],
     },
   ];
 
   function applyFilters() {
-    orders && setFilteredArray(useFilter(orders, filters));
-    setActiveIndex(1);
+    setQueryParams(useSetParams(filters));
+    setPage(1);
   }
 
   function resetFilters() {
     dispatch(clearFilters());
   }
-
-  useEffect(() => {
-    orders && setFilteredArray(useFilter(orders, filters));
-    setActiveIndex(1);
-  }, [orders]);
 
   if (orderError) {
     navigate('admin/error');
@@ -99,15 +95,15 @@ function Orders() {
     <Page
       header={'Заказы'}
       filters={filters}
-      activeIndex={activeIndex}
-      setActiveIndex={setActiveIndex}
-      pages={Math.ceil(filteredArray?.length / 5) || 1}
+      page={page}
+      setPage={setPage}
+      pages={Math.trunc((data?.count || 1) / 5)}
       apply={applyFilters}
       reset={resetFilters}
       dataLoading={orderLoading}
-      filteredArray={filteredArray}
+      array={data?.orders || []}
     >
-      <OrderData orders={filteredArray} activeIndex={activeIndex} />
+      <OrderData orders={data?.orders || []}/>
     </Page>
   );
 }

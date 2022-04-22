@@ -2,15 +2,15 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IInitialState} from './types';
 
 export const initialState: IInitialState = {
-  date: 'За все время',
-  city: 'Все города',
-  point: 'Все пункты',
-  car: 'Все модели',
-  category: 'Все классы',
-  color: 'Любой цвет',
-  status: 'Любой статус',
-  rate: 'Любой тариф',
-  rateType: 'Любой тип тарифа',
+  createdAt: 'За все время',
+  cityId: 'Все города',
+  pointId: 'Все пункты',
+  carId: 'Все модели',
+  categoryId: 'Все классы',
+  colors: 'Любой цвет',
+  orderStatusId: 'Любой статус',
+  rateId: 'Любой тариф',
+  rateTypeId: 'Любой тип тарифа',
 };
 
 export const filterSlice = createSlice({

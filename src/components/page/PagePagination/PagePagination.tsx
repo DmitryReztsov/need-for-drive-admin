@@ -6,20 +6,20 @@ import {ReactComponent as ArrowLeft} from '../../../content/svg/icons/arrow-left
 import {ReactComponent as ArrowRight} from '../../../content/svg/icons/arrow-right.svg';
 
 interface IPagePaginationProps {
-  activeIndex: number,
-  setActiveIndex: Dispatch<SetStateAction<number>>,
+  page: number,
+  setPage: Dispatch<SetStateAction<number>>,
   pages: number,
 }
 
-function PagePagination({activeIndex, setActiveIndex, pages}: IPagePaginationProps) {
+function PagePagination({page, setPage, pages}: IPagePaginationProps) {
   return (
     <Box sx={pagePagination}>
       <Container sx={pagePaginationContainer}>
         <Box sx={pagePaginationBody}>
           <Pagination
             count={pages}
-            page={activeIndex}
-            onChange={(e, value) => setActiveIndex(+value)}
+            page={page}
+            onChange={(e, value) => setPage(+value)}
             renderItem={(item) => (
               <PaginationItem
                 components={{previous: ArrowLeft, next: ArrowRight}}
