@@ -9,13 +9,13 @@ import {
 import CustomLink from '../../Link/CustomLink';
 import {useNavigate} from 'react-router-dom';
 import {setStorageTokenData} from '../../../../utils/localStorage';
-import {api} from '../../../../services/Api';
+import {authApi} from '../../../../services/endpoints/auth';
 
 function LoginForm() {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [authLogin, {data, error}] = api.useAuthLoginMutation();
+  const [authLogin, {data, error}] = authApi.useAuthLoginMutation();
 
   async function clickHandler() {
     await authLogin({username, password});

@@ -6,10 +6,10 @@ import {
 } from './FooterStyle';
 import CustomLink from '../Link/CustomLink';
 import {deleteStorageTokenData, getToken} from '../../../utils/localStorage';
-import {api} from '../../../services/Api';
+import {authApi} from '../../../services/endpoints/auth';
 
 function Footer() {
-  const [authLogout, {}] = api.useAuthLogoutMutation();
+  const [authLogout, {}] = authApi.useAuthLogoutMutation();
 
   function clickHandler() {
     authLogout(getToken()!);

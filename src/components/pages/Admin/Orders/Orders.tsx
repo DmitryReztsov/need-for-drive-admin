@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import OrderData from './OrderData/OrderData';
 import Page from '../../../page/Page';
-import {api} from '../../../../services/Api';
 import {IOrder} from '../../../../models/IOrder';
 import useFilter from '../../../../hooks/useFilter';
 import {useNavigate} from 'react-router-dom';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/reduxHooks';
 import {initialState, setFilter, clearFilters} from '../../../../store/slices/filter/filterSlice';
+import {orderApi} from '../../../../services/endpoints/order';
+import {carApi} from '../../../../services/endpoints/car';
+import {cityApi} from '../../../../services/endpoints/city';
+import {orderStatusApi} from '../../../../services/endpoints/orderStatus';
 
 export interface IFilter {
   id: string,
@@ -19,10 +22,12 @@ export interface IFilter {
 function Orders() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {data: orders, isLoading: orderLoading, error: orderError} = api.useGetOrdersQuery(100);
-  const {data: cars} = api.useGetCarsQuery(10);
-  const {data: cities} = api.useGetCitiesQuery();
-  const {data: orderStatuses} = api.useGetOrderStatusesQuery();
+  const {
+    data: orders, isLoading: orderLoading, error: orderError,
+  } = orderApi.useGetOrdersQuery(100);
+  const {data: cars} = carApi.useGetCarsQuery();
+  const {data: cities} = cityApi.useGetCitiesQuery();
+  const {data: orderStatuses} = orderStatusApi.useGetOrderStatusesQuery();
   const {date, car, city, status} = useAppSelector((state) => state.filterReducer);
   const [activeIndex, setActiveIndex] = useState<number>(1);
   const [filteredArray, setFilteredArray] = useState<IOrder[]>([]);

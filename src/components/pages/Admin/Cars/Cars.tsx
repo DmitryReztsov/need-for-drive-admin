@@ -1,22 +1,23 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {api} from '../../../../services/Api';
-import {IOrder} from '../../../../models/IOrder';
 import useFilter from '../../../../hooks/useFilter';
 import Page from '../../../page/Page';
 import {IFilter} from '../Orders/Orders';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/reduxHooks';
 import {clearFilters, initialState, setFilter} from '../../../../store/slices/filter/filterSlice';
 import CarData from './Car/CarData/CarData';
+import {ICar} from '../../../../models/ICar';
+import {carApi} from '../../../../services/endpoints/car';
+import {categoryApi} from '../../../../services/endpoints/category';
 
 function Cars() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {data: cars, isLoading: carLoading, error: carError} = api.useGetCarsQuery();
-  const {data: categories} = api.useGetCategoriesQuery();
+  const {data: cars, isLoading: carLoading, error: carError} = carApi.useGetCarsQuery();
+  const {data: categories} = categoryApi.useGetCategoriesQuery();
   const {category, color} = useAppSelector((state) => state.filterReducer);
   const [activeIndex, setActiveIndex] = useState<number>(1);
-  const [filteredArray, setFilteredArray] = useState<IOrder[]>([]);
+  const [filteredArray, setFilteredArray] = useState<ICar[]>([]);
 
   const filters: IFilter [] = [
     {

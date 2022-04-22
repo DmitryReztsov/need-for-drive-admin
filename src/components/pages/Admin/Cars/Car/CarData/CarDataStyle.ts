@@ -1,4 +1,5 @@
 import {flex, flexbox} from '../../../../../../styles/templates/flex';
+import {theme} from '../../../../../../styles/theme/theme';
 
 export const carData = {
   ...flex(),
