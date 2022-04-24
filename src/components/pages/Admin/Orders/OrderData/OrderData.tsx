@@ -11,7 +11,7 @@ interface IOrderDataProps {
 function OrderData({orders}: IOrderDataProps) {
   return (
     <Box sx={orderData}>
-      {orders.map((order) => <OrderItem order={order} />)}
+      {orders.map((order) => <OrderItem order={order} key={order.id} />)}
     </Box>
   );
 }

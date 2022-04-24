@@ -52,6 +52,7 @@ export const theme = createTheme({
       200: '#FBFBFB',
       300: '#CACEDB',
       400: '#BECAD6',
+      500: '#E0E2E8',
       600: '#5A6169',
       700: '#818EA3',
       800: '#889098',

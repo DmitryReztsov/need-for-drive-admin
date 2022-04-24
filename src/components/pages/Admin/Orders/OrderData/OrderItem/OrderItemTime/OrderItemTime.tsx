@@ -9,7 +9,7 @@ interface IOrderDataTimeProps {
 
 function OrderItemTime({dateFrom, dateTo}: IOrderDataTimeProps) {
   const from = dateFrom ? format(new Date(dateFrom), 'dd.MM.yyyy k:mm') : 'неизвестно';
-  const to = dateFrom ? format(new Date(dateTo), 'dd.MM.yyyy k:mm') : 'неизвестно';
+  const to = dateTo ? format(new Date(dateTo), 'dd.MM.yyyy k:mm') : 'неизвестно';
   return (
     <Typography variant={'body2'}>
       {from} - {to}

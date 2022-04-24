@@ -36,6 +36,6 @@ export const pageFiltersButtons = {
   ...flexbox(),
   alignSelf: 'baseline',
   [theme.breakpoints.down('sm')]: {
-    alignSelf: 'flex-end',
+    alignSelf: 'center',
   },
 };

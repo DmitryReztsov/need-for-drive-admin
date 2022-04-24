@@ -11,7 +11,7 @@ interface IOrderDataProps {
 function CarData({cars}: IOrderDataProps) {
   return (
     <Box sx={carData}>
-      {cars.map((car) => <CarItem car={car} />)}
+      {cars.map((car) => <CarItem car={car} key={car.id} />)}
     </Box>
   );
 }

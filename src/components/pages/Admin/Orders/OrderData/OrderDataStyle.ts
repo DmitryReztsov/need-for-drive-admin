@@ -1,8 +1,14 @@
 import {flex, flexbox} from '../../../../../styles/templates/flex';
-import {theme} from '../../../../../styles/theme/theme';
 
 export const orderData = {
   ...flex(),
   ...flexbox('stretch', 'stretch', 'column'),
+  '& > div': {
+    borderBottom: '0.5px solid',
+    borderColor: 'grey.500',
+    '&:last-of-type': {
+      border: 'none',
+    },
+  },
 };
 
