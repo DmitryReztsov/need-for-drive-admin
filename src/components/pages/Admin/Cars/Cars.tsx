@@ -5,10 +5,10 @@ import Page from '../../../page/Page';
 import {IFilter} from '../Orders/Orders';
 import {useAppDispatch, useAppSelector} from '../../../../hooks/reduxHooks';
 import {clearFilters, initialState, setFilter} from '../../../../store/slices/filter/filterSlice';
-import CarData from './Car/CarData/CarData';
 import {carApi} from '../../../../services/endpoints/car';
 import {categoryApi} from '../../../../services/endpoints/category';
 import {IOrderQueryParams, orderApi} from '../../../../services/endpoints/order';
+import CarData from './CarData/CarData';
 
 function Cars() {
   const navigate = useNavigate();

@@ -1,5 +1,4 @@
 import {api, headers} from '../Api';
-import {IOrder} from '../../models/IOrder';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {ICar} from '../../models/ICar';
@@ -32,6 +31,14 @@ export const carApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResult<any>) => {
         return response && {count: response.count, cars: response.data};
       },
+      providesTags: (result) => ['Car'],
+    }),
+    getCar: build.query<ICar, string>({
+      query: (id) => ({
+        url: PATHS.CAR + `/${id}`,
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
       providesTags: (result) => ['Car'],
     }),
   }),

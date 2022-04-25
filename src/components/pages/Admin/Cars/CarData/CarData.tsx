@@ -1,8 +1,8 @@
 import React from 'react';
 import {Box} from '@mui/material';
 import {carData} from './CarDataStyle';
-import {ICar} from '../../../../../../models/ICar';
 import CarItem from './CarItem/CarItem';
+import {ICar} from '../../../../../models/ICar';
 
 interface IOrderDataProps {
   cars: ICar[],

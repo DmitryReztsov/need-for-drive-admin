@@ -16,7 +16,7 @@ function CustomLink({children, sx, href, click}: ICustomLinkProps) {
   return (
     <Link
       href={href ? (HASH_PATH + href) : ''}
-      color="secondary"
+      color="primary"
       underline="hover"
       sx={{...linkStyles, ...sx}}
       onClick={click}

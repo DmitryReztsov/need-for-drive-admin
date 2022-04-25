@@ -4,15 +4,22 @@ import {theme} from '../../../../../../styles/theme/theme';
 export const orderItem = {
   ...flex(),
   ...flexbox('space-between', 'center'),
+  '& > div': {
+    ...flex(1, 1, '25%'),
+  },
   flexWrap: 'wrap',
   pb: '32px',
   [theme.breakpoints.down('lg')]: {
     ...flexbox('center', 'center', 'column'),
+    '& > div': {
+      ...flex(1, 1, 'auto'),
+    },
+    pb: '16px',
   },
 };
 
 export const orderItemInfo = {
-  ...flexbox('center', 'center'),
+  ...flexbox('flex-start', 'center'),
   columnGap: '16px',
   [theme.breakpoints.down('sm')]: {
     ...flexbox('center', 'center', 'column'),
@@ -21,6 +28,7 @@ export const orderItemInfo = {
 };
 
 export const orderItemImage = {
+  ...flex(0, 0),
   width: '138px',
   height: '100px',
   backgroundPosition: 'center',
@@ -45,6 +53,7 @@ export const orderItemText = {
 };
 
 export const orderItemPrice = {
+  ...flexbox('center', 'center'),
   fontSize: '1.5rem',
   lineHeight: '1.75rem',
   color: 'grey.900',
@@ -56,15 +65,12 @@ export const orderItemPrice = {
 
 export const orderItemOptions = {
   [theme.breakpoints.down('lg')]: {
-    ...flexbox('center', 'center', 'row'),
-    columnGap: '20px',
-  },
-  [theme.breakpoints.down('sm')]: {
     mt: '16px',
   },
 };
 
 export const orderItemButtons = {
+  ...flexbox('flex-end', 'center'),
   [theme.breakpoints.down('lg')]: {
     mt: '16px',
   },

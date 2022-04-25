@@ -1,19 +1,22 @@
 import React from 'react';
-import {ICar} from '../../../../../../../models/ICar';
-import {Box, Checkbox, FormControlLabel, Typography} from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 import {
-  carItem, carItemColor, carItemDetails,
+  carItem, carItemButtons, carItemColor, carItemDetails,
   carItemImage, carItemInfo, carItemName, carItemPrice, carItemText,
 } from './CarItemStyle';
-import noImage from '../../../../../../../content/png/no_image_available.png';
+import noImage from '../../../../../../content/png/no_image_available.png';
 import CarItemPrice from './CarItemPrice/CarItemPrice';
 import CarItemColor from './CarItemColor/CarItemColor';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+import {ICar} from '../../../../../../models/ICar';
+import {useNavigate} from 'react-router-dom';
 
 interface ICarProps {
   car: ICar,
 }
 
 function CarItem({car}: ICarProps) {
+  const navigate = useNavigate();
   const {
     id, priceMin, priceMax, name, description,
     number, categoryId: {name: categoryName},
@@ -52,6 +55,16 @@ function CarItem({car}: ICarProps) {
       </Box>
       <Box sx={carItemPrice}>
         <CarItemPrice priceMin={priceMin} priceMax={priceMax} />
+      </Box>
+      <Box sx={carItemButtons}>
+        <Button
+          startIcon={<MoreVertIcon />}
+          color={'secondary'}
+          variant={'outlined'}
+          onClick={() => navigate(id)}
+        >
+          Изменить
+        </Button>
       </Box>
     </Box>
   );

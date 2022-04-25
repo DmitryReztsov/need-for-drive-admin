@@ -45,7 +45,7 @@ function PageFilters({filters, apply, reset}: IPageFiltersProps) {
             </Button>
             <Button
               variant="contained"
-              color={'secondary'}
+              color={'primary'}
               onClick={apply}
               // sx={pageFiltersButton}
             >

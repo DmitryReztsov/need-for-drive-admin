@@ -1,5 +1,5 @@
-import {flexbox} from '../../../../../../../../styles/templates/flex';
-import {theme} from '../../../../../../../../styles/theme/theme';
+import {flexbox} from '../../../../../../../styles/templates/flex';
+import {theme} from '../../../../../../../styles/theme/theme';
 
 export const carItemColor = {
   ml: '50%',

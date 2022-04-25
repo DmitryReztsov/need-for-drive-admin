@@ -3,7 +3,6 @@ import {Route, Routes} from 'react-router-dom';
 import Login from '../pages/Login/Login';
 import AdminLayout from '../AdminLayout/AdminLayout';
 import Cars from '../pages/Admin/Cars/Cars';
-import Car from '../pages/Admin/Cars/Car/Car';
 import {Box} from '@mui/material';
 import {app} from './AppStyle';
 import Home from '../pages/Admin/Home/Home';
@@ -15,6 +14,8 @@ import Points from '../pages/Admin/Points/Points';
 import Rates from '../pages/Admin/Rates/Rates';
 import RateTypes from '../pages/Admin/RateTypes/RateTypes';
 import OrderStatuses from '../pages/Admin/OrderStatuses/OrderStatuses';
+import Car from '../pages/Admin/editors/Car/Car';
+import Order from '../pages/Admin/editors/Order/Order';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         >
           <Route index element={<Home />} />
           <Route path="car/:id" element={<Car />} />
+          <Route path="order/:id" element={<Order />} />
           <Route path="car" element={<Cars />} />
           <Route path="order" element={<Orders />} />
           <Route path="city" element={<Cities />} />

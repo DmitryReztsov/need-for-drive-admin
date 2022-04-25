@@ -39,10 +39,11 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#0EC261',
+      main: '#007BFF',
     },
     secondary: {
-      main: '#007BFF',
+      main: '#E9ECEF',
+      contrastText: 'text.primary',
     },
     error: {
       main: '#C4183C',
@@ -175,7 +176,7 @@ export const theme = createTheme({
     MuiCheckbox: {
       defaultProps: {
         icon: <CheckBoxOutlineBlankOutlinedIcon color={'disabled'}/>,
-        color: 'secondary',
+        color: 'primary',
       },
       styleOverrides: {
         root: {
@@ -221,5 +222,6 @@ theme.shadows.push(
   ' 0px 10px 10px rgba(90, 97, 105, 0.06),' +
   ' 0px 7px 70px rgba(90, 97, 105, 0.1)', // 32
   '0px -0.5px 0px #E0E2E8, 0px 0.5px 0px #E0E2E8', // 33
+  '0px 2px 4px rgba(90, 97, 105, 0.12)', // 34
 );
 

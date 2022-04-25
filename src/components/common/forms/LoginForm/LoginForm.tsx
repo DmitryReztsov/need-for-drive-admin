@@ -49,7 +49,7 @@ function LoginForm() {
             required
             error={!!error}
             placeholder={'Введите Email...'}
-            color={'secondary'}
+            color={'primary'}
             fullWidth
             autoFocus
           />
@@ -75,7 +75,7 @@ function LoginForm() {
           </CustomLink>
           <Button
             variant="contained"
-            color={'secondary'}
+            color={'primary'}
             sx={loginFormButton}
             onClick={clickHandler}
           >

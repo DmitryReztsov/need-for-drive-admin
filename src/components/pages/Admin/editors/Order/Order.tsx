@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Car() {
+function Order() {
   return (
     <div></div>
   );
 }
 
-export default Car;
+export default Order;

@@ -1,15 +1,14 @@
-import {flex, flexbox} from '../../../../../../../styles/templates/flex';
-import {theme} from '../../../../../../../styles/theme/theme';
+import {flex, flexbox} from '../../../../../../styles/templates/flex';
+import {theme} from '../../../../../../styles/theme/theme';
 
 export const carItem = {
   ...flex(),
   ...flexbox('space-between', 'center'),
   '& > div': {
-    ...flex(1, 1, '25%'),
+    ...flex(1, 1, '20%'),
   },
   flexWrap: 'wrap',
   py: '16px',
-
   [theme.breakpoints.down('lg')]: {
     ...flexbox('center', 'center', 'column'),
     '& > div': {
@@ -83,6 +82,13 @@ export const carItemDetails = {
 };
 
 export const carItemPrice = {
+  ...flexbox('center', 'center'),
+  [theme.breakpoints.down('lg')]: {
+    mt: '16px',
+  },
+};
+
+export const carItemButtons = {
   ...flexbox('flex-end', 'center'),
   [theme.breakpoints.down('lg')]: {
     mt: '16px',

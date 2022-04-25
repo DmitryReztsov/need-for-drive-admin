@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  Box, Button, ButtonGroup, Checkbox, FormControlLabel, FormGroup, Typography,
-} from '@mui/material';
+import {Box, Typography} from '@mui/material';
 import noImage from '../../../../../../content/png/no_image_available.png';
 import OrderItemTime from './OrderItemTime/OrderItemTime';
-import {Check} from '@mui/icons-material';
-import ClearIcon from '@mui/icons-material/Clear';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {IOrder} from '../../../../../../models/IOrder';
 import {
   orderItem, orderItemButtons,
@@ -16,6 +11,8 @@ import {
   orderItemPrice,
   orderItemText,
 } from './OrderItemStyle';
+import ItemButtons from '../../../../../common/inputs/ItemButtons/ItemButtons';
+import OrderItemOptions from './OrderItemOptions/OrderItemOptions';
 
 interface IOrderProps {
   order: IOrder,
@@ -68,59 +65,15 @@ function OrderItem({order}: IOrderProps) {
           </Typography>
         </Typography>
       </Box>
-      <FormGroup sx={orderItemOptions}>
-        <FormControlLabel
-          // добавлен false чтобы закрыть предупреждение компилятора
-          control={
-            <Checkbox
-              onClick={(e) => e.preventDefault()}
-              disabled={!isFullTank}
-              checked={isFullTank || false}
-            />
-          }
-          label="Полный бак"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              onClick={(e) => e.preventDefault()}
-              disabled={!isNeedChildChair}
-              checked={isNeedChildChair || false}
-            />
-          }
-          label="Детское кресло"
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              onClick={(e) => e.preventDefault()}
-              disabled={!isRightWheel}
-              checked={isRightWheel || false}
-            />
-          }
-          label="Правый руль"
-        />
-      </FormGroup>
-      <Typography sx={orderItemPrice}>
+      <Box sx={orderItemOptions}>
+        <OrderItemOptions options={[isFullTank, isNeedChildChair, isRightWheel]} />
+      </Box>
+      <Typography sx={orderItemPrice} component={'div'}>
         {price ? `${price.toLocaleString()} ₽` : 'Не указана'}
       </Typography>
-      <ButtonGroup variant="outlined" sx={orderItemButtons}>
-        <Button
-          startIcon={<Check color={'primary'} />}
-          color={'secondary'}>
-          Готово
-        </Button>
-        <Button
-          startIcon={<ClearIcon color={'error'} />}
-          color={'secondary'}>
-          Отмена
-        </Button>
-        <Button
-          startIcon={<MoreVertIcon />}
-          color={'secondary'}>
-          Изменить
-        </Button>
-      </ButtonGroup>
+      <Box sx={orderItemButtons}>
+        <ItemButtons />
+      </Box>
     </Box>
   );
 }
