@@ -1,17 +1,17 @@
 import React from 'react';
-import {Box, Typography} from '@mui/material';
+import {Box, Button, ButtonGroup, OutlinedInput, Typography} from '@mui/material';
 import {
-  carLeftInfo, carLeftInfoCategory, carLeftInfoImage, carLeftInfoName,
+  carLeftInfo, carLeftInfoCategory, carLeftInfoFile, carLeftInfoImage, carLeftInfoName,
 } from './CarLeftInfoStyle';
 import noImage from '../../../../../../../content/png/no_image_available.png';
 import {ICar} from '../../../../../../../models/ICar';
+import FileInput from '../../../../../../common/inputs/FileInput/FileInput';
 
 interface ICarLeftInfo {
   car: ICar,
 }
 
 function CarLeftInfo({car}: ICarLeftInfo) {
-  console.log(car);
   const {
     id, priceMin, priceMax, name, description,
     number, categoryId: {name: categoryName},
@@ -30,6 +30,9 @@ function CarLeftInfo({car}: ICarLeftInfo) {
       <Typography sx={carLeftInfoCategory}>
         {categoryName || 'Неизвестный тип'}
       </Typography>
+      <Box sx={carLeftInfoFile}>
+        <FileInput />
+      </Box>
     </Box>
   );
 }

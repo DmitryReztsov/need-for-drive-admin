@@ -58,7 +58,7 @@ export const headerNotification = {
   cursor: 'pointer',
   '&:hover': {
     '& svg': {
-      color: 'secondary.main',
+      color: 'primary.main',
     },
   },
   [theme.breakpoints.down('sm')]: {

@@ -173,6 +173,18 @@ export const theme = createTheme({
         },
       },
     },
+    MuiButtonGroup: {
+      styleOverrides: {
+        root: {
+          '&.MuiButtonGroup-outlined': {
+            borderColor: '#BECAD6',
+            '& span': {
+              color: '#495057',
+            },
+          },
+        },
+      },
+    },
     MuiCheckbox: {
       defaultProps: {
         icon: <CheckBoxOutlineBlankOutlinedIcon color={'disabled'}/>,

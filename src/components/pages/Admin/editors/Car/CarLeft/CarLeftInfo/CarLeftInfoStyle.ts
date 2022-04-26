@@ -26,3 +26,8 @@ export const carLeftInfoCategory = {
   letterSpacing: '-0.3125px',
   color: 'grey.700',
 };
+
+export const carLeftInfoFile = {
+  mt: '10px',
+  textAlign: 'center',
+};
