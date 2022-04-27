@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Typography} from '@mui/material';
-import {editPageRight, editPageRightSubtitle} from './EditPageRightStyle';
+import {editPageRight, editPageRightFields, editPageRightSubtitle} from './EditPageRightStyle';
 import EditPageRightContainer from './EditPageRightContainer/EditPageRightContainer';
 import EditPageRightButtons from './EditPageRightButtons/EditPageRightButtons';
 
@@ -16,7 +16,7 @@ function EditPageRight({children, subtitle}: IEditPageRight) {
         <Typography sx={editPageRightSubtitle}>
           {subtitle}
         </Typography>
-        <Box>
+        <Box sx={editPageRightFields}>
           {children}
         </Box>
         <EditPageRightButtons />

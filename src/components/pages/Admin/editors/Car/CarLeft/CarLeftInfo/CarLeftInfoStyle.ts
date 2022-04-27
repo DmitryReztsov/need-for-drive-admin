@@ -4,14 +4,15 @@ export const carLeftInfo = {
 
 export const carLeftInfoImage = {
   mx: 'auto',
-  width: '231px',
-  height: '206px',
+  width: '243px',
+  height: '110px',
   backgroundPosition: 'center',
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
 };
 
 export const carLeftInfoName = {
+  mt: '10px',
   textAlign: 'center',
   fontSize: '1.5rem',
   lineHeight: '1.75rem',

@@ -139,14 +139,37 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           minWidth: '110.5px',
-          fontSize: '0.6875rem',
-          lineHeight: '0.8125rem',
+          fontSize: '0.7rem',
+          lineHeight: '0.8rem',
           letterSpacing: '-0.345714px',
           color: '#868E96',
           borderColor: '#BECAD6',
+          '& input': {
+            padding: '8px 5px 8.5px 11.5px',
+          },
           '& div.MuiSelect-outlined.MuiSelect-select': {
             padding: '8px 14px',
             minHeight: '0px',
+          },
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          '& label': {
+            marginBottom: '8.5px',
+            fontSize: '0.675rem',
+            lineHeight: '0.75rem',
+          },
+        },
+      },
+    },
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          '& legend, label': {
+            width: '0',
           },
         },
       },
@@ -213,6 +236,15 @@ export const theme = createTheme({
         },
       },
     },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          '&.MuiLinearProgress-colorPrimary': {
+            backgroundColor: '#FFFFFF',
+          },
+        },
+      },
+    },
   },
 });
 theme.shadows.push(
@@ -235,5 +267,7 @@ theme.shadows.push(
   ' 0px 7px 70px rgba(90, 97, 105, 0.1)', // 32
   '0px -0.5px 0px #E0E2E8, 0px 0.5px 0px #E0E2E8', // 33
   '0px 2px 4px rgba(90, 97, 105, 0.12)', // 34
+  '0px -1px 0px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.12)', // 35
+  'inset 0px 0.5px 4px rgba(0, 0, 0, 0.25)', // 36
 );
 
