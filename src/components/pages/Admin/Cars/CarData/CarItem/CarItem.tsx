@@ -44,7 +44,7 @@ function CarItem({car}: ICarProps) {
       </Box>
       <Box sx={carItemDetails}>
         <Typography variant={'body2'}>
-          Оставшееся топливо: {`${tank || 0} %`}
+          Запас топлива: {`${tank || 0} %`}
         </Typography>
         <Typography variant={'body2'}>
           {number}

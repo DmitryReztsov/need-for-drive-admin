@@ -10,7 +10,9 @@ interface ICarItemPrice {
 function CarItemPrice({priceMin, priceMax}: ICarItemPrice) {
   return (
     <Box sx={carItemPrice}>
-      {`${priceMin.toLocaleString()} ₽ - ${priceMax.toLocaleString()} ₽`}
+      {`от ${priceMin.toLocaleString()} ₽`}
+      <br/>
+      {`до ${priceMax.toLocaleString()} ₽`}
     </Box>
   );
 }

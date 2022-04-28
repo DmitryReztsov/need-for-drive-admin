@@ -5,7 +5,10 @@ export const carItem = {
   ...flex(),
   ...flexbox('space-between', 'center'),
   '& > div': {
-    ...flex(1, 1, '20%'),
+    ...flex(1, 1, '15%'),
+    '&:nth-of-type(1)': {
+      ...flex(1, 1, '40%'),
+    },
   },
   flexWrap: 'wrap',
   py: '16px',

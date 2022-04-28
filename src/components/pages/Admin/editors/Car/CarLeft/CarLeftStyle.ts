@@ -1,5 +1,10 @@
+import {theme} from '../../../../../../styles/theme/theme';
+
 export const carLeft = {
   py: '34.5px',
+  [theme.breakpoints.down('lg')]: {
+    py: '16px',
+  },
 };
 
 export const carLeftBar = {
