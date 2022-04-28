@@ -1,15 +1,15 @@
 import React from 'react';
 import {Box, Button, Typography} from '@mui/material';
 import {
-  carItem, carItemButtons, carItemColor, carItemDetails,
+  carItem, carItemButtons, carItemColor, carItemColorList, carItemDetails,
   carItemImage, carItemInfo, carItemName, carItemPrice, carItemText,
 } from './CarItemStyle';
 import noImage from '../../../../../../content/png/no_image_available.png';
 import CarItemPrice from './CarItemPrice/CarItemPrice';
-import CarItemColor from './CarItemColor/CarItemColor';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {ICar} from '../../../../../../models/ICar';
 import {useNavigate} from 'react-router-dom';
+import CheckBoxGroup from '../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
 
 interface ICarProps {
   car: ICar,
@@ -51,7 +51,7 @@ function CarItem({car}: ICarProps) {
         </Typography>
       </Box>
       <Box sx={carItemColor}>
-        <CarItemColor colors={colors} />
+        <CheckBoxGroup sx={carItemColorList} items={colors} />
       </Box>
       <Box sx={carItemPrice}>
         <CarItemPrice priceMin={priceMin} priceMax={priceMax} />

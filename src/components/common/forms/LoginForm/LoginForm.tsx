@@ -10,6 +10,7 @@ import CustomLink from '../../Link/CustomLink';
 import {useNavigate} from 'react-router-dom';
 import {setStorageTokenData} from '../../../../utils/localStorage';
 import {authApi} from '../../../../services/endpoints/auth';
+import TextInput from '../../inputs/TextInput/TextInput';
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -39,34 +40,31 @@ function LoginForm() {
         >
           Неправильный логин/пароль
         </Typography>}
-        <FormControl sx={loginFormField} fullWidth>
-          <FormLabel htmlFor="email">Почта</FormLabel>
-          <OutlinedInput
-            id="email"
-            type={'email'}
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            error={!!error}
-            placeholder={'Введите Email...'}
-            color={'primary'}
-            fullWidth
-            autoFocus
-          />
-        </FormControl>
-        <FormControl sx={loginFormField} fullWidth>
-          <FormLabel htmlFor="password">Пароль</FormLabel>
-          <OutlinedInput
-            id="password"
-            type={'password'}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            error={!!error}
-            placeholder={'Введите пароль...'}
-            fullWidth
-          />
-        </FormControl>
+        <TextInput
+          sx={loginFormField}
+          id='email'
+          type={'email'}
+          label={'Почта'}
+          value={username}
+          change={(e) => setUsername(e.target.value)}
+          required
+          error={error}
+          placeholder={'Введите Email...'}
+          autoFocus
+          fullWidth
+        />
+        <TextInput
+          sx={loginFormField}
+          id='password'
+          type={'password'}
+          label={'Пароль'}
+          value={password}
+          change={(e) => setPassword(e.target.value)}
+          required
+          error={error}
+          placeholder={'Введите пароль...'}
+          fullWidth
+        />
         <Box sx={loginFormFooter}>
           <CustomLink
             sx={loginFormLink}

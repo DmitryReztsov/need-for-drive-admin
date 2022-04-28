@@ -8,13 +8,13 @@ export const orderItem = {
     ...flex(1, 1, '25%'),
   },
   flexWrap: 'wrap',
-  pb: '32px',
+  py: '16px',
   [theme.breakpoints.down('lg')]: {
     ...flexbox('center', 'center', 'column'),
     '& > div': {
       ...flex(1, 1, 'auto'),
     },
-    pb: '16px',
+    py: '16px',
   },
 };
 

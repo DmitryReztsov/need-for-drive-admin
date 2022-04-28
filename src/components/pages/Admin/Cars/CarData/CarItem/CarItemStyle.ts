@@ -69,6 +69,15 @@ export const carItemColor = {
   },
 };
 
+export const carItemColorList = {
+  ml: '40%',
+  [theme.breakpoints.down('lg')]: {
+    ...flexbox('center', 'stretch', 'row'),
+    columnGap: '20px',
+    ml: '0px',
+  },
+};
+
 export const carItemDetails = {
   ...flexbox('center', 'center', 'column'),
   '& p': {

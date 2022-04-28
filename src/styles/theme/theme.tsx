@@ -2,6 +2,7 @@ import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlin
 import {createTheme} from '@mui/material';
 import React from 'react';
 import {DropdownIcon} from '../../content/svg/Icons';
+import {shadows} from './shadows';
 
 export const theme = createTheme({
   breakpoints: {
@@ -151,6 +152,11 @@ export const theme = createTheme({
             padding: '8px 14px',
             minHeight: '0px',
           },
+          '&.MuiInputBase-multiline': {
+            padding: '8px 5px 8.5px 11.5px',
+            minHeight: '100px',
+            alignItems: 'baseline',
+          },
         },
       },
     },
@@ -168,6 +174,16 @@ export const theme = createTheme({
     MuiAutocomplete: {
       styleOverrides: {
         root: {
+          '&>div': {
+            '&>div': {
+              '&.MuiAutocomplete-inputRoot': {
+                padding: '0px',
+                '& input.MuiAutocomplete-input': {
+                  padding: '8px 5px 8.5px 11.5px',
+                },
+              },
+            },
+          },
           '& legend, label': {
             width: '0',
           },
@@ -204,6 +220,15 @@ export const theme = createTheme({
             '& span': {
               color: '#495057',
             },
+          },
+        },
+      },
+    },
+    MuiFormGroup: {
+      styleOverrides: {
+        root: {
+          '& label': {
+            marginLeft: '0px',
           },
         },
       },
@@ -247,27 +272,5 @@ export const theme = createTheme({
     },
   },
 });
-theme.shadows.push(
-  '0px 1px 0px rgba(90, 97, 105, 0.11),' +
-  ' 0px 2px 4px rgba(90, 97, 105, 0.12),' +
-  ' 0px 5px 5px rgba(90, 97, 105, 0.06),' +
-  ' 0px 3.5px 35px rgba(90, 97, 105, 0.1)', // 25
-  'inset 0px -1px 0px #E1E5EB', // 26
-  'inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF', // 27
-  '0px 1px 75px rgba(90, 97, 105, 0.11),' +
-  '0px 2px 4px rgba(90, 97, 105, 0.12),' +
-  '0px 7.5px 11px rgba(90, 97, 105, 0.1),' +
-  '0px 3.5px 17.5px rgba(165, 182, 201, 0.1)', // 28
-  '0.5px 0px 0px #CACEDB, -0.5px 0px 0px #CACEDB', // 29
-  '0px 2.5px 9.5px rgba(90, 97, 105, 0.12)', // 30
-  '0px -0.5px 0px #D7DAE3', // 31
-  '0px 2px 0px rgba(90, 97, 105, 0.11),' +
-  ' 0px 4px 8px rgba(90, 97, 105, 0.12),' +
-  ' 0px 10px 10px rgba(90, 97, 105, 0.06),' +
-  ' 0px 7px 70px rgba(90, 97, 105, 0.1)', // 32
-  '0px -0.5px 0px #E0E2E8, 0px 0.5px 0px #E0E2E8', // 33
-  '0px 2px 4px rgba(90, 97, 105, 0.12)', // 34
-  '0px -1px 0px rgba(0, 0, 0, 0.12), 0px 1px 0px rgba(0, 0, 0, 0.12)', // 35
-  'inset 0px 0.5px 4px rgba(0, 0, 0, 0.25)', // 36
-);
 
+theme.shadows.push(...shadows);
