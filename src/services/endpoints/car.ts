@@ -29,7 +29,7 @@ export const carApi = api.injectEndpoints({
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
-        return response && {count: response.count, cars: response.data};
+        return {count: response.count, cars: response.data};
       },
       providesTags: (result) => ['Car'],
     }),

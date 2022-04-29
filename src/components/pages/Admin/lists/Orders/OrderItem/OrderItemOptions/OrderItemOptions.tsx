@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox, FormControlLabel, FormGroup, Typography} from '@mui/material';
+import {Checkbox, FormControlLabel, FormGroup} from '@mui/material';
 import {orderItemOptions} from './OrderItemOptionsStyle';
 
 interface ICarItemColor {

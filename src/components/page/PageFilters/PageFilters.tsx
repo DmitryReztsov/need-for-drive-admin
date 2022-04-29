@@ -9,7 +9,7 @@ import {
 } from './PageFiltersStyle';
 import Container from '../../common/containers/Container/Container';
 import Filter from '../../common/inputs/Filter/Filter';
-import {IFilter} from '../../pages/Admin/Orders/Orders';
+import {IFilter} from '../../../models/IFilter';
 
 interface IPageFiltersProps {
   filters: IFilter [],

@@ -1,7 +1,7 @@
-import {IFilter} from '../components/pages/Admin/Orders/Orders';
 import {filterTimestamp} from '../utils/time';
 import {initialState} from '../store/slices/filter/filterSlice';
 import {IOrderQueryParams} from '../services/endpoints/order';
+import {IFilter} from '../models/IFilter';
 
 const defaultFilter = Object.values(initialState);
 

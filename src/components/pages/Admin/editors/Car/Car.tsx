@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import EditPage from '../../../../editPage/EditPage';
 import CarLeft from './CarLeft/CarLeft';
 import CarRight from './CarRight/CarRight';

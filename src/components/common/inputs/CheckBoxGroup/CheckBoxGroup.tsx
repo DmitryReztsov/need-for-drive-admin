@@ -11,9 +11,9 @@ interface ICheckBoxGroup {
 function CheckBoxGroup({sx, items}: ICheckBoxGroup) {
   return (
     <FormGroup sx={{...sx}}>
-      {items.length && items.map((item) => {
+      {items.length && items.map((item, i) => {
         return <FormControlLabel
-          key={item}
+          key={item + i}
           control={<Checkbox defaultChecked />}
           label={item}
         />;

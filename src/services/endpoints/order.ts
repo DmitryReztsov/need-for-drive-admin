@@ -31,7 +31,7 @@ export const orderApi = api.injectEndpoints({
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
-        return response && {count: response.count, orders: response.data};
+        return {count: response.count, orders: response.data};
       },
       providesTags: (result) => ['Order'],
     }),

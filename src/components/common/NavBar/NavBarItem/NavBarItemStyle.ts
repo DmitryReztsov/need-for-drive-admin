@@ -6,10 +6,17 @@ export const navBarItem = {
   boxShadow: 26,
   cursor: 'pointer',
   ...transition(),
-  '&:hover': {
+  '&:hover,:focus': {
     boxShadow: 27,
     ...transition(),
     bgcolor: 'grey.200',
+    color: 'primary.main',
+    '& svg': {
+      '& > path': {
+        ...transition(),
+        fill: theme.palette.primary.main,
+      },
+    },
   },
   [theme.breakpoints.down('md')]: {
     p: '16px 20px 16px 49px',

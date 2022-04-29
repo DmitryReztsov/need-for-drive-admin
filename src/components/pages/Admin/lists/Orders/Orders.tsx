@@ -1,28 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import OrderData from './OrderData/OrderData';
-import Page from '../../../page/Page';
+import Page from '../../../../page/Page';
 import {useNavigate} from 'react-router-dom';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/reduxHooks';
-import {initialState, setFilter, clearFilters} from '../../../../store/slices/filter/filterSlice';
-import {IOrderQueryParams, orderApi} from '../../../../services/endpoints/order';
-import {carApi} from '../../../../services/endpoints/car';
-import {cityApi} from '../../../../services/endpoints/city';
-import {orderStatusApi} from '../../../../services/endpoints/orderStatus';
-import useSetParams from '../../../../hooks/useSetParams';
-
-export interface IFilter {
-  id: string,
-  value: string,
-  all: string,
-  cb: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  data: any [],
-}
+import {useAppDispatch, useAppSelector} from '../../../../../hooks/reduxHooks';
+import {
+  initialState, setFilter, clearFilters,
+} from '../../../../../store/slices/filter/filterSlice';
+import {IOrderQueryParams, orderApi} from '../../../../../services/endpoints/order';
+import {carApi} from '../../../../../services/endpoints/car';
+import {cityApi} from '../../../../../services/endpoints/city';
+import {orderStatusApi} from '../../../../../services/endpoints/orderStatus';
+import useSetParams from '../../../../../hooks/useSetParams';
+import {IFilter} from '../../../../../models/IFilter';
+import OrderItem from './OrderItem/OrderItem';
 
 function Orders() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {data: cars} = carApi.useGetCarsQuery({limit: 0});
-  const {data: cities} = cityApi.useGetCitiesQuery();
+  const {data: dataCities} = cityApi.useGetCitiesQuery({});
   const {data: orderStatuses} = orderStatusApi.useGetOrderStatusesQuery();
   const {
     createdAt, carId, cityId, orderStatusId,
@@ -31,7 +26,7 @@ function Orders() {
   const [queryParams, setQueryParams] = useState<Void<IOrderQueryParams>>();
   const {
     data, isLoading: orderLoading, error: orderError,
-  } = orderApi.useGetOrdersQuery({page, ...queryParams});
+  } = orderApi.useGetOrdersQuery({page: page - 1, ...queryParams});
 
   const filters: IFilter [] = [
     {
@@ -59,7 +54,7 @@ function Orders() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['cityId', e.target.value]));
       },
-      data: cities || [],
+      data: dataCities?.cities || [],
     },
     {
       id: 'orderStatusId',
@@ -75,10 +70,6 @@ function Orders() {
   function applyFilters() {
     setQueryParams(useSetParams(filters));
     setPage(1);
-  }
-
-  function resetFilters() {
-    dispatch(clearFilters());
   }
 
   if (orderError) {
@@ -97,13 +88,13 @@ function Orders() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={Math.trunc((data?.count || 1) / 5)}
+      pages={Math.ceil((data?.count || 1) / 5)}
       apply={applyFilters}
-      reset={resetFilters}
+      reset={() => dispatch(clearFilters())}
       dataLoading={orderLoading}
       array={data?.orders || []}
     >
-      <OrderData orders={data?.orders || []}/>
+      {(data?.orders || []).map((order) => <OrderItem order={order} key={order.id} />)}
     </Page>
   );
 }

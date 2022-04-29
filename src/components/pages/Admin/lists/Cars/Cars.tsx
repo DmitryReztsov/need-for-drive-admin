@@ -1,14 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
-import useSetParams from '../../../../hooks/useSetParams';
-import Page from '../../../page/Page';
-import {IFilter} from '../Orders/Orders';
-import {useAppDispatch, useAppSelector} from '../../../../hooks/reduxHooks';
-import {clearFilters, initialState, setFilter} from '../../../../store/slices/filter/filterSlice';
-import {carApi} from '../../../../services/endpoints/car';
-import {categoryApi} from '../../../../services/endpoints/category';
-import {IOrderQueryParams, orderApi} from '../../../../services/endpoints/order';
-import CarData from './CarData/CarData';
+import useSetParams from '../../../../../hooks/useSetParams';
+import Page from '../../../../page/Page';
+import {useAppDispatch, useAppSelector} from '../../../../../hooks/reduxHooks';
+import {
+  clearFilters, initialState, setFilter,
+} from '../../../../../store/slices/filter/filterSlice';
+import {carApi} from '../../../../../services/endpoints/car';
+import {categoryApi} from '../../../../../services/endpoints/category';
+import {IOrderQueryParams} from '../../../../../services/endpoints/order';
+import {IFilter} from '../../../../../models/IFilter';
+import CarItem from './CarItem/CarItem';
 
 function Cars() {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ function Cars() {
   const [page, setPage] = useState<number>(1);
   const {
     data, isLoading: carLoading, error: carError,
-  } = carApi.useGetCarsQuery({page, ...queryParams});
+  } = carApi.useGetCarsQuery({page: page - 1, ...queryParams});
   const {data: categories} = categoryApi.useGetCategoriesQuery();
   const {categoryId, colors} = useAppSelector((state) => state.filterReducer);
 
@@ -48,9 +50,6 @@ function Cars() {
     setPage(1);
   }
 
-  function resetFilters() {
-    dispatch(clearFilters());
-  }
 
   if (carError) {
     navigate('admin/error');
@@ -68,13 +67,13 @@ function Cars() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={Math.trunc((data?.count || 1) / 5)}
+      pages={Math.ceil((data?.count || 1) / 5)}
       apply={applyFilters}
-      reset={resetFilters}
+      reset={() => dispatch(clearFilters())}
       dataLoading={carLoading}
       array={data?.cars || []}
     >
-      <CarData cars={data?.cars || []}/>
+      {(data?.cars || []).map((car) => <CarItem car={car} key={car.id} />)}
     </Page>
   );
 }

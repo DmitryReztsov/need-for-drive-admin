@@ -10,13 +10,13 @@ import {pageStyle} from './PageStyle';
 
 interface IPageProps {
   children: React.ReactNode,
-  filters: any [],
+  filters?: any [],
   header: string,
   page: number,
   setPage: Dispatch<SetStateAction<number>>,
   pages: number,
-  apply: () => void,
-  reset: () => void,
+  apply?: () => void,
+  reset?: () => void,
   dataLoading: boolean,
   array: any [],
 }
@@ -33,11 +33,13 @@ function Page({
           {header}
         </PageHeader>
         <PageContent>
-          <PageFilters
-            filters={filters}
-            apply={apply}
-            reset={reset}
-          />
+          {filters &&
+            <PageFilters
+              filters={filters}
+              apply={apply!}
+              reset={reset!}
+            />
+          }
           <PageData>
             {dataLoading ?
               <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} /> :
