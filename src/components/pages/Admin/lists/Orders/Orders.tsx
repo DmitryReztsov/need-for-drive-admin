@@ -12,6 +12,7 @@ import {orderStatusApi} from '../../../../../services/endpoints/orderStatus';
 import useSetParams from '../../../../../hooks/useSetParams';
 import {IFilter} from '../../../../../models/IFilter';
 import OrderItem from './OrderItem/OrderItem';
+import {getPages} from '../../../../../utils/getPages';
 
 function Orders() {
   const navigate = useNavigate();
@@ -88,7 +89,7 @@ function Orders() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={Math.ceil((data?.count || 1) / 5)}
+      pages={getPages(data?.count)}
       apply={applyFilters}
       reset={() => dispatch(clearFilters())}
       dataLoading={orderLoading}

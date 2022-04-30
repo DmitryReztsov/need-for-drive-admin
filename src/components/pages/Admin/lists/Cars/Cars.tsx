@@ -11,6 +11,7 @@ import {categoryApi} from '../../../../../services/endpoints/category';
 import {IOrderQueryParams} from '../../../../../services/endpoints/order';
 import {IFilter} from '../../../../../models/IFilter';
 import CarItem from './CarItem/CarItem';
+import {getPages} from '../../../../../utils/getPages';
 
 function Cars() {
   const navigate = useNavigate();
@@ -50,7 +51,6 @@ function Cars() {
     setPage(1);
   }
 
-
   if (carError) {
     navigate('admin/error');
   }
@@ -67,7 +67,7 @@ function Cars() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={Math.ceil((data?.count || 1) / 5)}
+      pages={getPages(data?.count)}
       apply={applyFilters}
       reset={() => dispatch(clearFilters())}
       dataLoading={carLoading}

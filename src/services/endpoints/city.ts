@@ -1,4 +1,4 @@
-import {api, headers} from '../Api';
+import {api, DEFAULT_PARAMS, headers} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {ICity} from '../../models/ICity';
@@ -21,7 +21,7 @@ export const cityApi = api.injectEndpoints({
         url: PATHS.CITY,
         params: {
           'sort[name]': '1',
-          limit: 5,
+          limit: DEFAULT_PARAMS.LIMIT,
           ...params,
         },
         headers,

@@ -3,6 +3,7 @@ import {useState} from 'react';
 import {cityApi} from '../../../../../services/endpoints/city';
 import Page from '../../../../page/Page';
 import CityItem from './CityItem/CityItem';
+import {getPages} from '../../../../../utils/getPages';
 
 
 function Cities() {
@@ -21,9 +22,10 @@ function Cities() {
       header={'Список городов'}
       page={page}
       setPage={setPage}
-      pages={Math.ceil((data?.count || 1) / 5)}
+      pages={getPages(data?.count)}
       dataLoading={cityLoading}
       array={data?.cities || []}
+      listHeaders={['Город']}
     >
       {(data?.cities || []).map((city) => <CityItem city={city} key={city.id} />)}
     </Page>

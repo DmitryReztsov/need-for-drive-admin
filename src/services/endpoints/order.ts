@@ -1,4 +1,4 @@
-import {api, headers} from '../Api';
+import {api, DEFAULT_PARAMS, headers} from '../Api';
 import {IOrder} from '../../models/IOrder';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
@@ -25,7 +25,7 @@ export const orderApi = api.injectEndpoints({
         url: PATHS.ORDER,
         params: {
           'sort[createdAt]': '-1',
-          limit: 5,
+          limit: DEFAULT_PARAMS.LIMIT,
           ...params,
         },
         headers,

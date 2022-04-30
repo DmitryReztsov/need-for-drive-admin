@@ -1,5 +1,7 @@
 import {ICity} from '../../../../../../models/ICity';
-import {Box} from '@mui/material';
+import {Typography} from '@mui/material';
+import React from 'react';
+import PageBaseRow from '../../../../../page/PageBaseRow/PageBaseRow';
 
 interface ICityProps {
   city: ICity,
@@ -8,9 +10,11 @@ interface ICityProps {
 function CityItem({city}: ICityProps) {
   const {id, name} = city;
   return (
-    <Box key={id}>
-      {name}
-    </Box>
+    <PageBaseRow id={id}>
+      <Typography>
+        {name}
+      </Typography>
+    </PageBaseRow>
   );
 }
 

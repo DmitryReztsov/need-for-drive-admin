@@ -7,6 +7,7 @@ import OrderStatuses from '../pages/Admin/lists/OrderStatuses/OrderStatuses';
 import Points from '../pages/Admin/lists/Points/Points';
 import Car from '../pages/Admin/editors/Car/Car';
 import Order from '../pages/Admin/editors/Order/Order';
+import City from '../pages/Admin/editors/City/City';
 
 export const adminRouteList = [
   {
@@ -29,6 +30,10 @@ export const adminRouteList = [
   {
     route: 'city',
     element: <Cities/>,
+  },
+  {
+    route: 'city/:id',
+    element: <City/>,
   },
   {
     route: 'point',

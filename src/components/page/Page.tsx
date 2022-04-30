@@ -7,6 +7,7 @@ import PageFilters from './PageFilters/PageFilters';
 import PageData from './PageData/PageData';
 import PagePagination from './PagePagination/PagePagination';
 import {pageStyle} from './PageStyle';
+import PageListHeaders from './PageListHeaders/PageListHeaders';
 
 interface IPageProps {
   children: React.ReactNode,
@@ -19,12 +20,13 @@ interface IPageProps {
   reset?: () => void,
   dataLoading: boolean,
   array: any [],
+  listHeaders?: string [],
 }
 
 function Page({
   children, filters, header,
   page, setPage, pages,
-  apply, reset, dataLoading, array,
+  apply, reset, dataLoading, array, listHeaders,
 }: IPageProps) {
   return (
     <Box sx={pageStyle}>
@@ -33,14 +35,15 @@ function Page({
           {header}
         </PageHeader>
         <PageContent>
-          {filters &&
+          {filters && apply && reset &&
             <PageFilters
               filters={filters}
-              apply={apply!}
-              reset={reset!}
+              apply={apply}
+              reset={reset}
             />
           }
           <PageData>
+            {listHeaders && <PageListHeaders titles={listHeaders} />}
             {dataLoading ?
               <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} /> :
               array?.length ?

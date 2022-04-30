@@ -8,6 +8,9 @@ export const headers = {
   Authorization: `Bearer ${accessToken}`,
   'X-Api-Factory-Application-Id': API_KEY,
 };
+export enum DEFAULT_PARAMS {
+  LIMIT = 5,
+}
 
 export const api = createApi({
   baseQuery: fetchBaseQuery({baseUrl: BASE_URL}),
