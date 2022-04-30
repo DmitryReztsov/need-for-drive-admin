@@ -8,6 +8,10 @@ import Points from '../pages/Admin/lists/Points/Points';
 import Car from '../pages/Admin/editors/Car/Car';
 import Order from '../pages/Admin/editors/Order/Order';
 import City from '../pages/Admin/editors/City/City';
+import OrderStatus from '../pages/Admin/editors/OrderStatus/OrderStatus';
+import Rate from '../pages/Admin/editors/Rate/Rate';
+import Point from '../pages/Admin/editors/Point/Point';
+import RateType from '../pages/Admin/editors/RateType/RateType';
 
 export const adminRouteList = [
   {
@@ -40,15 +44,31 @@ export const adminRouteList = [
     element: <Points/>,
   },
   {
+    route: 'point/:id',
+    element: <Point/>,
+  },
+  {
     route: 'rate',
     element: <Rates/>,
+  },
+  {
+    route: 'rate/:id',
+    element: <Rate/>,
   },
   {
     route: 'rateType',
     element: <RateTypes/>,
   },
   {
+    route: 'rateType/:id',
+    element: <RateType/>,
+  },
+  {
     route: 'orderStatus',
     element: <OrderStatuses/>,
+  },
+  {
+    route: 'orderStatus/:id',
+    element: <OrderStatus/>,
   },
 ];

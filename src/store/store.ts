@@ -1,10 +1,12 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit';
 import {api} from '../services/Api';
 import filterReducer from './slices/filter/filterSlice';
+import carReducer from './slices/editSlices/car/carSlice';
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   filterReducer,
+  carReducer,
 });
 
 export const setupStore = () => {

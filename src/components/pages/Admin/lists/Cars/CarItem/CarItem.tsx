@@ -19,15 +19,15 @@ function CarItem({car}: ICarProps) {
   const navigate = useNavigate();
   const {
     id, priceMin, priceMax, name, description,
-    number, categoryId: {name: categoryName},
-    thumbnail: {path}, tank, colors,
+    number, categoryId,
+    thumbnail, tank, colors,
   } = car;
   return (
     <Box sx={carItem} key={id}>
       <Box sx={carItemInfo}>
         <Box sx={
           {...carItemImage,
-            backgroundImage: `url(${path ? path : noImage})`,
+            backgroundImage: `url(${thumbnail ? thumbnail?.path : noImage})`,
           }}
         >
         </Box>
@@ -38,7 +38,7 @@ function CarItem({car}: ICarProps) {
           >
             {name ? name.toUpperCase() : 'Неизвестная машина'}
           </Typography>
-          {categoryName && <Typography variant={'body2'}>{categoryName}</Typography>}
+          {categoryId && <Typography variant={'body2'}>{categoryId?.name}</Typography>}
           {description && <Typography variant={'body2'}>{description}</Typography>}
         </Typography>
       </Box>

@@ -13,22 +13,20 @@ interface ICarLeftInfo {
 
 function CarLeftInfo({car}: ICarLeftInfo) {
   const {
-    id, priceMin, priceMax, name, description,
-    number, categoryId: {name: categoryName},
-    thumbnail: {path}, tank, colors,
+    name, categoryId, thumbnail,
   } = car;
   return (
     <Box sx={carLeftInfo}>
       <Box sx={
         {...carLeftInfoImage,
-          backgroundImage: `url(${path ? path : noImage})`,
+          backgroundImage: `url(${thumbnail ? thumbnail?.path : noImage})`,
         }}
       />
       <Typography sx={carLeftInfoName}>
         {name ? name.toUpperCase() : 'Неизвестная машина'}
       </Typography>
       <Typography sx={carLeftInfoCategory}>
-        {categoryName || 'Неизвестный тип'}
+        {categoryId ? categoryId?.name : 'Неизвестный тип'}
       </Typography>
       <Box sx={carLeftInfoFile}>
         <FileInput />

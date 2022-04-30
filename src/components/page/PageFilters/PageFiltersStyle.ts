@@ -12,6 +12,7 @@ export const pageFiltersContainer = {
 
 export const pageFiltersBody = {
   ...flexbox('space-between', 'center'),
+  columnGap: '8px',
   [theme.breakpoints.down('sm')]: {
     ...flexbox('center', 'center', 'column'),
     rowGap: '8px',

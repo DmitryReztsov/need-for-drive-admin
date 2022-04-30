@@ -16,7 +16,7 @@ function CarRight({car}: ICarRight) {
   const [color, setColor] = useState<string>('');
   const {
     priceMin, priceMax, name, description,
-    number, categoryId: {name: categoryName},
+    number, categoryId,
     tank, colors,
   } = car;
   return (
@@ -35,7 +35,7 @@ function CarRight({car}: ICarRight) {
         <AutocompleteInput
           id="categoryName"
           label={'Тип автомобиля'}
-          value={categoryName}
+          value={categoryId ? categoryId?.name : ''}
           change={(e) => console.log(e.target.value)}
           options={(categories || []).map((category) => category.name)}
           required

@@ -28,7 +28,7 @@ function OrderItem({order}: IOrderProps) {
       <Box sx={orderItemInfo}>
         <Box sx={
           {...orderItemImage,
-            backgroundImage: `url(${carId ? carId.thumbnail.path : noImage})`,
+            backgroundImage: `url(${carId ? carId?.thumbnail?.path : noImage})`,
           }}
         >
         </Box>

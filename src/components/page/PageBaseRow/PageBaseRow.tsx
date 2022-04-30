@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Button} from '@mui/material';
+import {Box, Button, useMediaQuery} from '@mui/material';
 import {pageBaseRow} from './PageBaseRowStyle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useNavigate} from 'react-router-dom';
@@ -12,16 +12,18 @@ interface IPageBaseRow {
 function PageBaseRow({children, id}: IPageBaseRow) {
   const navigate = useNavigate();
   return (
-    <Box sx={pageBaseRow} key={id}>
+    <Box sx={pageBaseRow}>
       {children}
-      <Button
-        startIcon={<MoreVertIcon />}
-        color={'secondary'}
-        variant={'outlined'}
-        onClick={() => navigate(id)}
-      >
-        Изменить
-      </Button>
+      <Box>
+        <Button
+          startIcon={<MoreVertIcon />}
+          color={'secondary'}
+          variant={'outlined'}
+          onClick={() => navigate(id)}
+        >
+          Изменить
+        </Button>
+      </Box>
     </Box>
   );
 }

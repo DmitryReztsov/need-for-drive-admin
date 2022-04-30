@@ -19,7 +19,7 @@ function Orders() {
   const dispatch = useAppDispatch();
   const {data: cars} = carApi.useGetCarsQuery({limit: 0});
   const {data: dataCities} = cityApi.useGetCitiesQuery({});
-  const {data: orderStatuses} = orderStatusApi.useGetOrderStatusesQuery();
+  const {data: dataOrderStatuses} = orderStatusApi.useGetOrderStatusesQuery({});
   const {
     createdAt, carId, cityId, orderStatusId,
   } = useAppSelector((state) => state.filterReducer);
@@ -64,7 +64,7 @@ function Orders() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['orderStatusId', e.target.value]));
       },
-      data: orderStatuses || [],
+      data: dataOrderStatuses?.orderStatuses || [],
     },
   ];
 
