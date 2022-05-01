@@ -25,7 +25,7 @@ export const carSlice = createSlice({
       Object.assign(state, action.payload);
     },
     setCarField(state, action: PayloadAction<IDataField>) {
-      state[action.payload.key] = action.payload.value;
+      state[action.payload[0]] = action.payload[1];
     },
     clearCarState(state) {
       Object.assign(state, initialState);

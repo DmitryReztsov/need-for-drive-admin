@@ -6,18 +6,21 @@ import {Theme} from '@mui/material/styles';
 interface ICheckBoxGroup {
   sx?: SxProps<Theme>,
   items: string [],
+  toggleCheckbox?: (e: React.ChangeEvent<HTMLInputElement>) => void,
 }
 
-function CheckBoxGroup({sx, items}: ICheckBoxGroup) {
+function CheckBoxGroup({sx, items, toggleCheckbox}: ICheckBoxGroup) {
   return (
     <FormGroup sx={{...sx}}>
-      {items.length && items.map((item, i) => {
+      {items.length ? items.map((item, i) => {
         return <FormControlLabel
           key={item + i}
-          control={<Checkbox defaultChecked />}
+          control={<Checkbox defaultChecked onChange={toggleCheckbox} value={item} />}
           label={item}
         />;
-      })}
+      }) :
+        null
+      }
     </FormGroup>
   );
 }

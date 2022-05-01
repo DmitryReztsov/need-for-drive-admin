@@ -1,9 +1,14 @@
 import React from 'react';
-import {Autocomplete, FormControl, FormLabel, OutlinedInput, TextField} from '@mui/material';
+import {
+  Autocomplete, FormControl, FormLabel,
+  TextField, Typography,
+} from '@mui/material';
 import {SxProps} from '@mui/system';
 import {Theme} from '@mui/material/styles';
 import {FetchBaseQueryError} from '@reduxjs/toolkit/query';
 import {SerializedError} from '@reduxjs/toolkit';
+import {IDataField} from '../../../../models/IDataField';
+import {useAppDispatch} from '../../../../hooks/reduxHooks';
 
 interface IAutocompleteInput {
   sx?: SxProps<Theme>,
@@ -16,17 +21,19 @@ interface IAutocompleteInput {
   required?: boolean,
   autoFocus?: boolean,
   clearOnEscape?: boolean,
-  change: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
   error?: FetchBaseQueryError | SerializedError,
   options: any [],
+  action: (payload: IDataField) => any,
+  optionKey?: string,
 }
 
 function AutocompleteInput(
   {
     sx, id, value, label, type,
     placeholder, fullWidth, required, autoFocus, clearOnEscape,
-    change, error, options,
+    error, options, action, optionKey = 'name',
   }: IAutocompleteInput) {
+  const dispatch = useAppDispatch();
   return (
     <FormControl fullWidth={fullWidth} sx={{...sx}}>
       <FormLabel htmlFor={id}>
@@ -37,6 +44,20 @@ function AutocompleteInput(
         options={options}
         value={value}
         clearOnEscape={clearOnEscape}
+        isOptionEqualToValue={(option, value) => option[optionKey] === value[optionKey]}
+        getOptionLabel={(option) => option ? option[optionKey] : ''}
+        renderOption={({}, option) => {
+          return (
+            <Typography
+              component="li"
+              key={option.id}
+              onClick={() => dispatch(action([id, option]))}
+              noWrap
+            >
+              {option ? option[optionKey] : ''}
+            </Typography>
+          );
+        }}
         renderInput={(params) => {
           return <TextField
             {...params}
@@ -45,7 +66,6 @@ function AutocompleteInput(
             label={label}
             autoFocus={autoFocus}
             required={required}
-            onChange={change}
             error={!!error}
           />;
         }}

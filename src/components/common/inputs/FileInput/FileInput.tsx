@@ -2,7 +2,11 @@ import React from 'react';
 import {Button, ButtonGroup, FormLabel, OutlinedInput} from '@mui/material';
 import {fileInput, fileInputLeftButton, fileInputRightButton} from './FileInputStyle';
 
-function FileInput() {
+interface IFileInput {
+  change: (e:React.ChangeEvent<HTMLInputElement>) => void,
+}
+
+function FileInput({change}: IFileInput) {
   return (
     <FormLabel
       htmlFor="file"
@@ -23,6 +27,7 @@ function FileInput() {
           type={'file'}
           required
           sx={{display: 'none'}}
+          onChange={change}
         />
         <Button
           variant="outlined"

@@ -3,10 +3,19 @@ import {Box, LinearProgress, Typography} from '@mui/material';
 import {progressBar, progressBarLine, progressBarText} from './ProgressBarStyle';
 
 interface IProgressBar {
-  percent: number,
+  entity: any,
 }
 
-function ProgressBar({percent}: IProgressBar) {
+function ProgressBar({entity}: IProgressBar) {
+  function getPercent(): number {
+    const numerator = Object.values(entity).filter((value: any) => {
+      if (Array.isArray(value)) return value.length;
+      return value;
+    }).length;
+    const denominator = Object.values(entity).length;
+    return Math.round((numerator / denominator) * 100);
+  }
+
   return (
     <Box sx={progressBar}>
       <Box sx={progressBarText}>
@@ -14,10 +23,10 @@ function ProgressBar({percent}: IProgressBar) {
           Заполнено
         </Typography>
         <Typography>
-          {percent}%
+          {getPercent()}%
         </Typography>
       </Box>
-      <LinearProgress variant={'determinate'} value={percent} sx={progressBarLine} />
+      <LinearProgress variant={'determinate'} value={getPercent()} sx={progressBarLine} />
     </Box>
   );
 }

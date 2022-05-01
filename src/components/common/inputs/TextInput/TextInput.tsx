@@ -21,13 +21,14 @@ interface ITextInput {
   multiline?: boolean,
   change: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
   error?: FetchBaseQueryError | SerializedError,
+  clickButton?: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
 function TextInput(
   {
     sx, id, value, label, type,
     placeholder, fullWidth, required, autoFocus,
-    addButton, multiline, change, error,
+    addButton, multiline, change, error, clickButton,
   }: ITextInput) {
   return (
     <FormControl fullWidth={fullWidth} sx={{...sx}}>
@@ -51,6 +52,7 @@ function TextInput(
         <Button
           sx={button}
           variant={'outlined'}
+          onClick={clickButton}
         >
           <AddIcon/>
         </Button>}

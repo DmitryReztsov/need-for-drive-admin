@@ -1,4 +1,1 @@
-export interface IDataField {
-  key: string,
-  value: any,
-}
+export type IDataField = [string, any];

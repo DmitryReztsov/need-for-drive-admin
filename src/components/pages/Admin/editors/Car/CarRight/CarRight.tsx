@@ -6,19 +6,30 @@ import {categoryApi} from '../../../../../../services/endpoints/category';
 import TextInput from '../../../../../common/inputs/TextInput/TextInput';
 import AutocompleteInput from '../../../../../common/inputs/AutocompleteInput/AutocompleteInput';
 import CheckBoxGroup from '../../../../../common/inputs/CheckBoxGroup/CheckBoxGroup';
+import {setCarField} from '../../../../../../store/slices/editSlices/car/carSlice';
+import {useAppDispatch} from '../../../../../../hooks/reduxHooks';
 
 interface ICarRight {
   car: ICar,
 }
 
 function CarRight({car}: ICarRight) {
+  const dispatch = useAppDispatch();
   const {data: categories} = categoryApi.useGetCategoriesQuery();
   const [color, setColor] = useState<string>('');
   const {
     priceMin, priceMax, name, description,
-    number, categoryId,
-    tank, colors,
+    number, categoryId, tank, colors,
   } = car;
+
+  function toggleCheckbox(e: React.ChangeEvent<HTMLInputElement>) {
+    e.target.checked ?
+      dispatch(setCarField(['colors', colors
+        .concat(e.target.value)])) :
+      dispatch(setCarField(['colors', colors
+        .filter((color) => color !== e.target.value)]));
+  }
+
   return (
     <Box sx={carRight}>
       <Box>
@@ -26,18 +37,18 @@ function CarRight({car}: ICarRight) {
           id='name'
           label={'Модель автомобиля'}
           value={name}
-          change={(e) => console.log(e.target.value)}
+          change={(e) => dispatch(setCarField(['name', e.target.value]))}
           required
           placeholder={'Введите модель...'}
           autoFocus
           fullWidth
         />
         <AutocompleteInput
-          id="categoryName"
+          id="categoryId"
           label={'Тип автомобиля'}
-          value={categoryId ? categoryId?.name : ''}
-          change={(e) => console.log(e.target.value)}
-          options={(categories || []).map((category) => category.name)}
+          value={categoryId}
+          options={(categories || [])}
+          action={setCarField}
           required
           clearOnEscape
           fullWidth
@@ -47,8 +58,11 @@ function CarRight({car}: ICarRight) {
         <TextInput
           id='priceMin'
           label={'Минимальная цена'}
+          type={'number'}
           value={priceMin}
-          change={(e) => console.log(e.target.value)}
+          change={(e) => {
+            (priceMax >= +e.target.value) && dispatch(setCarField(['priceMin', +e.target.value]));
+          }}
           required
           placeholder={'Введите мин. цену...'}
           fullWidth
@@ -56,8 +70,11 @@ function CarRight({car}: ICarRight) {
         <TextInput
           id="priceMax"
           label={'Максимальная цена'}
+          type={'number'}
           value={priceMax}
-          change={(e) => console.log(e.target.value)}
+          change={(e) => {
+            (priceMin <= +e.target.value) && dispatch(setCarField(['priceMax', +e.target.value]));
+          }}
           required
           placeholder={'Введите макс. цену..'}
           fullWidth
@@ -66,9 +83,12 @@ function CarRight({car}: ICarRight) {
       <Box>
         <TextInput
           id='number'
-          label={'Номер авто'}
+          label={'Номер авто (в формате X123YZ)'}
           value={number}
-          change={(e) => console.log(e.target.value)}
+          change={(e) => {
+            (e.target.value.length <= 6) &&
+            dispatch(setCarField(['number', e.target.value.toUpperCase()]));
+          }}
           required
           placeholder={'Введите номер...'}
           fullWidth
@@ -76,8 +96,11 @@ function CarRight({car}: ICarRight) {
         <TextInput
           id="tank"
           label={'Запас топлива'}
+          type={'number'}
           value={tank}
-          change={(e) => console.log(e.target.value)}
+          change={(e) => {
+            (+e.target.value <= 100) && dispatch(setCarField(['tank', +e.target.value]));
+          }}
           required
           placeholder={'Введите оставшееся топливо...'}
           fullWidth
@@ -94,14 +117,15 @@ function CarRight({car}: ICarRight) {
             placeholder={'Введите новый цвет...'}
             fullWidth
             addButton
+            clickButton={() => dispatch(setCarField(['colors', colors.concat(color)]))}
           />
-          <CheckBoxGroup items={colors || []} />
+          <CheckBoxGroup items={colors || []} toggleCheckbox={toggleCheckbox} />
         </Box>
         <TextInput
           id="description"
           label={'Описание'}
           value={description}
-          change={(e) => console.log(e.target.value)}
+          change={(e) => dispatch(setCarField(['description', e.target.value]))}
           required
           placeholder={'Введите описание...'}
           fullWidth

@@ -10,22 +10,21 @@ interface ICarLeft {
 }
 
 function CarLeft({car}: ICarLeft) {
+  const {description} = car;
   return (
     <Box sx={carLeft}>
       <Box sx={carLeftInfo}>
         <CarLeftInfo car={car} />
       </Box>
       <Box sx={carLeftBar}>
-        <ProgressBar percent={74} />
+        <ProgressBar entity={car} />
       </Box>
       <Box sx={carLeftDesc}>
         <Typography>
           Описание
         </Typography>
         <Typography>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Odio eaque, quidem, commodi soluta qui quae quod dolorum sint alias,
-          possimus illum assumenda eligendi cumque?
+          {description || ''}
         </Typography>
       </Box>
     </Box>
