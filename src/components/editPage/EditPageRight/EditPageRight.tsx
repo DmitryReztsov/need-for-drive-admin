@@ -10,12 +10,13 @@ interface IEditPageRight {
   accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
   remove: (e: React.MouseEvent<HTMLButtonElement>) => void,
   acceptLoading: boolean,
+  isAcceptable: boolean,
   removeLoading: boolean,
 }
 
 function EditPageRight(
   {
-    children, subtitle, accept, remove, acceptLoading, removeLoading,
+    children, subtitle, accept, remove, acceptLoading, removeLoading, isAcceptable,
   }: IEditPageRight) {
   return (
     <Box sx={editPageRight}>
@@ -31,6 +32,7 @@ function EditPageRight(
           remove={remove}
           acceptLoading={acceptLoading}
           removeLoading={removeLoading}
+          isAcceptable={isAcceptable}
         />
       </EditPageRightContainer>
     </Box>

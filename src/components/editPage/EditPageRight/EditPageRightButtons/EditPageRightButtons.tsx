@@ -11,11 +11,12 @@ interface IEditPageRightButtonsProps {
   remove: (e: React.MouseEvent<HTMLButtonElement>) => void,
   acceptLoading: boolean,
   removeLoading: boolean,
+  isAcceptable: boolean,
 }
 
 function EditPageRightButtons(
   {
-    accept, remove, acceptLoading, removeLoading,
+    accept, remove, acceptLoading, removeLoading, isAcceptable,
   }: IEditPageRightButtonsProps,
 ) {
   const {id} = useParams();
@@ -26,6 +27,7 @@ function EditPageRightButtons(
           variant="contained"
           onClick={accept}
           loading={acceptLoading}
+          disabled={!isAcceptable}
         >
           Сохранить
         </LoadingButton>

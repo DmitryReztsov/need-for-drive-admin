@@ -49,6 +49,9 @@ export const theme = createTheme({
     error: {
       main: '#C4183C',
     },
+    success: {
+      main: '#0EC261',
+    },
     grey: {
       100: '#F5F6F8',
       200: '#FBFBFB',

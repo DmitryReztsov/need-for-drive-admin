@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import EditPage from '../../../../editPage/EditPage';
 import CarLeft from './CarLeft/CarLeft';
 import CarRight from './CarRight/CarRight';
@@ -7,6 +7,7 @@ import {carApi} from '../../../../../services/endpoints/car';
 import {Skeleton} from '@mui/material';
 import {useAppDispatch, useAppSelector} from '../../../../../hooks/reduxHooks';
 import {clearCarState, setFirstCarState} from '../../../../../store/slices/editSlices/car/carSlice';
+import {getPercent} from '../../../../../utils/getPercent';
 
 function Car() {
   const navigate = useNavigate();
@@ -23,6 +24,8 @@ function Car() {
     deleteCar, {isLoading: isDeleteLoading, isSuccess: isDeleteSuccess, isError: isDeleteError},
   ] = carApi.useDeleteCarMutation();
   const carForm = useAppSelector((state) => state.carReducer);
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('Машина сохранена');
 
   useEffect(() => {
     if (id !== 'new') {
@@ -31,11 +34,19 @@ function Car() {
   }, [car]);
 
   useEffect(() => {
-    (isPutError || isPostError || isDeleteError) && navigate('/admin/error');
+    if (isPutError || isPostError || isDeleteError) {
+      navigate('/admin/error');
+    }
   }, [isPutError, isPostError, isDeleteError]);
 
   useEffect(() => {
-    (isPutSuccess || isPostSuccess || isDeleteSuccess) && navigate('/admin/car');
+    if (isPutSuccess || isPostSuccess || isDeleteSuccess) {
+      setShowAlert(true);
+      isDeleteSuccess && setMessage('Машина удалена');
+      setTimeout(() => {
+        navigate('/admin/car');
+      }, 2000);
+    }
   }, [isPutSuccess, isPostSuccess, isDeleteSuccess]);
 
   useEffect(() => {
@@ -48,7 +59,7 @@ function Car() {
     return <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} />;
   }
 
-  if ((isGetError) && (id !== 'new')) {
+  if ((isGetError) && (id !== 'new') && !isDeleteSuccess) {
     navigate('/admin/error');
   }
 
@@ -60,8 +71,11 @@ function Car() {
       rightSide={<CarRight car={carForm!}/>}
       accept={() => id === 'new' ? postCar(carForm): putCar({id: id!, body: carForm})}
       acceptLoading={!!(isPutLoading || isPostLoading)}
+      isAcceptable={getPercent(carForm!) === 100}
       remove={() => deleteCar(id!)}
       removeLoading={!!isDeleteLoading}
+      successText={message}
+      showAlert={showAlert}
     />
   );
 }

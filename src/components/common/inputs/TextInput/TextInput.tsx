@@ -2,8 +2,6 @@ import React from 'react';
 import {Box, Button, FormControl, FormLabel, OutlinedInput} from '@mui/material';
 import {SxProps} from '@mui/system';
 import {Theme} from '@mui/material/styles';
-import {FetchBaseQueryError} from '@reduxjs/toolkit/query';
-import {SerializedError} from '@reduxjs/toolkit';
 import AddIcon from '@mui/icons-material/Add';
 import {button, container, input} from './TextInputStyle';
 
@@ -20,7 +18,7 @@ interface ITextInput {
   addButton?: boolean,
   multiline?: boolean,
   change: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void,
-  error?: FetchBaseQueryError | SerializedError,
+  error?: boolean,
   clickButton?: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
@@ -31,7 +29,7 @@ function TextInput(
     addButton, multiline, change, error, clickButton,
   }: ITextInput) {
   return (
-    <FormControl fullWidth={fullWidth} sx={{...sx}}>
+    <FormControl fullWidth={fullWidth} sx={{...sx}} error={!!error}>
       <FormLabel htmlFor={id}>
         {label}
       </FormLabel>
@@ -46,7 +44,6 @@ function TextInput(
           autoFocus={autoFocus}
           multiline={multiline}
           onChange={change}
-          error={!!error}
         />
         {addButton &&
         <Button

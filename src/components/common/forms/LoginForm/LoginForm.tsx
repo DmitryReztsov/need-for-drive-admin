@@ -48,7 +48,7 @@ function LoginForm() {
           value={username}
           change={(e) => setUsername(e.target.value)}
           required
-          error={error}
+          error={!!error}
           placeholder={'Введите Email...'}
           autoFocus
           fullWidth
@@ -61,7 +61,7 @@ function LoginForm() {
           value={password}
           change={(e) => setPassword(e.target.value)}
           required
-          error={error}
+          error={!!error}
           placeholder={'Введите пароль...'}
           fullWidth
         />

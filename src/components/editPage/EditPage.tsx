@@ -1,10 +1,11 @@
-import React from 'react';
-import {Box, Skeleton} from '@mui/material';
-import {editorBody, editPage} from './EditPageStyle';
+import React, {useEffect, useState} from 'react';
+import {Alert, Box, Skeleton, Snackbar} from '@mui/material';
+import {editAlert, editorBody, editPage, editSnackbar} from './EditPageStyle';
 import Container from '../common/containers/Container/Container';
 import PageHeader from '../page/PageHeader/PageHeader';
 import EditPageRight from './EditPageRight/EditPageRight';
 import EditPageLeft from './EditPageLeft/EditPageLeft';
+import DoneIcon from '@mui/icons-material/Done';
 
 interface IEditPageProps {
   leftSide: JSX.Element,
@@ -14,17 +15,32 @@ interface IEditPageProps {
   accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
   remove: (e: React.MouseEvent<HTMLButtonElement>) => void,
   acceptLoading: boolean,
+  isAcceptable: boolean,
   removeLoading: boolean,
+  successText: string,
+  showAlert: boolean,
 }
 
 function EditPage(
   {
     leftSide, rightSide, header, subtitle, accept, remove,
-    acceptLoading, removeLoading,
+    acceptLoading, removeLoading, successText, showAlert, isAcceptable,
   }: IEditPageProps,
 ) {
   return (
     <Box sx={editPage}>
+      <Snackbar
+        open={showAlert}
+        sx={editSnackbar}
+      >
+        <Alert
+          severity="success"
+          sx={editAlert}
+          icon={<DoneIcon />}
+        >
+          Успех! {successText}
+        </Alert>
+      </Snackbar>
       <Container>
         <PageHeader>
           {header}
@@ -39,6 +55,7 @@ function EditPage(
             remove={remove}
             acceptLoading={acceptLoading}
             removeLoading={removeLoading}
+            isAcceptable={isAcceptable}
           >
             {rightSide}
           </EditPageRight>
