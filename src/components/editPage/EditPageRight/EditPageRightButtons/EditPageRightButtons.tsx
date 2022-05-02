@@ -4,23 +4,31 @@ import {
   editPageRightButtons, editPageRightButtonsGroup,
 } from './EditPageRightButtonsStyle';
 import {useParams} from 'react-router-dom';
+import {LoadingButton} from '@mui/lab';
 
 interface IEditPageRightButtonsProps {
   accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
   remove: (e: React.MouseEvent<HTMLButtonElement>) => void,
+  acceptLoading: boolean,
+  removeLoading: boolean,
 }
 
-function EditPageRightButtons({accept, remove}: IEditPageRightButtonsProps) {
+function EditPageRightButtons(
+  {
+    accept, remove, acceptLoading, removeLoading,
+  }: IEditPageRightButtonsProps,
+) {
   const {id} = useParams();
   return (
     <Box sx={editPageRightButtons}>
       <Box sx={editPageRightButtonsGroup}>
-        <Button
+        <LoadingButton
           variant="contained"
           onClick={accept}
+          loading={acceptLoading}
         >
           Сохранить
-        </Button>
+        </LoadingButton>
         <Button
           variant="contained"
           color={'secondary'}
@@ -29,14 +37,15 @@ function EditPageRightButtons({accept, remove}: IEditPageRightButtonsProps) {
           Отменить
         </Button>
       </Box>
-      <Button
+      <LoadingButton
         variant="contained"
         color={'error'}
         onClick={remove}
         disabled={id === 'new'}
+        loading={removeLoading}
       >
         Удалить
-      </Button>
+      </LoadingButton>
     </Box>
   );
 }

@@ -20,7 +20,7 @@ export const entityList = [
     entity: 'rate',
   },
   {
-    text: 'Тип тариф',
+    text: 'Тип тарифа',
     entity: 'rateType',
   },
   {

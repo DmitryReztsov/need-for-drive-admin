@@ -13,27 +13,30 @@ function Car() {
   const dispatch = useAppDispatch();
   const {id} = useParams();
   const {data: car, isLoading: isGetLoading, error: isGetError} = carApi.useGetCarQuery(id!);
-  const [putCar, {isLoading: isPutLoading, isError: isPutError}] = carApi.usePutCarMutation();
-  const [postCar, {isLoading: isPostLoading, isError: isPostError}] = carApi.usePostCarMutation();
   const [
-    deleteCar, {isLoading: isDeleteLoading, isError: isDeleteError},
+    putCar, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
+  ] = carApi.usePutCarMutation();
+  const [
+    postCar, {isLoading: isPostLoading, isSuccess: isPostSuccess, isError: isPostError},
+  ] = carApi.usePostCarMutation();
+  const [
+    deleteCar, {isLoading: isDeleteLoading, isSuccess: isDeleteSuccess, isError: isDeleteError},
   ] = carApi.useDeleteCarMutation();
   const carForm = useAppSelector((state) => state.carReducer);
-
-  function acceptHandler() {
-    id === 'new' ? postCar(carForm) : putCar({id: id!, body: carForm});
-  }
-
-  function deleteHandler() {
-    deleteCar(id!);
-    navigate('/admin/car');
-  }
 
   useEffect(() => {
     if (id !== 'new') {
       car && dispatch(setFirstCarState(car));
     }
   }, [car]);
+
+  useEffect(() => {
+    (isPutError || isPostError || isDeleteError) && navigate('/admin/error');
+  }, [isPutError, isPostError, isDeleteError]);
+
+  useEffect(() => {
+    (isPutSuccess || isPostSuccess || isDeleteSuccess) && navigate('/admin/car');
+  }, [isPutSuccess, isPostSuccess, isDeleteSuccess]);
 
   useEffect(() => {
     return () => {
@@ -45,7 +48,7 @@ function Car() {
     return <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} />;
   }
 
-  if ((isGetError || isPutError) && (id !== 'new')) {
+  if ((isGetError) && (id !== 'new')) {
     navigate('/admin/error');
   }
 
@@ -55,8 +58,10 @@ function Car() {
       subtitle={'Настройка автомобиля'}
       leftSide={<CarLeft car={carForm!} />}
       rightSide={<CarRight car={carForm!}/>}
-      accept={acceptHandler}
-      remove={deleteHandler}
+      accept={() => id === 'new' ? postCar(carForm): putCar({id: id!, body: carForm})}
+      acceptLoading={!!(isPutLoading || isPostLoading)}
+      remove={() => deleteCar(id!)}
+      removeLoading={!!isDeleteLoading}
     />
   );
 }

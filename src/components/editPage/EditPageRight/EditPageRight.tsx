@@ -9,9 +9,14 @@ interface IEditPageRight {
   subtitle: string,
   accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
   remove: (e: React.MouseEvent<HTMLButtonElement>) => void,
+  acceptLoading: boolean,
+  removeLoading: boolean,
 }
 
-function EditPageRight({children, subtitle, accept, remove}: IEditPageRight) {
+function EditPageRight(
+  {
+    children, subtitle, accept, remove, acceptLoading, removeLoading,
+  }: IEditPageRight) {
   return (
     <Box sx={editPageRight}>
       <EditPageRightContainer>
@@ -24,6 +29,8 @@ function EditPageRight({children, subtitle, accept, remove}: IEditPageRight) {
         <EditPageRightButtons
           accept={accept}
           remove={remove}
+          acceptLoading={acceptLoading}
+          removeLoading={removeLoading}
         />
       </EditPageRightContainer>
     </Box>

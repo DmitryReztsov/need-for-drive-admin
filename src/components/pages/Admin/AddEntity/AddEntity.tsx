@@ -12,7 +12,7 @@ function AddEntity() {
     <Box sx={addEntity}>
       <Container>
         <PageHeader>
-          Новая сущность
+          Выберите новую сущность
         </PageHeader>
         <Box sx={addEntityBody}>
           {entityList.map(({text, entity}) => {
