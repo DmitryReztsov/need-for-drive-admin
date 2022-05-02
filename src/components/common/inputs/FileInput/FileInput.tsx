@@ -4,9 +4,10 @@ import {fileInput, fileInputLeftButton, fileInputRightButton} from './FileInputS
 
 interface IFileInput {
   change: (e:React.ChangeEvent<HTMLInputElement>) => void,
+  accept?: string,
 }
 
-function FileInput({change}: IFileInput) {
+function FileInput({change, accept}: IFileInput) {
   return (
     <FormLabel
       htmlFor="file"
@@ -25,6 +26,7 @@ function FileInput({change}: IFileInput) {
         <OutlinedInput
           id="file"
           type={'file'}
+          inputProps={{accept}}
           required
           sx={{display: 'none'}}
           onChange={change}

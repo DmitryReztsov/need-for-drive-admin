@@ -10,11 +10,11 @@ function Cities() {
   const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
   const {
-    data, isLoading: cityLoading, error: cityError,
+    data: cities, isLoading: cityLoading, error: cityError,
   } = cityApi.useGetCitiesQuery({page: page - 1});
 
   if (cityError) {
-    navigate('admin/error');
+    navigate('/admin/error');
   }
 
   return (
@@ -22,12 +22,12 @@ function Cities() {
       header={'Список городов'}
       page={page}
       setPage={setPage}
-      pages={getPages(data?.count)}
+      pages={getPages(cities?.count)}
       dataLoading={cityLoading}
-      array={data?.cities || []}
+      array={cities?.data || []}
       listHeaders={['Город']}
     >
-      {(data?.cities || []).map((city) => <CityItem city={city} key={city.id} />)}
+      {(cities?.data || []).map((city) => <CityItem city={city} key={city.id} />)}
     </Page>
   );
 }

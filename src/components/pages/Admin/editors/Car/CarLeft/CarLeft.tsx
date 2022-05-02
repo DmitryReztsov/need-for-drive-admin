@@ -4,6 +4,7 @@ import {carLeft, carLeftBar, carLeftDesc, carLeftInfo} from './CarLeftStyle';
 import {ICar} from '../../../../../../models/ICar';
 import CarLeftInfo from './CarLeftInfo/CarLeftInfo';
 import ProgressBar from '../../../../../common/ProgressBar/ProgressBar';
+import {getPercent} from '../../../../../../utils/getPercent';
 
 interface ICarLeft {
   car: ICar,
@@ -17,7 +18,7 @@ function CarLeft({car}: ICarLeft) {
         <CarLeftInfo car={car} />
       </Box>
       <Box sx={carLeftBar}>
-        <ProgressBar entity={car} />
+        <ProgressBar percent={getPercent(car)} />
       </Box>
       <Box sx={carLeftDesc}>
         <Typography>

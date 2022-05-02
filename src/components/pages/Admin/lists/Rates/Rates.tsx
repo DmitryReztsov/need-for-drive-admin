@@ -19,9 +19,9 @@ function Rates() {
   const [page, setPage] = useState<number>(1);
   const [queryParams, setQueryParams] = useState<Void<IPointQueryParams>>();
   const {
-    data, isLoading: rateLoading, error: rateError,
+    data: rates, isLoading: rateLoading, error: rateError,
   } = rateApi.useGetRatesQuery({page: page - 1, ...queryParams});
-  const {data: dataRateTypes} = rateTypeApi.useGetRateTypesQuery({});
+  const {data: rateTypes} = rateTypeApi.useGetRateTypesQuery({});
   const {rateTypeId} = useAppSelector((state) => state.filterReducer);
 
   const filters: IFilter [] = [
@@ -32,7 +32,7 @@ function Rates() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['rateTypeId', e.target.value]));
       },
-      data: dataRateTypes?.rateTypes || [],
+      data: rateTypes?.data || [],
     },
   ];
 
@@ -52,7 +52,7 @@ function Rates() {
   }, []);
 
   if (rateError) {
-    navigate('admin/error');
+    navigate('/admin/error');
   }
 
   return (
@@ -61,14 +61,14 @@ function Rates() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={getPages(data?.count)}
+      pages={getPages(rates?.count)}
       apply={applyFilters}
       reset={() => dispatch(clearFilters())}
       dataLoading={rateLoading}
-      array={data?.rates || []}
+      array={rates?.data || []}
       listHeaders={['Тип тарифа', 'Стоимость']}
     >
-      {(data?.rates || [])
+      {(rates?.data || [])
         .map((rate) => <RateItem rate={rate} key={rate.id} />)}
     </Page>
   );

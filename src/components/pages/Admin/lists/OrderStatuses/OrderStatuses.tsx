@@ -9,11 +9,11 @@ function OrderStatuses() {
   const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
   const {
-    data, isLoading: orderStatusLoading, error: orderStatusError,
+    data: orderStatuses, isLoading: orderStatusLoading, error: orderStatusError,
   } = orderStatusApi.useGetOrderStatusesQuery({page: page - 1});
 
   if (orderStatusError) {
-    navigate('admin/error');
+    navigate('/admin/error');
   }
 
   return (
@@ -21,12 +21,12 @@ function OrderStatuses() {
       header={'Список статусов'}
       page={page}
       setPage={setPage}
-      pages={getPages(data?.count)}
+      pages={getPages(orderStatuses?.count)}
       dataLoading={orderStatusLoading}
-      array={data?.orderStatuses || []}
+      array={orderStatuses?.data || []}
       listHeaders={['Статус заказа']}
     >
-      {(data?.orderStatuses || [])
+      {(orderStatuses?.data || [])
         .map((orderStatus) => <OrderStatusItem orderStatus={orderStatus} key={orderStatus.id} />)}
     </Page>
   );

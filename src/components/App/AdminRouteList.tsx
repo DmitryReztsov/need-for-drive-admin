@@ -12,6 +12,10 @@ import OrderStatus from '../pages/Admin/editors/OrderStatus/OrderStatus';
 import Rate from '../pages/Admin/editors/Rate/Rate';
 import Point from '../pages/Admin/editors/Point/Point';
 import RateType from '../pages/Admin/editors/RateType/RateType';
+import Categories from '../pages/Admin/lists/Categories/Categories';
+import Category from '../pages/Admin/editors/Category/Category';
+import ErrorPage from '../pages/Admin/ErrorPage/ErrorPage';
+import AddEntity from '../pages/Admin/AddEntity/AddEntity';
 
 export const adminRouteList = [
   {
@@ -70,5 +74,21 @@ export const adminRouteList = [
   {
     route: 'orderStatus/:id',
     element: <OrderStatus/>,
+  },
+  {
+    route: 'category',
+    element: <Categories/>,
+  },
+  {
+    route: 'category/:id',
+    element: <Category/>,
+  },
+  {
+    route: 'new',
+    element: <AddEntity/>,
+  },
+  {
+    route: '*',
+    element: <ErrorPage/>,
   },
 ];

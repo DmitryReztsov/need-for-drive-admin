@@ -15,7 +15,7 @@ interface ICarRight {
 
 function CarRight({car}: ICarRight) {
   const dispatch = useAppDispatch();
-  const {data: categories} = categoryApi.useGetCategoriesQuery();
+  const {data: categories} = categoryApi.useGetCategoriesQuery({});
   const [color, setColor] = useState<string>('');
   const {
     priceMin, priceMax, name, description,
@@ -47,7 +47,7 @@ function CarRight({car}: ICarRight) {
           id="categoryId"
           label={'Тип автомобиля'}
           value={categoryId}
-          options={(categories || [])}
+          options={(categories?.data || [])}
           action={setCarField}
           required
           clearOnEscape

@@ -2,6 +2,7 @@ import {api, DEFAULT_PARAMS, headers} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {IOrderStatus} from '../../models/IOrderStatus';
+import {IResponse} from '../../models/IResponse';
 
 export interface IOrderStatusQueryParams {
   [key: string]: any,
@@ -9,14 +10,10 @@ export interface IOrderStatusQueryParams {
   limit?: number,
 }
 
-export interface IOrderStatusResponse {
-  count: number,
-  orderStatuses: IOrderStatus [],
-}
 
 export const orderStatusApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getOrderStatuses: build.query<IOrderStatusResponse, IOrderStatusQueryParams>({
+    getOrderStatuses: build.query<IResponse<IOrderStatus[]>, IOrderStatusQueryParams>({
       query: (params) => ({
         url: PATHS.ORDER_STATUS,
         params: {
@@ -27,7 +24,7 @@ export const orderStatusApi = api.injectEndpoints({
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
-        return {count: response.count, orderStatuses: response.data};
+        return {count: response.count, data: response.data};
       },
       providesTags: (result) => ['OrderStatus'],
     }),

@@ -49,4 +49,14 @@ export const navItems = [
     text: 'Список статусов',
     href: 'admin/orderStatus',
   },
+  {
+    icon: ErrorIcon,
+    text: 'Категории авто',
+    href: 'admin/category',
+  },
+  {
+    icon: ErrorIcon,
+    text: 'Создать сущность',
+    href: 'admin/new',
+  },
 ];

@@ -18,15 +18,15 @@ function Orders() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {data: cars} = carApi.useGetCarsQuery({limit: 0});
-  const {data: dataCities} = cityApi.useGetCitiesQuery({});
-  const {data: dataOrderStatuses} = orderStatusApi.useGetOrderStatusesQuery({});
+  const {data: cities} = cityApi.useGetCitiesQuery({});
+  const {data: orderStatuses} = orderStatusApi.useGetOrderStatusesQuery({});
   const {
     createdAt, carId, cityId, orderStatusId,
   } = useAppSelector((state) => state.filterReducer);
   const [page, setPage] = useState<number>(1);
   const [queryParams, setQueryParams] = useState<Void<IOrderQueryParams>>();
   const {
-    data, isLoading: orderLoading, error: orderError,
+    data: orders, isLoading: orderLoading, error: orderError,
   } = orderApi.useGetOrdersQuery({page: page - 1, ...queryParams});
 
   const filters: IFilter [] = [
@@ -46,7 +46,7 @@ function Orders() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['carId', e.target.value]));
       },
-      data: cars?.cars || [],
+      data: cars?.data || [],
     },
     {
       id: 'cityId',
@@ -55,7 +55,7 @@ function Orders() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['cityId', e.target.value]));
       },
-      data: dataCities?.cities || [],
+      data: cities?.data || [],
     },
     {
       id: 'orderStatusId',
@@ -64,7 +64,7 @@ function Orders() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['orderStatusId', e.target.value]));
       },
-      data: dataOrderStatuses?.orderStatuses || [],
+      data: orderStatuses?.data || [],
     },
   ];
 
@@ -74,7 +74,7 @@ function Orders() {
   }
 
   if (orderError) {
-    navigate('admin/error');
+    navigate('/admin/error');
   }
 
   useEffect(() => {
@@ -89,13 +89,13 @@ function Orders() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={getPages(data?.count)}
+      pages={getPages(orders?.count)}
       apply={applyFilters}
       reset={() => dispatch(clearFilters())}
       dataLoading={orderLoading}
-      array={data?.orders || []}
+      array={orders?.data || []}
     >
-      {(data?.orders || []).map((order) => <OrderItem order={order} key={order.id} />)}
+      {(orders?.data || []).map((order) => <OrderItem order={order} key={order.id} />)}
     </Page>
   );
 }

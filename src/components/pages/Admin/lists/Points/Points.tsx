@@ -18,9 +18,9 @@ function Points() {
   const [page, setPage] = useState<number>(1);
   const [queryParams, setQueryParams] = useState<Void<IPointQueryParams>>();
   const {
-    data, isLoading: pointLoading, error: pointError,
+    data: points, isLoading: pointLoading, error: pointError,
   } = pointApi.useGetPointsQuery({page: page - 1, ...queryParams});
-  const {data: dataCities} = cityApi.useGetCitiesQuery({});
+  const {data: cities} = cityApi.useGetCitiesQuery({});
   const {cityId} = useAppSelector((state) => state.filterReducer);
 
   const filters: IFilter [] = [
@@ -31,7 +31,7 @@ function Points() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['cityId', e.target.value]));
       },
-      data: dataCities?.cities || [],
+      data: cities?.data || [],
     },
   ];
 
@@ -41,7 +41,7 @@ function Points() {
   }
 
   if (pointError) {
-    navigate('admin/error');
+    navigate('/admin/error');
   }
 
   useEffect(() => {
@@ -55,14 +55,14 @@ function Points() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={getPages(data?.count)}
+      pages={getPages(points?.count)}
       apply={applyFilters}
       reset={() => dispatch(clearFilters())}
       dataLoading={pointLoading}
-      array={data?.points || []}
+      array={points?.data || []}
       listHeaders={['Название', 'Город', 'Улица']}
     >
-      {(data?.points || []).map((point) => <PointItem point={point} key={point.id} />)}
+      {(points?.data || []).map((point) => <PointItem point={point} key={point.id} />)}
     </Page>
   );
 }

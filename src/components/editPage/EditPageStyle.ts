@@ -23,5 +23,10 @@ export const editorBody = {
   },
   [theme.breakpoints.down('lg')]: {
     ...flexbox('stretch', 'stretch', 'column'),
+    '& > div': {
+      '&:first-of-type': {
+        alignSelf: 'inherit',
+      },
+    },
   },
 };

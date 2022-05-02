@@ -12,7 +12,7 @@ export const initialState: ICar = {
   number: '',
   categoryId: null,
   thumbnail: null,
-  tank: 50,
+  tank: 0,
   colors: [],
   id: '',
 };

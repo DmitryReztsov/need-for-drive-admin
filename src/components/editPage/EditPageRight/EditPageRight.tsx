@@ -7,9 +7,11 @@ import EditPageRightButtons from './EditPageRightButtons/EditPageRightButtons';
 interface IEditPageRight {
   children: React.ReactNode,
   subtitle: string,
+  accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
+  remove: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
-function EditPageRight({children, subtitle}: IEditPageRight) {
+function EditPageRight({children, subtitle, accept, remove}: IEditPageRight) {
   return (
     <Box sx={editPageRight}>
       <EditPageRightContainer>
@@ -19,7 +21,10 @@ function EditPageRight({children, subtitle}: IEditPageRight) {
         <Box sx={editPageRightFields}>
           {children}
         </Box>
-        <EditPageRightButtons />
+        <EditPageRightButtons
+          accept={accept}
+          remove={remove}
+        />
       </EditPageRightContainer>
     </Box>
   );

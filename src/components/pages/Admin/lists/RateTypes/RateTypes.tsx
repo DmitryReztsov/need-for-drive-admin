@@ -9,11 +9,11 @@ function RateTypes() {
   const navigate = useNavigate();
   const [page, setPage] = useState<number>(1);
   const {
-    data, isLoading: rateTypeLoading, error: rateTypeError,
+    data: rateTypes, isLoading: rateTypeLoading, error: rateTypeError,
   } = rateTypeApi.useGetRateTypesQuery({page: page - 1});
 
   if (rateTypeError) {
-    navigate('admin/error');
+    navigate('/admin/error');
   }
 
   return (
@@ -21,12 +21,12 @@ function RateTypes() {
       header={'Типы тарифов'}
       page={page}
       setPage={setPage}
-      pages={getPages(data?.count)}
+      pages={getPages(rateTypes?.count)}
       dataLoading={rateTypeLoading}
-      array={data?.rateTypes || []}
+      array={rateTypes?.data || []}
       listHeaders={['Название', 'Время']}
     >
-      {(data?.rateTypes || [])
+      {(rateTypes?.data || [])
         .map((rateType) => <RateTypeItem rateType={rateType} key={rateType.id} />)}
     </Page>
   );

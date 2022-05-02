@@ -19,9 +19,9 @@ function Cars() {
   const [queryParams, setQueryParams] = useState<Void<IOrderQueryParams>>();
   const [page, setPage] = useState<number>(1);
   const {
-    data, isLoading: carLoading, error: carError,
+    data: cars, isLoading: carLoading, error: carError,
   } = carApi.useGetCarsQuery({page: page - 1, ...queryParams});
-  const {data: categories} = categoryApi.useGetCategoriesQuery();
+  const {data: categories} = categoryApi.useGetCategoriesQuery({});
   const {categoryId, colors} = useAppSelector((state) => state.filterReducer);
 
 
@@ -33,7 +33,7 @@ function Cars() {
       cb: (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(setFilter(['categoryId', e.target.value]));
       },
-      data: categories || [],
+      data: categories?.data || [],
     },
     {
       id: 'colors',
@@ -52,7 +52,7 @@ function Cars() {
   }
 
   if (carError) {
-    navigate('admin/error');
+    navigate('/admin/error');
   }
 
   useEffect(() => {
@@ -67,13 +67,13 @@ function Cars() {
       filters={filters}
       page={page}
       setPage={setPage}
-      pages={getPages(data?.count)}
+      pages={getPages(cars?.count)}
       apply={applyFilters}
       reset={() => dispatch(clearFilters())}
       dataLoading={carLoading}
-      array={data?.cars || []}
+      array={cars?.data || []}
     >
-      {(data?.cars || []).map((car) => <CarItem car={car} key={car.id} />)}
+      {(cars?.data || []).map((car) => <CarItem car={car} key={car.id} />)}
     </Page>
   );
 }

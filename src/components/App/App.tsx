@@ -7,6 +7,7 @@ import {app} from './AppStyle';
 import Home from '../pages/Admin/Home/Home';
 import RequireAuth from '../common/RequireAuth/RequireAuth';
 import {adminRouteList} from './AdminRouteList';
+import AddEntity from '../pages/Admin/AddEntity/AddEntity';
 
 function App() {
   return (

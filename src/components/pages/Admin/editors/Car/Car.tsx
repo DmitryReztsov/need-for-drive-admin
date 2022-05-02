@@ -6,25 +6,47 @@ import {useNavigate, useParams} from 'react-router-dom';
 import {carApi} from '../../../../../services/endpoints/car';
 import {Skeleton} from '@mui/material';
 import {useAppDispatch, useAppSelector} from '../../../../../hooks/reduxHooks';
-import {setFirstCarState} from '../../../../../store/slices/editSlices/car/carSlice';
+import {clearCarState, setFirstCarState} from '../../../../../store/slices/editSlices/car/carSlice';
 
 function Car() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
-  const {data: car, isLoading, error} = carApi.useGetCarQuery(id!);
+  const {data: car, isLoading: isGetLoading, error: isGetError} = carApi.useGetCarQuery(id!);
+  const [putCar, {isLoading: isPutLoading, isError: isPutError}] = carApi.usePutCarMutation();
+  const [postCar, {isLoading: isPostLoading, isError: isPostError}] = carApi.usePostCarMutation();
+  const [
+    deleteCar, {isLoading: isDeleteLoading, isError: isDeleteError},
+  ] = carApi.useDeleteCarMutation();
   const carForm = useAppSelector((state) => state.carReducer);
 
+  function acceptHandler() {
+    id === 'new' ? postCar(carForm) : putCar({id: id!, body: carForm});
+  }
+
+  function deleteHandler() {
+    deleteCar(id!);
+    navigate('/admin/car');
+  }
+
   useEffect(() => {
-    car && dispatch(setFirstCarState(car));
+    if (id !== 'new') {
+      car && dispatch(setFirstCarState(car));
+    }
   }, [car]);
 
-  if (isLoading) {
+  useEffect(() => {
+    return () => {
+      dispatch(clearCarState());
+    };
+  }, []);
+
+  if (isGetLoading) {
     return <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} />;
   }
 
-  if (error) {
-    navigate('admin/error');
+  if ((isGetError || isPutError) && (id !== 'new')) {
+    navigate('/admin/error');
   }
 
   return (
@@ -33,6 +55,8 @@ function Car() {
       subtitle={'Настройка автомобиля'}
       leftSide={<CarLeft car={carForm!} />}
       rightSide={<CarRight car={carForm!}/>}
+      accept={acceptHandler}
+      remove={deleteHandler}
     />
   );
 }

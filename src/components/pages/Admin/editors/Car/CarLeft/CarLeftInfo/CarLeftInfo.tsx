@@ -6,22 +6,30 @@ import {
 import noImage from '../../../../../../../content/png/no_image_available.png';
 import {ICar} from '../../../../../../../models/ICar';
 import FileInput from '../../../../../../common/inputs/FileInput/FileInput';
+import {useAppDispatch} from '../../../../../../../hooks/reduxHooks';
+import {setCarField} from '../../../../../../../store/slices/editSlices/car/carSlice';
 
 interface ICarLeftInfo {
   car: ICar,
 }
 
 function CarLeftInfo({car}: ICarLeftInfo) {
+  const dispatch = useAppDispatch();
   const {
     name, categoryId, thumbnail,
   } = car;
 
   function changeFile(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target);
     const file = e.target.files && e.target.files[0];
     const reader = new FileReader();
     reader.onloadend = function() {
-      console.log('RESULT', reader.result);
+      const newThumbnail = {
+        path: reader.result,
+        mimetype: file?.type,
+        originalname: file?.name,
+        size: file?.size,
+      };
+      dispatch(setCarField(['thumbnail', newThumbnail]));
     };
     reader.readAsDataURL(file!);
   }
@@ -41,6 +49,7 @@ function CarLeftInfo({car}: ICarLeftInfo) {
       <Box sx={carLeftInfoFile}>
         <FileInput
           change={changeFile}
+          accept={'.png, .jpg, .jpeg'}
         />
       </Box>
     </Box>

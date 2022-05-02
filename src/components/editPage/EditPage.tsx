@@ -11,9 +11,11 @@ interface IEditPageProps {
   rightSide: JSX.Element,
   header: string,
   subtitle: string,
+  accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
+  remove: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
-function EditPage({leftSide, rightSide, header, subtitle}: IEditPageProps) {
+function EditPage({leftSide, rightSide, header, subtitle, accept, remove}: IEditPageProps) {
   return (
     <Box sx={editPage}>
       <Container>
@@ -24,7 +26,11 @@ function EditPage({leftSide, rightSide, header, subtitle}: IEditPageProps) {
           <EditPageLeft>
             {leftSide}
           </EditPageLeft>
-          <EditPageRight subtitle={subtitle}>
+          <EditPageRight
+            subtitle={subtitle}
+            accept={accept}
+            remove={remove}
+          >
             {rightSide}
           </EditPageRight>
         </Box>

@@ -2,6 +2,8 @@ import {api, DEFAULT_PARAMS, headers} from '../Api';
 import {IOrder} from '../../models/IOrder';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
+import {IResponse} from '../../models/IResponse';
+import {ICar} from '../../models/ICar';
 
 export interface IOrderQueryParams {
   [key: string]: any,
@@ -13,14 +15,10 @@ export interface IOrderQueryParams {
   'orderStatusId[id]'?: string,
 }
 
-export interface IOrderResponse {
-  count: number,
-  orders: IOrder [],
-}
 
 export const orderApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getOrders: build.query<IOrderResponse, IOrderQueryParams>({
+    getOrders: build.query<IResponse<IOrder[]>, IOrderQueryParams>({
       query: (params) => ({
         url: PATHS.ORDER,
         params: {
@@ -31,7 +29,7 @@ export const orderApi = api.injectEndpoints({
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
-        return {count: response.count, orders: response.data};
+        return {count: response.count, data: response.data};
       },
       providesTags: (result) => ['Order'],
     }),

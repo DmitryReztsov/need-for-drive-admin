@@ -2,6 +2,7 @@ import {api, DEFAULT_PARAMS, headers} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {ICity} from '../../models/ICity';
+import {IResponse} from '../../models/IResponse';
 
 export interface ICityQueryParams {
   [key: string]: any,
@@ -9,14 +10,10 @@ export interface ICityQueryParams {
   limit?: number,
 }
 
-export interface ICityResponse {
-  count: number,
-  cities: ICity [],
-}
 
 export const cityApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getCities: build.query<ICityResponse, ICityQueryParams>({
+    getCities: build.query<IResponse<ICity[]>, ICityQueryParams>({
       query: (params) => ({
         url: PATHS.CITY,
         params: {
@@ -27,7 +24,7 @@ export const cityApi = api.injectEndpoints({
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
-        return {count: response.count, cities: response.data};
+        return {count: response.count, data: response.data};
       },
       providesTags: (result) => ['City'],
     }),

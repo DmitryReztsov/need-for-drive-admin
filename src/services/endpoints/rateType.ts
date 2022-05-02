@@ -2,6 +2,7 @@ import {api, DEFAULT_PARAMS, headers} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {IRateType} from '../../models/IRateType';
+import {IResponse} from '../../models/IResponse';
 
 export interface IRateTypeQueryParams {
   [key: string]: any,
@@ -9,14 +10,9 @@ export interface IRateTypeQueryParams {
   limit?: number,
 }
 
-export interface IRateTypeResponse {
-  count: number,
-  rateTypes: IRateType [],
-}
-
 export const rateTypeApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getRateTypes: build.query<IRateTypeResponse, IRateTypeQueryParams>({
+    getRateTypes: build.query<IResponse<IRateType[]>, IRateTypeQueryParams>({
       query: (params) => ({
         url: PATHS.RATE_TYPE,
         params: {
@@ -27,7 +23,7 @@ export const rateTypeApi = api.injectEndpoints({
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
-        return {count: response.count, rateTypes: response.data};
+        return {count: response.count, data: response.data};
       },
       providesTags: (result) => ['RateType'],
     }),
