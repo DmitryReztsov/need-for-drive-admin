@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import Page from '../../../../page/Page';
 import {getPages} from '../../../../../utils/getPages';
 import {categoryApi} from '../../../../../services/endpoints/category';
-import CategoryItem from './RateTypeItem/CategoryItem';
+import CategoryItem from './CategoryItem/CategoryItem';
 
 function Categories() {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ function Categories() {
 
   return (
     <Page
-      header={'Типы тарифов'}
+      header={'Категории авто'}
       page={page}
       setPage={setPage}
       pages={getPages(categories?.count)}
