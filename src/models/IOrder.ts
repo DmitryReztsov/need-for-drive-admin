@@ -2,6 +2,9 @@ import {ICity} from './ICity';
 import {ICar} from './ICar';
 import {IPoint} from './IPoint';
 import {IOrderStatus} from './IOrderStatus';
+import {IRate} from './IRate';
+import {ICategory} from './ICategory';
+import {IRateType} from './IRateType';
 
 export interface IOrder {
   [key: string]: any,
@@ -11,10 +14,12 @@ export interface IOrder {
   cityId: ICity | null,
   pointId: IPoint | null,
   carId: ICar | null,
+  categoryId: ICategory | null,
+  rateTypeId: IRateType | null,
   color: string,
   dateFrom: number,
   dateTo: number,
-  rateId: string | null,
+  rateId: IRate | null,
   price: number,
   isFullTank: boolean,
   isNeedChildChair: boolean,

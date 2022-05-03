@@ -43,17 +43,15 @@ export const editorBody = {
     borderRadius: '9px',
     bgcolor: 'common.white',
     boxShadow: 34,
+    alignSelf: 'flex-start',
     '&:first-of-type': {
       ...flex(0, 1, '33%'),
-      alignSelf: 'baseline',
     },
   },
   [theme.breakpoints.down('lg')]: {
     ...flexbox('stretch', 'stretch', 'column'),
     '& > div': {
-      '&:first-of-type': {
-        alignSelf: 'inherit',
-      },
+      alignSelf: 'inherit',
     },
   },
 };

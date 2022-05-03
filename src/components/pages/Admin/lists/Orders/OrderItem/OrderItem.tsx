@@ -72,7 +72,7 @@ function OrderItem({order}: IOrderProps) {
         {price ? `${price.toLocaleString()} ₽` : 'Не указана'}
       </Typography>
       <Box sx={orderItemButtons}>
-        <ItemButtons />
+        <ItemButtons id={id} />
       </Box>
     </Box>
   );

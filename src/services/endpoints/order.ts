@@ -3,7 +3,7 @@ import {IOrder} from '../../models/IOrder';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {IResponse} from '../../models/IResponse';
-import {ICar} from '../../models/ICar';
+import {IPutQuery} from '../../models/IPutQuery';
 
 export interface IOrderQueryParams {
   [key: string]: any,
@@ -32,6 +32,43 @@ export const orderApi = api.injectEndpoints({
         return {count: response.count, data: response.data};
       },
       providesTags: (result) => ['Order'],
+    }),
+    getOrder: build.query<IOrder, string>({
+      query: (id) => ({
+        url: PATHS.ORDER + `/${id}`,
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      providesTags: (result) => ['Order'],
+    }),
+    postOrder: build.mutation<IOrder, IOrder>({
+      query: (body) => ({
+        url: PATHS.ORDER,
+        method: 'POST',
+        body,
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      invalidatesTags: ['Order'],
+    }),
+    putOrder: build.mutation<IOrder, IPutQuery<IOrder>>({
+      query: ({id, body}) => ({
+        url: PATHS.ORDER + `/${id}`,
+        method: 'PUT',
+        body,
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      invalidatesTags: ['Order'],
+    }),
+    deleteOrder: build.mutation<IOrder, string>({
+      query: (id) => ({
+        url: PATHS.ORDER + `/${id}`,
+        method: 'DELETE',
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      invalidatesTags: ['Order'],
     }),
   }),
   overrideExisting: false,

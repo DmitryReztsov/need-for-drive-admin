@@ -1,8 +1,6 @@
 import {validateNumber} from './validators';
 
-const ignoreFields = ['updatedAt', 'createdAt', 'id'];
-
-export function getPercent(entity: any): number {
+export function getPercent(entity: any, ignoreFields: string [] = []): number {
   const sortedFields = Object.entries(entity).filter((item) => {
     return !ignoreFields.includes(item[0]);
   });

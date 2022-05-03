@@ -250,6 +250,18 @@ export const theme = createTheme({
         },
       },
     },
+    MuiRadio: {
+      defaultProps: {
+      },
+      styleOverrides: {
+        root: {
+          padding: '3.5px',
+          '& svg': {
+            fontSize: '0.8125rem',
+          },
+        },
+      },
+    },
     MuiFormControlLabel: {
       styleOverrides: {
         root: {
@@ -259,7 +271,6 @@ export const theme = createTheme({
             fontFamily: 'Roboto',
             lineHeight: '0.73rem',
             letterSpacing: '-0.175439px',
-            color: '#121212',
           },
         },
       },

@@ -26,13 +26,14 @@ interface IAutocompleteInput {
   options: any [],
   action: (payload: IDataField) => any,
   optionKey?: string,
+  loading?: boolean,
 }
 
 function AutocompleteInput(
   {
     sx, id, value, label, type,
     placeholder, fullWidth, required, autoFocus, clearOnEscape,
-    error, options, action, optionKey = 'name',
+    error, options, action, optionKey = 'name', loading,
   }: IAutocompleteInput) {
   const dispatch = useAppDispatch();
   return (
@@ -46,8 +47,9 @@ function AutocompleteInput(
         options={options}
         value={value}
         clearOnEscape={clearOnEscape}
+        loading={loading}
         isOptionEqualToValue={(option, value) => option[optionKey] === value[optionKey]}
-        getOptionLabel={(option) => option ? option[optionKey] : ''}
+        getOptionLabel={(option) => option ? option[optionKey].toString() : ''}
         renderOption={({}, option) => {
           return (
             <Typography

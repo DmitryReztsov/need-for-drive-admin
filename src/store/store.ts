@@ -8,6 +8,8 @@ import categoryReducer from './slices/editSlices/category/categorySlice';
 import rateTypeReducer from './slices/editSlices/rateType/rateTypeSlice';
 import rateReducer from './slices/editSlices/rate/rateSlice';
 import pointReducer from './slices/editSlices/point/pointSlice';
+import orderReducer from './slices/editSlices/order/orderSlice';
+import ignoredFieldsReducer from './slices/ignoredFields/ignoredFieldsSlice';
 
 const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   rateTypeReducer,
   rateReducer,
   pointReducer,
+  orderReducer,
+  ignoredFieldsReducer,
 });
 
 export const setupStore = () => {

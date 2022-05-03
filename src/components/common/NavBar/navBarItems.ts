@@ -12,7 +12,7 @@ export const navItems = [
   {
     icon: BlogIcon,
     text: 'Карточка автомобиля',
-    href: 'admin/car/1',
+    href: 'admin/car/new',
   },
   {
     icon: BlogPostsIcon,
