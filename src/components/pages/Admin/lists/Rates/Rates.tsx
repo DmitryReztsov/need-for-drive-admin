@@ -11,7 +11,7 @@ import {
 } from '../../../../../store/slices/filter/filterSlice';
 import useSetParams from '../../../../../hooks/useSetParams';
 import {rateTypeApi} from '../../../../../services/endpoints/rateType';
-import {IPointQueryParams} from '../../../../../services/endpoints/points';
+import {IPointQueryParams} from '../../../../../services/endpoints/point';
 
 function Rates() {
   const navigate = useNavigate();

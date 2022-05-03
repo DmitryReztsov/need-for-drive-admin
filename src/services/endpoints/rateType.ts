@@ -3,6 +3,7 @@ import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {IRateType} from '../../models/IRateType';
 import {IResponse} from '../../models/IResponse';
+import {IPutQuery} from '../../models/IPutQuery';
 
 export interface IRateTypeQueryParams {
   [key: string]: any,
@@ -26,6 +27,43 @@ export const rateTypeApi = api.injectEndpoints({
         return {count: response.count, data: response.data};
       },
       providesTags: (result) => ['RateType'],
+    }),
+    getRateType: build.query<IRateType, string>({
+      query: (id) => ({
+        url: PATHS.RATE_TYPE + `/${id}`,
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      providesTags: (result) => ['RateType'],
+    }),
+    postRateType: build.mutation<IRateType, IRateType>({
+      query: (body) => ({
+        url: PATHS.RATE_TYPE,
+        method: 'POST',
+        body,
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      invalidatesTags: ['RateType'],
+    }),
+    putRateType: build.mutation<IRateType, IPutQuery<IRateType>>({
+      query: ({id, body}) => ({
+        url: PATHS.RATE_TYPE + `/${id}`,
+        method: 'PUT',
+        body,
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      invalidatesTags: ['RateType'],
+    }),
+    deleteRateType: build.mutation<IRateType, string>({
+      query: (id) => ({
+        url: PATHS.RATE_TYPE + `/${id}`,
+        method: 'DELETE',
+        headers,
+      }),
+      transformResponse: (response: BaseQueryResult<any>) => response.data,
+      invalidatesTags: ['RateType'],
     }),
   }),
   overrideExisting: false,

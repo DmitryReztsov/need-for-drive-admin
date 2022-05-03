@@ -5,6 +5,6 @@ export interface IRate {
   updatedAt: number,
   createdAt: number,
   price: number,
-  rateTypeId: IRateType,
+  rateTypeId: IRateType | null,
   id: string,
 }

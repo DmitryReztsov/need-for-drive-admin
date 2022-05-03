@@ -16,7 +16,7 @@ interface ICarRight {
 
 function CarRight({car}: ICarRight) {
   const dispatch = useAppDispatch();
-  const {data: categories} = categoryApi.useGetCategoriesQuery({});
+  const {data: categories} = categoryApi.useGetCategoriesQuery({limit: 0});
   const [color, setColor] = useState<string>('');
   const {
     priceMin, priceMax, name, description,

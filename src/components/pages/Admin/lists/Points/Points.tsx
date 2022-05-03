@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import Page from '../../../../page/Page';
 import {getPages} from '../../../../../utils/getPages';
-import {IPointQueryParams, pointApi} from '../../../../../services/endpoints/points';
+import {IPointQueryParams, pointApi} from '../../../../../services/endpoints/point';
 import PointItem from './PointItem/PointItem';
 import {
   clearFilters, initialState, setFilter,

@@ -1,4 +1,5 @@
-export const autocompleteInput = {};
+export const autocompleteInput = {
+};
 export const autocompleteInputLi = {
   p: '6px',
   cursor: 'pointer',

@@ -1,21 +1,23 @@
 import {api, DEFAULT_PARAMS, headers} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
-import {ICategory} from '../../models/ICategory';
+import {IPoint} from '../../models/IPoint';
 import {IResponse} from '../../models/IResponse';
 import {IPutQuery} from '../../models/IPutQuery';
 
-export interface ICategoryQueryParams {
+export interface IPointQueryParams {
   [key: string]: any,
   page?: number,
   limit?: number,
+  'cityId[id]'?: string,
 }
 
-export const categoryApi = api.injectEndpoints({
+
+export const pointApi = api.injectEndpoints({
   endpoints: (build) => ({
-    getCategories: build.query<IResponse<ICategory[]>, ICategoryQueryParams>({
+    getPoints: build.query<IResponse<IPoint[]>, IPointQueryParams>({
       query: (params) => ({
-        url: PATHS.CATEGORY,
+        url: PATHS.POINT,
         params: {
           'sort[name]': '1',
           limit: DEFAULT_PARAMS.LIMIT,
@@ -26,44 +28,44 @@ export const categoryApi = api.injectEndpoints({
       transformResponse: (response: BaseQueryResult<any>) => {
         return {count: response.count, data: response.data};
       },
-      providesTags: (result) => ['Category'],
+      providesTags: (result) => ['Point'],
     }),
-    getCategory: build.query<ICategory, string>({
+    getPoint: build.query<IPoint, string>({
       query: (id) => ({
-        url: PATHS.CATEGORY + `/${id}`,
+        url: PATHS.POINT + `/${id}`,
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
-      providesTags: (result) => ['Category'],
+      providesTags: (result) => ['Point'],
     }),
-    postCategory: build.mutation<ICategory, ICategory>({
+    postPoint: build.mutation<IPoint, IPoint>({
       query: (body) => ({
-        url: PATHS.CATEGORY,
+        url: PATHS.POINT,
         method: 'POST',
         body,
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
-      invalidatesTags: ['Category'],
+      invalidatesTags: ['Point'],
     }),
-    putCategory: build.mutation<ICategory, IPutQuery<ICategory>>({
+    putPoint: build.mutation<IPoint, IPutQuery<IPoint>>({
       query: ({id, body}) => ({
-        url: PATHS.CATEGORY + `/${id}`,
+        url: PATHS.POINT + `/${id}`,
         method: 'PUT',
         body,
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
-      invalidatesTags: ['Category'],
+      invalidatesTags: ['Point'],
     }),
-    deleteCategory: build.mutation<ICategory, string>({
+    deletePoint: build.mutation<IPoint, string>({
       query: (id) => ({
-        url: PATHS.CATEGORY + `/${id}`,
+        url: PATHS.POINT + `/${id}`,
         method: 'DELETE',
         headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
-      invalidatesTags: ['Category'],
+      invalidatesTags: ['Point'],
     }),
   }),
   overrideExisting: false,

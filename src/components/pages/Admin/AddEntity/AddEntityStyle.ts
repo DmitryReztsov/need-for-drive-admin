@@ -13,11 +13,10 @@ export const addEntityBody = {
   rowGap: '16px',
   flexWrap: 'wrap',
   '&>div': {
+    py: '32px',
     borderRadius: '9px',
     bgcolor: 'common.white',
     boxShadow: 34,
-    width: '100px',
-    height: '100px',
     cursor: 'pointer',
     ...flex(1, 1, '20%'),
     ...flexbox('center', 'center'),
@@ -26,6 +25,10 @@ export const addEntityBody = {
     },
     [theme.breakpoints.down('md')]: {
       ...flex(1, 1, '45%'),
+    },
+    [theme.breakpoints.down('sm')]: {
+      ...flex(1, 1, '100%'),
+      py: '16px',
     },
   },
 };

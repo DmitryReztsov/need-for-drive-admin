@@ -44,7 +44,7 @@ export const editorBody = {
     bgcolor: 'common.white',
     boxShadow: 34,
     '&:first-of-type': {
-      ...flex(1, 1, '33%'),
+      ...flex(0, 1, '33%'),
       alignSelf: 'baseline',
     },
   },

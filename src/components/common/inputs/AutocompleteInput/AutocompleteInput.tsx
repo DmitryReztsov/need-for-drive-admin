@@ -9,7 +9,7 @@ import {FetchBaseQueryError} from '@reduxjs/toolkit/query';
 import {SerializedError} from '@reduxjs/toolkit';
 import {IDataField} from '../../../../models/IDataField';
 import {useAppDispatch} from '../../../../hooks/reduxHooks';
-import {autocompleteInputLi} from './AutocompleteInputStyle';
+import {autocompleteInput, autocompleteInputLi} from './AutocompleteInputStyle';
 
 interface IAutocompleteInput {
   sx?: SxProps<Theme>,
@@ -41,6 +41,7 @@ function AutocompleteInput(
         {label}
       </FormLabel>
       <Autocomplete
+        sx={autocompleteInput}
         id={id}
         options={options}
         value={value}
