@@ -13,7 +13,6 @@ function Car() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
-  const {data: car, isLoading: isGetLoading, error: isGetError} = carApi.useGetCarQuery(id!);
   const [
     putCar, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
   ] = carApi.usePutCarMutation();
@@ -26,12 +25,13 @@ function Car() {
   const carForm = useAppSelector((state) => state.carReducer);
   const [showAlert, setShowAlert] = useState<boolean>(false);
   const [message, setMessage] = useState<string>('Машина сохранена');
+  const {
+    data: car, isLoading: isGetLoading, isSuccess: isGetSuccess, error: isGetError,
+  } = carApi.useGetCarQuery(id!, {skip: (id === 'new')});
 
   useEffect(() => {
-    if (id !== 'new') {
-      car && dispatch(setFirstCarState(car));
-    }
-  }, [car]);
+    car && dispatch(setFirstCarState(car));
+  }, [isGetSuccess]);
 
   useEffect(() => {
     if (isPutError || isPostError || isDeleteError) {
@@ -59,7 +59,7 @@ function Car() {
     return <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} />;
   }
 
-  if ((isGetError) && (id !== 'new') && !isDeleteSuccess) {
+  if (isGetError && !isDeleteSuccess) {
     navigate('/admin/error');
   }
 
