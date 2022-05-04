@@ -9,7 +9,6 @@ import PagePagination from './PagePagination/PagePagination';
 import {pageNoResults, pageStyle} from './PageStyle';
 import PageListHeaders from './PageListHeaders/PageListHeaders';
 import Snack from '../common/Snack/Snack';
-import {useAppSelector} from '../../hooks/reduxHooks';
 
 interface IPageProps {
   children: React.ReactNode,

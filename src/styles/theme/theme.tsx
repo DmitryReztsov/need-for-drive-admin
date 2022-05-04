@@ -174,6 +174,16 @@ export const theme = createTheme({
         },
       },
     },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          marginLeft: '0px',
+          marginTop: '4px',
+          fontSize: '0.675rem',
+          lineHeight: '0.75rem',
+        },
+      },
+    },
     MuiAutocomplete: {
       styleOverrides: {
         root: {

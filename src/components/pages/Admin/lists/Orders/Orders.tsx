@@ -34,6 +34,7 @@ function Orders() {
     data: orders, isLoading: orderLoading, error: orderError,
   } = orderApi.useGetOrdersQuery({page: page - 1, ...queryParams});
 
+  // нужны для рендера фильтров (можно переделать создание через метод map)
   const filters: IFilter [] = [
     {
       id: 'createdAt',
@@ -91,10 +92,7 @@ function Orders() {
     }
   }, [isPutSuccess]);
 
-  if (orderError) {
-    navigate('/admin/error');
-  }
-  if (isPutError) {
+  if (isPutError || orderError) {
     navigate('/admin/error');
   }
   return (
@@ -109,7 +107,7 @@ function Orders() {
       dataLoading={orderLoading}
       array={orders?.data || []}
       showAlert={showAlert}
-      alertText={'Статус заказ обновлен'}
+      alertText={'Статус заказа обновлен'}
     >
       {(orders?.data || []).map((order) => {
         return (

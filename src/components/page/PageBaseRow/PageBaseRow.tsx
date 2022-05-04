@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Button, useMediaQuery} from '@mui/material';
+import {Box, Button} from '@mui/material';
 import {pageBaseRow} from './PageBaseRowStyle';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import {useNavigate} from 'react-router-dom';

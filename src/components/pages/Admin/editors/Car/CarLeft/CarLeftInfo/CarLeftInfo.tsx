@@ -50,6 +50,7 @@ function CarLeftInfo({car}: ICarLeftInfo) {
         <FileInput
           change={changeFile}
           accept={'.png, .jpg, .jpeg'}
+          placeholder={thumbnail ? thumbnail?.originalname : 'Выберите файл...'}
         />
       </Box>
     </Box>

@@ -5,9 +5,10 @@ import {fileInput, fileInputLeftButton, fileInputRightButton} from './FileInputS
 interface IFileInput {
   change: (e:React.ChangeEvent<HTMLInputElement>) => void,
   accept?: string,
+  placeholder?: string,
 }
 
-function FileInput({change, accept}: IFileInput) {
+function FileInput({change, accept, placeholder}: IFileInput) {
   return (
     <FormLabel
       htmlFor="file"
@@ -21,7 +22,7 @@ function FileInput({change, accept}: IFileInput) {
           component="span"
           sx={fileInputLeftButton}
         >
-          Выберите файл...
+          {placeholder || 'Выберите файл...'}
         </Button>
         <OutlinedInput
           id="file"

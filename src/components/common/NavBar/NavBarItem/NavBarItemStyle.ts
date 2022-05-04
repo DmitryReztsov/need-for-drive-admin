@@ -6,7 +6,7 @@ export const navBarItem = {
   boxShadow: 26,
   cursor: 'pointer',
   ...transition(),
-  '&:hover,:focus': {
+  '&:hover': {
     boxShadow: 27,
     ...transition(),
     bgcolor: 'grey.200',
@@ -32,7 +32,10 @@ export const navBarContent = {
   lineHeight: '1.08rem',
   letterSpacing: '-0.234375px',
   '& svg': {
+    width: '17px',
+    height: '17px',
     position: 'absolute',
     left: '-25.5px',
+    color: 'grey.300',
   },
 };

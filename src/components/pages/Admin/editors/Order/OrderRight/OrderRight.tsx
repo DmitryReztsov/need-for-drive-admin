@@ -17,6 +17,7 @@ import TextInput from '../../../../../common/inputs/TextInput/TextInput';
 import {categoryApi} from '../../../../../../services/endpoints/category';
 import {rateTypeApi} from '../../../../../../services/endpoints/rateType';
 import CheckBoxGroupInput from '../../../../../common/inputs/CheckBoxGroupInput/CheckBoxGroupInput';
+import {useFirstRender} from '../../../../../../hooks/useFirstRender';
 
 interface IOrderRight {
   order: IOrder,
@@ -24,10 +25,6 @@ interface IOrderRight {
 
 function OrderRight({order}: IOrderRight) {
   const dispatch = useAppDispatch();
-  const firstCityUpdate = useRef(true);
-  const firstCarUpdate = useRef(true);
-  const firstCategoryUpdate = useRef(true);
-  const firstRateTypeUpdate = useRef(true);
   const {data: cities} = cityApi.useGetCitiesQuery({limit: 0});
   const {data: points} = pointApi.useGetPointsQuery({limit: 0});
   const {data: cars, isLoading: isCarLoading} = carApi.useGetCarsQuery({limit: 0});
@@ -62,24 +59,13 @@ function OrderRight({order}: IOrderRight) {
   function rateFilter() {
     return (rates?.data || []).filter((rate) => rate.rateTypeId?.id === rateTypeId?.id);
   }
-
-  useEffect(() => {
-    if (!cityId) return;
-    if (firstCityUpdate.current) {
-      firstCityUpdate.current = false;
-      return;
-    }
-    dispatch(setOrderField(['pointId', null]));
-  }, [cityId]);
-
-  useEffect(() => {
-    if (!carId) return;
-    if (firstCarUpdate.current) {
-      firstCarUpdate.current = false;
-      return;
-    }
-    dispatch(setOrderField(['color', carId?.colors.length ? carId?.colors[0] : 'Любой']));
-  }, [carId?.colors]);
+  // нужны для предотвращения сброса данных заказа при первом рендере
+  useFirstRender(cityId, setOrderField(['pointId', null]));
+  useFirstRender(carId,
+    setOrderField(['color', carId?.colors.length ? carId?.colors[0] : 'Любой']),
+  );
+  useFirstRender(categoryId, setOrderField(['carId', null]));
+  useFirstRender(rateTypeId, setOrderField(['rateId', null]));
 
   useEffect(() => {
     if (dateFrom + 10 * MINUTE > dateTo) {
@@ -88,27 +74,9 @@ function OrderRight({order}: IOrderRight) {
   }, [dateFrom, dateTo]);
 
   useEffect(() => {
-    if (!categoryId) return;
-    if (firstCategoryUpdate.current) {
-      firstCategoryUpdate.current = false;
-      return;
-    }
-    dispatch(setOrderField(['carId', null]));
-  }, [categoryId]);
-
-  useEffect(() => {
     if (categoryId) return;
     carId && dispatch(setOrderField(['categoryId', carId?.categoryId]));
   }, [carId]);
-
-  useEffect(() => {
-    if (!rateTypeId) return;
-    if (firstRateTypeUpdate.current) {
-      firstRateTypeUpdate.current = false;
-      return;
-    }
-    dispatch(setOrderField(['rateId', null]));
-  }, [rateTypeId]);
 
   useEffect(() => {
     if (rateTypeId) return;

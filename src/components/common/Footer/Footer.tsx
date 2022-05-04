@@ -25,7 +25,7 @@ function Footer() {
               Главная страница
             </CustomLink>
             <CustomLink click={clickHandler}>
-              Ссылка
+              Авторизация
             </CustomLink>
           </Box>
           <Typography sx={footerCopyright}>

@@ -99,6 +99,7 @@ function CarRight({car}: ICarRight) {
           required
           error={(number.length === 6) && !validateNumber(number)}
           placeholder={'Введите номер...'}
+          helperText={'Неверный формат'}
           fullWidth
         />
         <TextInput
