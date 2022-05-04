@@ -1,16 +1,16 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-export const initialState = ['updatedAt', 'createdAt', 'id'];
+export const initialState: string [] = [];
 
 export const ignoredFieldsSlice = createSlice({
   name: 'ignoredFields',
   initialState,
   reducers: {
     setNewIgnoredFields(state, action: PayloadAction<string []>) {
-      return state.concat(...action.payload);
+      return action.payload.slice();
     },
     clearIgnoredFields(state) {
-      return initialState.slice();
+      return initialState;
     },
   },
 });
