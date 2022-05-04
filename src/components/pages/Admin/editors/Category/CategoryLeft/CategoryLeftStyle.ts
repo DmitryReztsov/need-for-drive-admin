@@ -11,6 +11,7 @@ export const categoryLeftName = {
   fontSize: '1.5rem',
   lineHeight: '1.75rem',
   letterSpacing: '-0.6125px',
+  wordBreak: 'break-word',
 };
 export const categoryLeftDescription = {
   mt: '4.5px',

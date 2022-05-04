@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {Alert, Box, Skeleton, Snackbar} from '@mui/material';
-import {editAlert, editorBody, editPage, editSnackbar} from './EditPageStyle';
+import React from 'react';
+import {Box} from '@mui/material';
+import {editorBody, editPage} from './EditPageStyle';
 import Container from '../common/containers/Container/Container';
 import PageHeader from '../page/PageHeader/PageHeader';
 import EditPageRight from './EditPageRight/EditPageRight';
 import EditPageLeft from './EditPageLeft/EditPageLeft';
-import DoneIcon from '@mui/icons-material/Done';
+import Snack from '../common/Snack/Snack';
 
 interface IEditPageProps {
   leftSide: JSX.Element,
@@ -29,18 +29,10 @@ function EditPage(
 ) {
   return (
     <Box sx={editPage}>
-      <Snackbar
-        open={showAlert}
-        sx={editSnackbar}
-      >
-        <Alert
-          severity="success"
-          sx={editAlert}
-          icon={<DoneIcon />}
-        >
-          Успех! {successText}
-        </Alert>
-      </Snackbar>
+      <Snack
+        show={showAlert}
+        text={successText}
+      />
       <Container>
         <PageHeader>
           {header}

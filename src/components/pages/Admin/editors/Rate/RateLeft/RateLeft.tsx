@@ -18,7 +18,7 @@ function RateLeft({rate}: IRateLeft) {
       <Typography sx={rateLeftName}>
         {rateTypeId ? rateTypeId.name.toUpperCase() : 'Неизвестный тариф'}
       </Typography>
-      {price &&
+      {!!price &&
         <Typography sx={rateLeftPrice}>
           Стоимость - {price} ₽
         </Typography>

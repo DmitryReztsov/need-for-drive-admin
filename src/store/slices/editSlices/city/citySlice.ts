@@ -3,8 +3,8 @@ import {IDataField} from '../../../../models/IDataField';
 import {ICity} from '../../../../models/ICity';
 
 export const initialState: ICity = {
-  updatedAt: 0,
-  createdAt: 0,
+  updatedAt: Date.now(),
+  createdAt: Date.now(),
   name: '',
   id: '',
 };

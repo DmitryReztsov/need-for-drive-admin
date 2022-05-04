@@ -1,11 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {IDataField} from '../../../../models/IDataField';
 import {IRate} from '../../../../models/IRate';
-import {IRateType} from '../../../../models/IRateType';
 
 export const initialState: IRate = {
-  updatedAt: 0,
-  createdAt: 0,
+  updatedAt: Date.now(),
+  createdAt: Date.now(),
   price: 0,
   rateTypeId: null,
   id: '',

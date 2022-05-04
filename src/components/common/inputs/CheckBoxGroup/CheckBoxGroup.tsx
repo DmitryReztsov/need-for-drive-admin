@@ -7,15 +7,23 @@ interface ICheckBoxGroup {
   sx?: SxProps<Theme>,
   items: string [],
   toggleCheckbox?: (e: React.ChangeEvent<HTMLInputElement>) => void,
+  clickCheckbox?: (e: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
-function CheckBoxGroup({sx, items, toggleCheckbox}: ICheckBoxGroup) {
+function CheckBoxGroup({sx, items, toggleCheckbox, clickCheckbox}: ICheckBoxGroup) {
   return (
     <FormGroup sx={{...sx}}>
       {items.length ? items.map((item, i) => {
         return <FormControlLabel
           key={item + i}
-          control={<Checkbox defaultChecked onChange={toggleCheckbox} value={item} />}
+          control={
+            <Checkbox
+              defaultChecked
+              onChange={toggleCheckbox}
+              onClick={clickCheckbox}
+              value={item}
+            />
+          }
           label={item}
         />;
       }) :

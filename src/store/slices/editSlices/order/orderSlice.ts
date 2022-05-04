@@ -4,8 +4,8 @@ import {IDataField} from '../../../../models/IDataField';
 import {MINUTE} from '../../../../utils/time';
 
 export const initialState: IOrder = {
-  updatedAt: 0,
-  createdAt: 0,
+  updatedAt: Date.now(),
+  createdAt: Date.now(),
   orderStatusId: null,
   cityId: null,
   pointId: null,

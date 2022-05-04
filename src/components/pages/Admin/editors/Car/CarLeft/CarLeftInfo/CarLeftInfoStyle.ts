@@ -17,6 +17,7 @@ export const carLeftInfoName = {
   fontSize: '1.5rem',
   lineHeight: '1.75rem',
   letterSpacing: '-0.6125px',
+  wordBreak: 'break-word',
 };
 
 export const carLeftInfoCategory = {

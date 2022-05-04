@@ -8,6 +8,8 @@ import PageData from './PageData/PageData';
 import PagePagination from './PagePagination/PagePagination';
 import {pageNoResults, pageStyle} from './PageStyle';
 import PageListHeaders from './PageListHeaders/PageListHeaders';
+import Snack from '../common/Snack/Snack';
+import {useAppSelector} from '../../hooks/reduxHooks';
 
 interface IPageProps {
   children: React.ReactNode,
@@ -21,16 +23,24 @@ interface IPageProps {
   dataLoading: boolean,
   array: any [],
   listHeaders?: string [],
+  alertText?: string,
+  showAlert?: boolean,
 }
 
 function Page({
   children, filters, header,
   page, setPage, pages,
-  apply, reset, dataLoading, array, listHeaders,
+  apply, reset, dataLoading, array, listHeaders, alertText, showAlert,
 }: IPageProps) {
   const matches = useMediaQuery('(max-width:960px)');
   return (
     <Box sx={pageStyle}>
+      {alertText && showAlert &&
+        <Snack
+          show={showAlert}
+          text={alertText}
+        />
+      }
       <Container>
         <PageHeader>
           {header}

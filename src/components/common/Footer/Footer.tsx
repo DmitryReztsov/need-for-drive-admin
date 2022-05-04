@@ -29,7 +29,7 @@ function Footer() {
             </CustomLink>
           </Box>
           <Typography sx={footerCopyright}>
-            Copyright © 2020 Simbirsoft
+            Copyright © 2022 DmitryReztsov
           </Typography>
         </Box>
       </Container>

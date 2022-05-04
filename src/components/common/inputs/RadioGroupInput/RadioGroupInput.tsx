@@ -29,7 +29,6 @@ function RadioGroupInput(
       </FormLabel>
       <RadioGroup
         value={value}
-        sx={{...sx}}
         name={id}
       >
         {!!items.length && items.map((item, i) => {

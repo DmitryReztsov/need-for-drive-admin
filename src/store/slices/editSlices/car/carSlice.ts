@@ -3,11 +3,11 @@ import {ICar} from '../../../../models/ICar';
 import {IDataField} from '../../../../models/IDataField';
 
 export const initialState: ICar = {
-  updatedAt: 0,
-  createdAt: 0,
+  updatedAt: Date.now(),
+  createdAt: Date.now(),
   description: '',
-  priceMin: 0,
-  priceMax: 0,
+  priceMin: 1000,
+  priceMax: 5000,
   name: '',
   number: '',
   categoryId: null,

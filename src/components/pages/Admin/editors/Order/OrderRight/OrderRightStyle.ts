@@ -1,4 +1,4 @@
-import {flex, flexbox} from '../../../../../../styles/templates/flex';
+import {flexbox} from '../../../../../../styles/templates/flex';
 import {theme} from '../../../../../../styles/theme/theme';
 
 export const orderRight = {
@@ -11,6 +11,10 @@ export const orderRight = {
     [theme.breakpoints.down('sm')]: {
       ...flexbox('center', 'center', 'column'),
     },
+    '&:nth-of-type(4)': {
+      [theme.breakpoints.down('sm')]: {
+        ...flexbox('stretch', 'stretch', 'row'),
+      },
+    },
   },
 };
-

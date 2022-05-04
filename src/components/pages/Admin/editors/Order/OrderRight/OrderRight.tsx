@@ -16,6 +16,7 @@ import {orderStatusApi} from '../../../../../../services/endpoints/orderStatus';
 import TextInput from '../../../../../common/inputs/TextInput/TextInput';
 import {categoryApi} from '../../../../../../services/endpoints/category';
 import {rateTypeApi} from '../../../../../../services/endpoints/rateType';
+import CheckBoxGroupInput from '../../../../../common/inputs/CheckBoxGroupInput/CheckBoxGroupInput';
 
 interface IOrderRight {
   order: IOrder,
@@ -40,6 +41,16 @@ function OrderRight({order}: IOrderRight) {
     categoryId, rateTypeId,
   } = order;
 
+  const checkBoxLabels = ['Полный бак', 'Детское кресло', 'Правый руль'];
+  const checkBoxIds = ['isFullTank', 'isNeedChildChair', 'isRightWheel'];
+  const checkBoxValues = [isFullTank, isNeedChildChair, isRightWheel];
+  const checkBoxItems = checkBoxValues.map((item, i) => {
+    return {
+      label: checkBoxLabels[i],
+      id: checkBoxIds[i],
+      value: item,
+    };
+  });
   function pointFilter() {
     return (points?.data || []).filter((point) => point.cityId?.id === cityId?.id);
   }
@@ -179,6 +190,15 @@ function OrderRight({order}: IOrderRight) {
           toggleRadio={
             (e) => dispatch(setOrderField(['color', e.currentTarget.textContent]))
           }
+          fullWidth
+        />
+        <CheckBoxGroupInput
+          label={'Доп. опции*'}
+          items={carId ? checkBoxItems : []}
+          toggleCheckbox={
+            (e) => dispatch(setOrderField([e.target.id, e.target.checked]))
+          }
+          fullWidth
         />
       </Box>
       <Box>

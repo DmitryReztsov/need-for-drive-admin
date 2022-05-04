@@ -11,14 +11,17 @@ import {
   orderItemPrice,
   orderItemText,
 } from './OrderItemStyle';
-import ItemButtons from '../../../../../common/inputs/ItemButtons/ItemButtons';
 import OrderItemOptions from './OrderItemOptions/OrderItemOptions';
+import OrderItemButtons from './OrderItemButtons/OrderItemButtons';
 
 interface IOrderProps {
   order: IOrder,
+  accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
+  deny: (e: React.MouseEvent<HTMLButtonElement>) => void,
+  loading: boolean,
 }
 
-function OrderItem({order}: IOrderProps) {
+function OrderItem({order, accept, deny, loading}: IOrderProps) {
   const {
     id, cityId, pointId, carId, dateFrom, dateTo,
     color, price, isFullTank, isNeedChildChair, isRightWheel,
@@ -72,7 +75,12 @@ function OrderItem({order}: IOrderProps) {
         {price ? `${price.toLocaleString()} ₽` : 'Не указана'}
       </Typography>
       <Box sx={orderItemButtons}>
-        <ItemButtons id={id} />
+        <OrderItemButtons
+          order={order}
+          accept={accept}
+          deny={deny}
+          loading={loading}
+        />
       </Box>
     </Box>
   );

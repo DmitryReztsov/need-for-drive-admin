@@ -13,10 +13,12 @@ import useSetParams from '../../../../../hooks/useSetParams';
 import {IFilter} from '../../../../../models/IFilter';
 import OrderItem from './OrderItem/OrderItem';
 import {getPages} from '../../../../../utils/getPages';
+import {ACCEPT_ORDER_ID, DENY_ORDER_ID} from '../../../../../utils/config';
 
 function Orders() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [showAlert, setShowAlert] = useState<boolean>(false);
   const {data: cars} = carApi.useGetCarsQuery({limit: 0});
   const {data: cities} = cityApi.useGetCitiesQuery({});
   const {data: orderStatuses} = orderStatusApi.useGetOrderStatusesQuery({});
@@ -25,6 +27,9 @@ function Orders() {
   } = useAppSelector((state) => state.filterReducer);
   const [page, setPage] = useState<number>(1);
   const [queryParams, setQueryParams] = useState<Void<IOrderQueryParams>>();
+  const [
+    putOrder, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
+  ] = orderApi.usePutOrderMutation();
   const {
     data: orders, isLoading: orderLoading, error: orderError,
   } = orderApi.useGetOrdersQuery({page: page - 1, ...queryParams});
@@ -73,16 +78,25 @@ function Orders() {
     setPage(1);
   }
 
-  if (orderError) {
-    navigate('/admin/error');
-  }
-
   useEffect(() => {
     return () => {
       dispatch(clearFilters());
     };
   }, []);
 
+  useEffect(() => {
+    if (isPutSuccess) {
+      setShowAlert(true);
+      setTimeout(() => setShowAlert(false), 3000);
+    }
+  }, [isPutSuccess]);
+
+  if (orderError) {
+    navigate('/admin/error');
+  }
+  if (isPutError) {
+    navigate('/admin/error');
+  }
   return (
     <Page
       header={'Заказы'}
@@ -94,8 +108,24 @@ function Orders() {
       reset={() => dispatch(clearFilters())}
       dataLoading={orderLoading}
       array={orders?.data || []}
+      showAlert={showAlert}
+      alertText={'Статус заказ обновлен'}
     >
-      {(orders?.data || []).map((order) => <OrderItem order={order} key={order.id} />)}
+      {(orders?.data || []).map((order) => {
+        return (
+          <OrderItem
+            order={order}
+            key={order.id}
+            accept={
+              () => putOrder({id: order.id, body: {...order, orderStatusId: {id: ACCEPT_ORDER_ID}}})
+            }
+            deny={
+              () => putOrder({id: order.id, body: {...order, orderStatusId: {id: DENY_ORDER_ID}}})
+            }
+            loading={isPutLoading}
+          />
+        );
+      })}
     </Page>
   );
 }

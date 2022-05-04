@@ -51,7 +51,11 @@ function CarItem({car}: ICarProps) {
         </Typography>
       </Box>
       <Box sx={carItemColor}>
-        <CheckBoxGroup sx={carItemColorList} items={colors} />
+        <CheckBoxGroup
+          sx={carItemColorList}
+          items={colors}
+          clickCheckbox={(e) => e.preventDefault()}
+        />
       </Box>
       <Box sx={carItemPrice}>
         <CarItemPrice priceMin={priceMin} priceMax={priceMax} />
