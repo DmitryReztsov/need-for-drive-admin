@@ -15,6 +15,7 @@ function City() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const ignoredFields = useAppSelector((state) => state.ignoredFieldsReducer);
   const [
     putCity, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
   ] = cityApi.usePutCityMutation();
@@ -73,7 +74,7 @@ function City() {
       rightSide={<CityRight city={cityForm!}/>}
       accept={() => id === 'new' ? postCity(cityForm): putCity({id: id!, body: cityForm})}
       acceptLoading={!!(isPutLoading || isPostLoading)}
-      isAcceptable={getPercent(cityForm!) === 100}
+      isAcceptable={getPercent(cityForm!, ignoredFields) === 100}
       remove={() => deleteCity(id!)}
       removeLoading={!!isDeleteLoading}
       successText={message}

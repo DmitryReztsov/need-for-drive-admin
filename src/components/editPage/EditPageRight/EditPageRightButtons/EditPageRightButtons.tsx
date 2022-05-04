@@ -5,6 +5,7 @@ import {
 } from './EditPageRightButtonsStyle';
 import {useParams} from 'react-router-dom';
 import {LoadingButton} from '@mui/lab';
+import {useAppSelector} from '../../../../hooks/reduxHooks';
 
 interface IEditPageRightButtonsProps {
   accept: (e: React.MouseEvent<HTMLButtonElement>) => void,
@@ -20,6 +21,7 @@ function EditPageRightButtons(
   }: IEditPageRightButtonsProps,
 ) {
   const {id} = useParams();
+  const ignoredFields = useAppSelector((state) => state.ignoredFieldsReducer);
   return (
     <Box sx={editPageRightButtons}>
       <Box sx={editPageRightButtonsGroup}>

@@ -15,6 +15,7 @@ function Rate() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const ignoredFields = useAppSelector((state) => state.ignoredFieldsReducer);
   const [
     putRate, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
   ] = rateApi.usePutRateMutation();
@@ -76,7 +77,7 @@ function Rate() {
         postRate(rateForm):
         putRate({id: id!, body: rateForm})}
       acceptLoading={!!(isPutLoading || isPostLoading)}
-      isAcceptable={getPercent(rateForm!) === 100}
+      isAcceptable={getPercent(rateForm!, ignoredFields) === 100}
       remove={() => deleteRate(id!)}
       removeLoading={!!isDeleteLoading}
       successText={message}

@@ -13,6 +13,7 @@ function Car() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const ignoredFields = useAppSelector((state) => state.ignoredFieldsReducer);
   const [
     putCar, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
   ] = carApi.usePutCarMutation();
@@ -71,7 +72,7 @@ function Car() {
       rightSide={<CarRight car={carForm!}/>}
       accept={() => id === 'new' ? postCar(carForm): putCar({id: id!, body: carForm})}
       acceptLoading={!!(isPutLoading || isPostLoading)}
-      isAcceptable={getPercent(carForm!) === 100}
+      isAcceptable={getPercent(carForm!, ignoredFields) === 100}
       remove={() => deleteCar(id!)}
       removeLoading={!!isDeleteLoading}
       successText={message}

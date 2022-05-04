@@ -15,6 +15,7 @@ function Category() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const ignoredFields = useAppSelector((state) => state.ignoredFieldsReducer);
   const [
     putCategory, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
   ] = categoryApi.usePutCategoryMutation();
@@ -76,7 +77,7 @@ function Category() {
         postCategory(categoryForm):
         putCategory({id: id!, body: categoryForm})}
       acceptLoading={!!(isPutLoading || isPostLoading)}
-      isAcceptable={getPercent(categoryForm!) === 100}
+      isAcceptable={getPercent(categoryForm!, ignoredFields) === 100}
       remove={() => deleteCategory(id!)}
       removeLoading={!!isDeleteLoading}
       successText={message}

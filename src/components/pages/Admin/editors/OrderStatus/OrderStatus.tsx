@@ -15,6 +15,7 @@ function OrderStatus() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const ignoredFields = useAppSelector((state) => state.ignoredFieldsReducer);
   const [
     putOrderStatus, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
   ] = orderStatusApi.usePutOrderStatusMutation();
@@ -76,7 +77,7 @@ function OrderStatus() {
         postOrderStatus(orderStatusForm):
         putOrderStatus({id: id!, body: orderStatusForm})}
       acceptLoading={!!(isPutLoading || isPostLoading)}
-      isAcceptable={getPercent(orderStatusForm!) === 100}
+      isAcceptable={getPercent(orderStatusForm!, ignoredFields) === 100}
       remove={() => deleteOrderStatus(id!)}
       removeLoading={!!isDeleteLoading}
       successText={message}

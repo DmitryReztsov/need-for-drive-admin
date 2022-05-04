@@ -15,6 +15,7 @@ function Point() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const {id} = useParams();
+  const ignoredFields = useAppSelector((state) => state.ignoredFieldsReducer);
   const [
     putPoint, {isLoading: isPutLoading, isSuccess: isPutSuccess, isError: isPutError},
   ] = pointApi.usePutPointMutation();
@@ -76,7 +77,7 @@ function Point() {
         postPoint(pointForm):
         putPoint({id: id!, body: pointForm})}
       acceptLoading={!!(isPutLoading || isPostLoading)}
-      isAcceptable={getPercent(pointForm!) === 100}
+      isAcceptable={getPercent(pointForm!, ignoredFields) === 100}
       remove={() => deletePoint(id!)}
       removeLoading={!!isDeleteLoading}
       successText={message}
