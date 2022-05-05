@@ -12,6 +12,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import avatar from '../../../content/png/avatar.png';
 import {useNavigate} from 'react-router-dom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import {deleteStorageTokenData, getToken} from '../../../utils/localStorage';
+import {authApi} from '../../../services/endpoints/auth';
 
 interface IHeaderProps {
   openMenu: () => void,
@@ -20,6 +22,12 @@ interface IHeaderProps {
 function Header({openMenu}: IHeaderProps) {
   const navigate = useNavigate();
   const matches = useMediaQuery('(max-width:600px)');
+  const [authLogout, {}] = authApi.useAuthLogoutMutation();
+  function clickHandler() {
+    navigate('/');
+    authLogout(getToken()!);
+    deleteStorageTokenData();
+  }
   return (
     <Box component={'header'} sx={header}>
       <Container>
@@ -61,7 +69,7 @@ function Header({openMenu}: IHeaderProps) {
               </MenuItem>
               <MenuItem
                 value={'Выйти'}
-                onClick={() => navigate('/')}
+                onClick={clickHandler}
               >
                 Выйти
               </MenuItem>

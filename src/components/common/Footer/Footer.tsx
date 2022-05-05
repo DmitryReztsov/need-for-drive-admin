@@ -5,17 +5,8 @@ import {
   footer, footerBody, footerCopyright, footerMenu,
 } from './FooterStyle';
 import CustomLink from '../Link/CustomLink';
-import {deleteStorageTokenData, getToken} from '../../../utils/localStorage';
-import {authApi} from '../../../services/endpoints/auth';
 
 function Footer() {
-  const [authLogout, {}] = authApi.useAuthLogoutMutation();
-
-  function clickHandler() {
-    authLogout(getToken()!);
-    deleteStorageTokenData();
-  }
-
   return (
     <Box component={'footer'} sx={footer}>
       <Container>
@@ -25,7 +16,6 @@ function Footer() {
               Главная страница
             </CustomLink>
             <CustomLink
-              click={clickHandler}
               externalHref={'https://dmitryreztsov.github.io/need-for-drive'}
             >
               Сервис каршеринга

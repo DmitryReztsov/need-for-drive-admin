@@ -12,7 +12,7 @@ export const authApi = api.injectEndpoints({
         method: 'POST',
         body: credentials,
         headers: {
-          Authorization: `Basic ${loginToken}`,
+          'Authorization': `Basic ${loginToken}`,
           'X-Api-Factory-Application-Id': API_KEY,
         },
       }),
