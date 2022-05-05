@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Button, FormControl, FormHelperText, FormLabel, OutlinedInput} from '@mui/material';
 import {SxProps} from '@mui/system';
 import {Theme} from '@mui/material/styles';
@@ -30,7 +30,7 @@ function TextInput(
     addButton, multiline, change, error, clickButton, helperText,
   }: ITextInput) {
   return (
-    <FormControl fullWidth={fullWidth} sx={{...sx}} error={!!error}>
+    <FormControl fullWidth={fullWidth} sx={{...sx}} error={!!error} required>
       <FormLabel htmlFor={id}>
         {label}
       </FormLabel>

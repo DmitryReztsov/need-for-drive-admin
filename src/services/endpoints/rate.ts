@@ -1,4 +1,4 @@
-import {api, DEFAULT_PARAMS, headers} from '../Api';
+import {api, DEFAULT_PARAMS} from '../Api';
 import {PATHS} from '../paths';
 import {IRate} from '../../models/IRate';
 import {IResponse} from '../../models/IResponse';
@@ -22,7 +22,6 @@ export const rateApi = api.injectEndpoints({
           limit: DEFAULT_PARAMS.LIMIT,
           ...params,
         },
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
         return {count: response.count, data: response.data};
@@ -32,7 +31,6 @@ export const rateApi = api.injectEndpoints({
     getRate: build.query<IRate, string>({
       query: (id) => ({
         url: PATHS.RATE + `/${id}`,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       providesTags: (result) => ['Rate'],
@@ -42,7 +40,6 @@ export const rateApi = api.injectEndpoints({
         url: PATHS.RATE,
         method: 'POST',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Rate'],
@@ -52,7 +49,6 @@ export const rateApi = api.injectEndpoints({
         url: PATHS.RATE + `/${id}`,
         method: 'PUT',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Rate'],
@@ -61,7 +57,6 @@ export const rateApi = api.injectEndpoints({
       query: (id) => ({
         url: PATHS.RATE + `/${id}`,
         method: 'DELETE',
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Rate'],

@@ -9,6 +9,8 @@ import PagePagination from './PagePagination/PagePagination';
 import {pageNoResults, pageStyle} from './PageStyle';
 import PageListHeaders from './PageListHeaders/PageListHeaders';
 import Snack from '../common/Snack/Snack';
+import {SxProps} from '@mui/system';
+import {Theme} from '@mui/material/styles';
 
 interface IPageProps {
   children: React.ReactNode,
@@ -24,12 +26,13 @@ interface IPageProps {
   listHeaders?: string [],
   alertText?: string,
   showAlert?: boolean,
+  headersStyle?: SxProps<Theme>,
 }
 
 function Page({
   children, filters, header,
-  page, setPage, pages,
-  apply, reset, dataLoading, array, listHeaders, alertText, showAlert,
+  page, setPage, pages, apply, reset,
+  dataLoading, array, listHeaders, alertText, showAlert, headersStyle,
 }: IPageProps) {
   const matches = useMediaQuery('(max-width:960px)');
   return (
@@ -53,7 +56,9 @@ function Page({
             />
           }
           <PageData>
-            {listHeaders && !matches && <PageListHeaders titles={listHeaders} />}
+            {listHeaders && !matches &&
+              <PageListHeaders titles={listHeaders} sx={headersStyle} />
+            }
             {dataLoading ?
               <Skeleton variant="rectangular" animation="wave" width={'100%'} height={200} /> :
               array?.length ?

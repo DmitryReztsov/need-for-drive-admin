@@ -95,6 +95,7 @@ function OrderRight({order}: IOrderRight) {
           clearOnEscape
           fullWidth
           autoFocus
+          placeholder={'Введите название города...'}
         />
         <AutocompleteInput
           id="pointId"
@@ -106,6 +107,9 @@ function OrderRight({order}: IOrderRight) {
           clearOnEscape
           fullWidth
           optionKey={'address'}
+          error={cityId && !pointFilter().length}
+          placeholder={'Введите пункт выдачи...'}
+          helperText={'В выбранном городе нет пунктов выдачи'}
         />
       </Box>
       <Box>
@@ -136,6 +140,7 @@ function OrderRight({order}: IOrderRight) {
           required
           clearOnEscape
           fullWidth
+          placeholder={'Выберите категорию авто...'}
         />
         <AutocompleteInput
           id="carId"
@@ -147,6 +152,9 @@ function OrderRight({order}: IOrderRight) {
           clearOnEscape
           fullWidth
           loading={isCarLoading}
+          error={categoryId && !carFilter().length}
+          placeholder={'Выберите автомобиль...'}
+          helperText={'В данной категории нет доступных авто'}
         />
       </Box>
       <Box>
@@ -161,7 +169,7 @@ function OrderRight({order}: IOrderRight) {
           fullWidth
         />
         <CheckBoxGroupInput
-          label={'Доп. опции*'}
+          label={'Доп. опции'}
           items={carId ? checkBoxItems : []}
           toggleCheckbox={
             (e) => dispatch(setOrderField([e.target.id, e.target.checked]))
@@ -201,6 +209,7 @@ function OrderRight({order}: IOrderRight) {
           clearOnEscape
           fullWidth
           optionKey={'name'}
+          placeholder={'Выберите тип тарифа...'}
         />
         <AutocompleteInput
           id="rateId"
@@ -212,6 +221,9 @@ function OrderRight({order}: IOrderRight) {
           clearOnEscape
           fullWidth
           optionKey={'price'}
+          error={rateTypeId && !rateFilter().length}
+          placeholder={'Выберите тариф...'}
+          helperText={'В данной категории нет тарифов'}
         />
       </Box>
     </Box>

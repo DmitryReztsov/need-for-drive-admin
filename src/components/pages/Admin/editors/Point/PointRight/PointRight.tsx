@@ -30,6 +30,7 @@ function PointRight({point}: IPointRight) {
           clearOnEscape
           fullWidth
           autoFocus
+          placeholder={'Выберите город...'}
         />
         <TextInput
           id='address'

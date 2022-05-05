@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Button, Typography} from '@mui/material';
+import {Box, Button, Typography, useMediaQuery} from '@mui/material';
 import {
   carItem, carItemButtons, carItemColor, carItemColorList, carItemDetails,
   carItemImage, carItemInfo, carItemName, carItemPrice, carItemText,
@@ -17,6 +17,7 @@ interface ICarProps {
 
 function CarItem({car}: ICarProps) {
   const navigate = useNavigate();
+  const match = useMediaQuery('(max-width:1280px)');
   const {
     id, priceMin, priceMax, name, description,
     number, categoryId,
@@ -44,18 +45,23 @@ function CarItem({car}: ICarProps) {
       </Box>
       <Box sx={carItemDetails}>
         <Typography variant={'body2'}>
-          Запас топлива: {`${tank || 0} %`}
+          {match && 'Топливо'} {`${tank || 0} %`}
         </Typography>
         <Typography variant={'body2'}>
-          {number}
+          {match && 'Номер'} {number ? number : 'отсутствует'}
         </Typography>
       </Box>
       <Box sx={carItemColor}>
-        <CheckBoxGroup
-          sx={carItemColorList}
-          items={colors}
-          clickCheckbox={(e) => e.preventDefault()}
-        />
+        <Box>
+          {!!colors.length ?
+            <CheckBoxGroup
+              sx={carItemColorList}
+              items={colors}
+              clickCheckbox={(e) => e.preventDefault()}
+            /> :
+            'Цветов нет'
+          }
+        </Box>
       </Box>
       <Box sx={carItemPrice}>
         <CarItemPrice priceMin={priceMin} priceMax={priceMax} />

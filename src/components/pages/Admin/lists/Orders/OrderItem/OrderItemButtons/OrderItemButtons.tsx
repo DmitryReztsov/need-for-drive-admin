@@ -1,9 +1,9 @@
 import React from 'react';
-import {Button, ButtonGroup} from '@mui/material';
+import {Button, ButtonGroup, CircularProgress} from '@mui/material';
 import {Check} from '@mui/icons-material';
 import ClearIcon from '@mui/icons-material/Clear';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import {itemButtons} from './OrderItemButtonsStyle';
+import {itemButtons, itemButtonsLoading} from './OrderItemButtonsStyle';
 import {useNavigate} from 'react-router-dom';
 import {IOrder} from '../../../../../../../models/IOrder';
 
@@ -25,7 +25,7 @@ function OrderItemButtons({order, accept, deny, loading}: IOrderItemButtons) {
         onClick={accept}
         disabled={loading}
       >
-        Готово
+        {loading ? <CircularProgress size={15} /> : 'Готово'}
       </Button>
       <Button
         startIcon={<ClearIcon color={'error'} />}
@@ -33,7 +33,7 @@ function OrderItemButtons({order, accept, deny, loading}: IOrderItemButtons) {
         onClick={deny}
         disabled={loading}
       >
-        Отмена
+        {loading ? <CircularProgress size={15} /> : 'Отмена'}
       </Button>
       <Button
         startIcon={<MoreVertIcon />}
@@ -41,7 +41,7 @@ function OrderItemButtons({order, accept, deny, loading}: IOrderItemButtons) {
         onClick={() => navigate(id)}
         disabled={loading}
       >
-        Изменить
+        {loading ? <CircularProgress size={15} /> : 'Изменить'}
       </Button>
     </ButtonGroup>
   );

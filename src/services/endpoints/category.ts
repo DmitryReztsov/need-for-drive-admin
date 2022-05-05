@@ -1,4 +1,4 @@
-import {api, DEFAULT_PARAMS, headers} from '../Api';
+import {api, DEFAULT_PARAMS} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {ICategory} from '../../models/ICategory';
@@ -21,7 +21,6 @@ export const categoryApi = api.injectEndpoints({
           limit: DEFAULT_PARAMS.LIMIT,
           ...params,
         },
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
         return {count: response.count, data: response.data};
@@ -31,7 +30,6 @@ export const categoryApi = api.injectEndpoints({
     getCategory: build.query<ICategory, string>({
       query: (id) => ({
         url: PATHS.CATEGORY + `/${id}`,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       providesTags: (result) => ['Category'],
@@ -41,7 +39,6 @@ export const categoryApi = api.injectEndpoints({
         url: PATHS.CATEGORY,
         method: 'POST',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Category'],
@@ -51,7 +48,6 @@ export const categoryApi = api.injectEndpoints({
         url: PATHS.CATEGORY + `/${id}`,
         method: 'PUT',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Category'],
@@ -60,7 +56,6 @@ export const categoryApi = api.injectEndpoints({
       query: (id) => ({
         url: PATHS.CATEGORY + `/${id}`,
         method: 'DELETE',
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Category'],

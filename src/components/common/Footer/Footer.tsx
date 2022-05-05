@@ -24,8 +24,11 @@ function Footer() {
             <CustomLink href={'admin'}>
               Главная страница
             </CustomLink>
-            <CustomLink click={clickHandler}>
-              Авторизация
+            <CustomLink
+              click={clickHandler}
+              externalHref={'https://dmitryreztsov.github.io/need-for-drive'}
+            >
+              Сервис каршеринга
             </CustomLink>
           </Box>
           <Typography sx={footerCopyright}>

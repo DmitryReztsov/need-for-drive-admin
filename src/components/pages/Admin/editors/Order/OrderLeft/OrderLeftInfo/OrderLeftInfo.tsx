@@ -53,7 +53,7 @@ function OrderLeftInfo({order}: IOrderLeftInfo) {
         })}
       </Box>
       <Typography sx={orderLeftInfoPrice}>
-        {price ? `${price.toLocaleString()} ₽` : 'Не указана'}
+        {price ? `${price.toLocaleString()} ₽` : 'Цена не указана'}
       </Typography>
     </Box>
   );

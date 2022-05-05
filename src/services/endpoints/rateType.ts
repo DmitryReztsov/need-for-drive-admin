@@ -1,4 +1,4 @@
-import {api, DEFAULT_PARAMS, headers} from '../Api';
+import {api, DEFAULT_PARAMS} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {IRateType} from '../../models/IRateType';
@@ -21,7 +21,6 @@ export const rateTypeApi = api.injectEndpoints({
           limit: DEFAULT_PARAMS.LIMIT,
           ...params,
         },
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
         return {count: response.count, data: response.data};
@@ -31,7 +30,6 @@ export const rateTypeApi = api.injectEndpoints({
     getRateType: build.query<IRateType, string>({
       query: (id) => ({
         url: PATHS.RATE_TYPE + `/${id}`,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       providesTags: (result) => ['RateType'],
@@ -41,7 +39,6 @@ export const rateTypeApi = api.injectEndpoints({
         url: PATHS.RATE_TYPE,
         method: 'POST',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['RateType'],
@@ -51,7 +48,6 @@ export const rateTypeApi = api.injectEndpoints({
         url: PATHS.RATE_TYPE + `/${id}`,
         method: 'PUT',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['RateType'],
@@ -60,7 +56,6 @@ export const rateTypeApi = api.injectEndpoints({
       query: (id) => ({
         url: PATHS.RATE_TYPE + `/${id}`,
         method: 'DELETE',
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['RateType'],

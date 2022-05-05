@@ -79,6 +79,12 @@ function Orders() {
     setPage(1);
   }
 
+  function resetFilters() {
+    dispatch(clearFilters());
+    setQueryParams();
+    setPage(1);
+  }
+
   useEffect(() => {
     return () => {
       dispatch(clearFilters());
@@ -103,7 +109,7 @@ function Orders() {
       setPage={setPage}
       pages={getPages(orders?.count)}
       apply={applyFilters}
-      reset={() => dispatch(clearFilters())}
+      reset={resetFilters}
       dataLoading={orderLoading}
       array={orders?.data || []}
       showAlert={showAlert}

@@ -67,17 +67,26 @@ export const carItemText = {
 };
 
 export const carItemColor = {
+  fontSize: '0.625rem',
+  fontFamily: 'Roboto',
+  lineHeight: '0.73rem',
+  letterSpacing: '-0.175439px',
+  ...flexbox('center', 'center'),
+  '& > div': {
+    ...flex(0, 0, '10%'),
+  },
   [theme.breakpoints.down('lg')]: {
     mt: '16px',
+    '& > div': {
+      ...flex(1, 1, '100%'),
+    },
   },
 };
 
 export const carItemColorList = {
-  ml: '40%',
   [theme.breakpoints.down('lg')]: {
     ...flexbox('center', 'stretch', 'row'),
     columnGap: '20px',
-    ml: '0px',
   },
 };
 

@@ -53,6 +53,7 @@ function CarRight({car}: ICarRight) {
           required
           clearOnEscape
           fullWidth
+          helperText={'Выберите категорию авто...'}
         />
       </Box>
       <Box>
@@ -70,6 +71,8 @@ function CarRight({car}: ICarRight) {
           required
           placeholder={'Введите мин. цену...'}
           fullWidth
+          error={!priceMin}
+          helperText={'Цена не может быть 0...'}
         />
         <TextInput
           id="priceMax"
@@ -85,6 +88,8 @@ function CarRight({car}: ICarRight) {
           required
           placeholder={'Введите макс. цену..'}
           fullWidth
+          error={!priceMin}
+          helperText={'Цена не может быть 0...'}
         />
       </Box>
       <Box>
@@ -121,12 +126,18 @@ function CarRight({car}: ICarRight) {
             id="color"
             label={'Доступные цвета*'}
             value={color}
-            change={(e) => setColor(e.target.value)}
+            change={(e) => {
+              setColor(e.target.value);
+            }}
             required
             placeholder={'Введите новый цвет...'}
             fullWidth
             addButton
-            clickButton={() => dispatch(setCarField(['colors', colors.concat(color)]))}
+            error={color.length <= 1 && color.length !== 0}
+            helperText={'Имя цвета не может быть длиной менее 2 символов'}
+            clickButton={() => {
+              (color.length >= 2) && dispatch(setCarField(['colors', colors.concat(color)]));
+            }}
           />
           <CheckBoxGroup items={colors || []} toggleCheckbox={toggleCheckbox} />
         </Box>

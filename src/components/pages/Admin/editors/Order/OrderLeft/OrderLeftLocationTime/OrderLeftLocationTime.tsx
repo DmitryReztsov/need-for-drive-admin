@@ -20,7 +20,7 @@ function OrderLeftLocationTime({order}: IOrderLeftInfo) {
   return (
     <Box>
       <Typography sx={OrderLeftLocationTimeTitle}>
-        Адрес и время забора
+        Адрес и время выдачи
       </Typography>
       <Typography sx={OrderLeftLocationTimeAddress}>
         {cityId ? cityId?.name : 'Неизвестный город'},&nbsp;

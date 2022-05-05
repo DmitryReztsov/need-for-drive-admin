@@ -40,6 +40,12 @@ function Points() {
     setPage(1);
   }
 
+  function resetFilters() {
+    dispatch(clearFilters());
+    setQueryParams();
+    setPage(1);
+  }
+
   if (pointError) {
     navigate('/admin/error');
   }
@@ -57,7 +63,7 @@ function Points() {
       setPage={setPage}
       pages={getPages(points?.count)}
       apply={applyFilters}
-      reset={() => dispatch(clearFilters())}
+      reset={resetFilters}
       dataLoading={pointLoading}
       array={points?.data || []}
       listHeaders={['Название', 'Город', 'Улица']}

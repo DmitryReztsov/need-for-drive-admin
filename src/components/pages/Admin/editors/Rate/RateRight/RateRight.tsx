@@ -39,6 +39,7 @@ function RateRight({rate}: IRateRight) {
           required
           clearOnEscape
           fullWidth
+          placeholder={'Введите тип тарифа...'}
         />
       </Box>
     </Box>

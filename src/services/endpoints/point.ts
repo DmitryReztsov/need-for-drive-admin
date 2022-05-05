@@ -1,4 +1,4 @@
-import {api, DEFAULT_PARAMS, headers} from '../Api';
+import {api, DEFAULT_PARAMS} from '../Api';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
 import {IPoint} from '../../models/IPoint';
@@ -23,7 +23,6 @@ export const pointApi = api.injectEndpoints({
           limit: DEFAULT_PARAMS.LIMIT,
           ...params,
         },
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
         return {count: response.count, data: response.data};
@@ -33,7 +32,6 @@ export const pointApi = api.injectEndpoints({
     getPoint: build.query<IPoint, string>({
       query: (id) => ({
         url: PATHS.POINT + `/${id}`,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       providesTags: (result) => ['Point'],
@@ -43,7 +41,6 @@ export const pointApi = api.injectEndpoints({
         url: PATHS.POINT,
         method: 'POST',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Point'],
@@ -53,7 +50,6 @@ export const pointApi = api.injectEndpoints({
         url: PATHS.POINT + `/${id}`,
         method: 'PUT',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Point'],
@@ -62,7 +58,6 @@ export const pointApi = api.injectEndpoints({
       query: (id) => ({
         url: PATHS.POINT + `/${id}`,
         method: 'DELETE',
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Point'],

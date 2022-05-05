@@ -12,6 +12,8 @@ import {IOrderQueryParams} from '../../../../../services/endpoints/order';
 import {IFilter} from '../../../../../models/IFilter';
 import CarItem from './CarItem/CarItem';
 import {getPages} from '../../../../../utils/getPages';
+import {carsHeaders} from './CarsStyle';
+import {useMediaQuery} from '@mui/material';
 
 function Cars() {
   const navigate = useNavigate();
@@ -23,7 +25,10 @@ function Cars() {
   } = carApi.useGetCarsQuery({page: page - 1, ...queryParams});
   const {data: categories} = categoryApi.useGetCategoriesQuery({});
   const {categoryId, colors} = useAppSelector((state) => state.filterReducer);
-
+  const match = useMediaQuery('(max-width:1280px)');
+  const listHeaders = !match ?
+    ['Название / тип / описание', 'Запас топлива / номер', 'Цвета', 'Цена мин / макс', ''] :
+    [];
 
   const filters: IFilter [] = [
     {
@@ -51,6 +56,12 @@ function Cars() {
     setPage(1);
   }
 
+  function resetFilters() {
+    dispatch(clearFilters());
+    setQueryParams();
+    setPage(1);
+  }
+
   if (carError) {
     navigate('/admin/error');
   }
@@ -69,9 +80,11 @@ function Cars() {
       setPage={setPage}
       pages={getPages(cars?.count)}
       apply={applyFilters}
-      reset={() => dispatch(clearFilters())}
+      reset={resetFilters}
       dataLoading={carLoading}
       array={cars?.data || []}
+      listHeaders={listHeaders}
+      headersStyle={carsHeaders}
     >
       {(cars?.data || []).map((car) => <CarItem car={car} key={car.id} />)}
     </Page>

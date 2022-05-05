@@ -42,6 +42,3 @@ export const loginFormLink = {
   fontSize: '0.65rem',
   lineHeight: '0.75rem',
 };
-
-export const loginFormButton = {
-};

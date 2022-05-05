@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Box, Button, FormControl, FormLabel, OutlinedInput, Typography,
+  Box, Typography,
 } from '@mui/material';
 import {
-  loginForm, loginFormButton, loginFormErrorText, loginFormField,
+  loginForm, loginFormErrorText, loginFormField,
   loginFormFields, loginFormFooter, loginFormLink, loginFormTitle,
 } from './LoginFormStyle';
 import CustomLink from '../../Link/CustomLink';
@@ -11,16 +11,13 @@ import {useNavigate} from 'react-router-dom';
 import {setStorageTokenData} from '../../../../utils/localStorage';
 import {authApi} from '../../../../services/endpoints/auth';
 import TextInput from '../../inputs/TextInput/TextInput';
+import {LoadingButton} from '@mui/lab';
 
 function LoginForm() {
   const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [authLogin, {data, error}] = authApi.useAuthLoginMutation();
-
-  async function clickHandler() {
-    await authLogin({username, password});
-  }
+  const [authLogin, {data, isLoading, isError}] = authApi.useAuthLoginMutation();
 
   useEffect(() => {
     if (data) {
@@ -34,7 +31,7 @@ function LoginForm() {
         <Typography variant={'h3'}>Вход</Typography>
       </Box>
       <Box sx={loginFormFields}>
-        {error && <Typography
+        {isError && <Typography
           color={'error'}
           sx={loginFormErrorText}
         >
@@ -48,7 +45,7 @@ function LoginForm() {
           value={username}
           change={(e) => setUsername(e.target.value)}
           required
-          error={!!error}
+          error={!!isError}
           placeholder={'Введите Email...'}
           autoFocus
           fullWidth
@@ -61,7 +58,7 @@ function LoginForm() {
           value={password}
           change={(e) => setPassword(e.target.value)}
           required
-          error={!!error}
+          error={!!isError}
           placeholder={'Введите пароль...'}
           fullWidth
         />
@@ -71,14 +68,14 @@ function LoginForm() {
           >
             Запросить доступ
           </CustomLink>
-          <Button
+          <LoadingButton
             variant="contained"
             color={'primary'}
-            sx={loginFormButton}
-            onClick={clickHandler}
+            onClick={() => authLogin({username, password})}
+            loading={isLoading}
           >
             Войти
-          </Button>
+          </LoadingButton>
         </Box>
       </Box>
     </Box>

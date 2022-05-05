@@ -1,4 +1,4 @@
-import {api, DEFAULT_PARAMS, headers} from '../Api';
+import {api, DEFAULT_PARAMS} from '../Api';
 import {IOrder} from '../../models/IOrder';
 import {PATHS} from '../paths';
 import {BaseQueryResult} from '@reduxjs/toolkit/dist/query/baseQueryTypes';
@@ -26,7 +26,6 @@ export const orderApi = api.injectEndpoints({
           limit: DEFAULT_PARAMS.LIMIT,
           ...params,
         },
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => {
         return {count: response.count, data: response.data};
@@ -36,7 +35,6 @@ export const orderApi = api.injectEndpoints({
     getOrder: build.query<IOrder, string>({
       query: (id) => ({
         url: PATHS.ORDER + `/${id}`,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       providesTags: (result) => ['Order'],
@@ -46,7 +44,6 @@ export const orderApi = api.injectEndpoints({
         url: PATHS.ORDER,
         method: 'POST',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Order'],
@@ -56,7 +53,6 @@ export const orderApi = api.injectEndpoints({
         url: PATHS.ORDER + `/${id}`,
         method: 'PUT',
         body,
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Order'],
@@ -65,7 +61,6 @@ export const orderApi = api.injectEndpoints({
       query: (id) => ({
         url: PATHS.ORDER + `/${id}`,
         method: 'DELETE',
-        headers,
       }),
       transformResponse: (response: BaseQueryResult<any>) => response.data,
       invalidatesTags: ['Order'],

@@ -41,6 +41,12 @@ function Rates() {
     setPage(1);
   }
 
+  function resetFilters() {
+    dispatch(clearFilters());
+    setQueryParams();
+    setPage(1);
+  }
+
   if (rateError) {
     navigate('admin/error');
   }
@@ -63,7 +69,7 @@ function Rates() {
       setPage={setPage}
       pages={getPages(rates?.count)}
       apply={applyFilters}
-      reset={() => dispatch(clearFilters())}
+      reset={resetFilters}
       dataLoading={rateLoading}
       array={rates?.data || []}
       listHeaders={['Тип тарифа', 'Стоимость']}

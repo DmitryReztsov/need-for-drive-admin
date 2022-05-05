@@ -39,7 +39,6 @@ function PageFilters({filters, apply, reset}: IPageFiltersProps) {
               variant="contained"
               color={'error'}
               onClick={reset}
-              // sx={pageFiltersButton}
             >
               Сбросить
             </Button>
@@ -47,7 +46,6 @@ function PageFilters({filters, apply, reset}: IPageFiltersProps) {
               variant="contained"
               color={'primary'}
               onClick={apply}
-              // sx={pageFiltersButton}
             >
               Применить
             </Button>

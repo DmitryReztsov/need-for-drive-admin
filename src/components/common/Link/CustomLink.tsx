@@ -9,13 +9,14 @@ interface ICustomLinkProps {
   children: React.ReactNode,
   sx?: SxProps<Theme>,
   href?: string,
+  externalHref?: string,
   click?: (e: React.MouseEvent) => void,
 }
 
-function CustomLink({children, sx, href, click}: ICustomLinkProps) {
+function CustomLink({children, sx, href, externalHref, click}: ICustomLinkProps) {
   return (
     <Link
-      href={href ? (HASH_PATH + href) : ''}
+      href={externalHref ? externalHref : href ? (HASH_PATH + href) : ''}
       color="primary"
       underline="hover"
       sx={{...linkStyles, ...sx}}
