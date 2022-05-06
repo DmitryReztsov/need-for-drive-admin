@@ -116,4 +116,9 @@ export const headerSelect = {
   },
 };
 
+export const headerSelectLi = {
+  fontSize: '0.9375rem',
+  lineHeight: '1.078rem',
+};
+
 

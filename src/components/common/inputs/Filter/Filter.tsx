@@ -1,5 +1,6 @@
 import React from 'react';
 import {MenuItem, Select, SelectChangeEvent} from '@mui/material';
+import {filter} from './FilterStyle';
 
 type IFilterDataType = {[key: string]: any} | string | number;
 
@@ -18,6 +19,7 @@ function Filter<T extends IFilterDataType>({id, value, all, data, change}: IFilt
       value={value}
       onChange={change}
       defaultValue={all}
+      sx={filter}
     >
       <MenuItem
         key={all}

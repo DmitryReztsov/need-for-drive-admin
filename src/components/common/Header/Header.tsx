@@ -4,7 +4,7 @@ import Container from '../containers/Container/Container';
 import {
   header, headerAvatar, headerBadge, headerBody, headerBurgerIcon, headerNotification,
   headerNotificationIcon, headerProfile, headerSearch, headerSearchIcon,
-  headerSearchInput, headerSelect,
+  headerSearchInput, headerSelect, headerSelectLi,
 } from './HeaderStyle';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -64,12 +64,16 @@ function Header({openMenu}: IHeaderProps) {
               defaultValue={'Admin'}
               IconComponent={ArrowDropDownIcon}
             >
-              <MenuItem value={'Admin'}>
+              <MenuItem
+                sx={headerSelectLi}
+                value={'Admin'}
+              >
                 Admin
               </MenuItem>
               <MenuItem
                 value={'Выйти'}
                 onClick={clickHandler}
+                sx={headerSelectLi}
               >
                 Выйти
               </MenuItem>

@@ -163,6 +163,18 @@ export const theme = createTheme({
         },
       },
     },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          minWidth: '110.5px',
+          fontSize: '0.7rem',
+          lineHeight: '0.8rem',
+          letterSpacing: '-0.345714px',
+          color: '#868E96',
+          borderColor: '#BECAD6',
+        },
+      },
+    },
     MuiFormControl: {
       styleOverrides: {
         root: {
