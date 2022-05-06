@@ -8,7 +8,7 @@ import {
 } from './LoginFormStyle';
 import CustomLink from '../../Link/CustomLink';
 import {useNavigate} from 'react-router-dom';
-import {setStorageTokenData} from '../../../../utils/localStorage';
+import {deleteStorageTokenData, setStorageTokenData} from '../../../../utils/localStorage';
 import {authApi} from '../../../../services/endpoints/auth';
 import TextInput from '../../inputs/TextInput/TextInput';
 import {LoadingButton} from '@mui/lab';
@@ -19,6 +19,9 @@ function LoginForm() {
   const [password, setPassword] = useState<string>('');
   const [authLogin, {data, isLoading, isError}] = authApi.useAuthLoginMutation();
 
+  useEffect(() => {
+    deleteStorageTokenData();
+  }, []);
   useEffect(() => {
     if (data) {
       setStorageTokenData(data);
