@@ -22,7 +22,7 @@ function PointRight({point}: IPointRight) {
       <Box>
         <AutocompleteInput
           id="cityId"
-          label={'Город*'}
+          label={'Город *'}
           value={cityId}
           options={(cities?.data || [])}
           action={setPointField}
@@ -34,7 +34,7 @@ function PointRight({point}: IPointRight) {
         />
         <TextInput
           id='address'
-          label={'Адрес пункта*'}
+          label={'Адрес пункта'}
           value={address}
           change={(e) => dispatch(setPointField(['address', e.target.value]))}
           required
@@ -45,7 +45,7 @@ function PointRight({point}: IPointRight) {
       <Box>
         <TextInput
           id='name'
-          label={'Название пункта*'}
+          label={'Название пункта'}
           value={name}
           change={(e) => dispatch(setPointField(['name', e.target.value]))}
           required

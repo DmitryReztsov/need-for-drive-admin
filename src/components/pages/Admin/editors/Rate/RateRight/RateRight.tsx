@@ -22,7 +22,7 @@ function RateRight({rate}: IRateRight) {
       <Box>
         <TextInput
           id='price'
-          label={'Стоимость тарифа*'}
+          label={'Стоимость тарифа'}
           value={price}
           change={(e) => dispatch(setRateField(['price', e.target.value]))}
           required
@@ -32,7 +32,7 @@ function RateRight({rate}: IRateRight) {
         />
         <AutocompleteInput
           id="rateTypeId"
-          label={'Тип тарифа*'}
+          label={'Тип тарифа *'}
           value={rateTypeId}
           options={(rateTypes?.data || [])}
           action={setRateField}

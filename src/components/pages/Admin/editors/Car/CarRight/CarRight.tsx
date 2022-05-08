@@ -36,7 +36,7 @@ function CarRight({car}: ICarRight) {
       <Box>
         <TextInput
           id='name'
-          label={'Модель автомобиля*'}
+          label={'Модель автомобиля'}
           value={name}
           change={(e) => dispatch(setCarField(['name', e.target.value]))}
           required
@@ -46,7 +46,7 @@ function CarRight({car}: ICarRight) {
         />
         <AutocompleteInput
           id="categoryId"
-          label={'Тип автомобиля*'}
+          label={'Тип автомобиля *'}
           value={categoryId}
           options={(categories?.data || [])}
           action={setCarField}
@@ -59,7 +59,7 @@ function CarRight({car}: ICarRight) {
       <Box>
         <TextInput
           id='priceMin'
-          label={'Минимальная цена*'}
+          label={'Минимальная цена'}
           type={'number'}
           value={priceMin}
           change={(e) => {
@@ -76,7 +76,7 @@ function CarRight({car}: ICarRight) {
         />
         <TextInput
           id="priceMax"
-          label={'Максимальная цена*'}
+          label={'Максимальная цена'}
           type={'number'}
           value={priceMax}
           change={(e) => {
@@ -95,7 +95,7 @@ function CarRight({car}: ICarRight) {
       <Box>
         <TextInput
           id='number'
-          label={'Номер авто (в формате X123YZ)*'}
+          label={'Номер авто (в формате X123YZ)'}
           value={number}
           change={(e) => {
             (e.target.value.length <= 6) &&
@@ -109,7 +109,7 @@ function CarRight({car}: ICarRight) {
         />
         <TextInput
           id="tank"
-          label={'Запас топлива*'}
+          label={'Запас топлива'}
           type={'number'}
           value={tank}
           change={(e) => {
@@ -124,7 +124,7 @@ function CarRight({car}: ICarRight) {
         <Box sx={colorPicker}>
           <TextInput
             id="color"
-            label={'Доступные цвета*'}
+            label={'Доступные цвета'}
             value={color}
             change={(e) => {
               setColor(e.target.value);
@@ -143,7 +143,7 @@ function CarRight({car}: ICarRight) {
         </Box>
         <TextInput
           id="description"
-          label={'Описание*'}
+          label={'Описание'}
           value={description}
           change={(e) => dispatch(setCarField(['description', e.target.value]))}
           required

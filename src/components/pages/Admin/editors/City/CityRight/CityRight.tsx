@@ -19,7 +19,7 @@ function CityRight({city}: ICityRight) {
       <Box>
         <TextInput
           id='name'
-          label={'Название города*'}
+          label={'Название города'}
           value={name}
           change={(e) => dispatch(setCityField(['name', e.target.value]))}
           required

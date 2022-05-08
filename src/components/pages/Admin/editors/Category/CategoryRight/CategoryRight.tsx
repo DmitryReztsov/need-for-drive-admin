@@ -19,7 +19,7 @@ function CategoryRight({category}: ICategoryRight) {
       <Box>
         <TextInput
           id='name'
-          label={'Название категории*'}
+          label={'Название категории'}
           value={name}
           change={(e) => dispatch(setCategoryField(['name', e.target.value]))}
           required
@@ -29,7 +29,7 @@ function CategoryRight({category}: ICategoryRight) {
         />
         <TextInput
           id='description'
-          label={'Описание категории*'}
+          label={'Описание категории'}
           value={description}
           change={(e) => dispatch(setCategoryField(['description', e.target.value]))}
           required

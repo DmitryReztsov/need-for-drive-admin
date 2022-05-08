@@ -21,7 +21,7 @@ function OrderStatusRight({orderStatus}: IOrderStatusRight) {
       <Box>
         <TextInput
           id='name'
-          label={'Название статуса*'}
+          label={'Название статуса'}
           value={name}
           change={(e) => dispatch(setOrderStatusField(['name', e.target.value]))}
           required

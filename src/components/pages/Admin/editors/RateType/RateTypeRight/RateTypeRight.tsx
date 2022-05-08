@@ -19,7 +19,7 @@ function RateTypeRight({rateType}: IRateTypeRight) {
       <Box>
         <TextInput
           id='name'
-          label={'Название типа тарифа*'}
+          label={'Название типа тарифа'}
           value={name}
           change={(e) => dispatch(setRateTypeField(['name', e.target.value]))}
           required
@@ -29,7 +29,7 @@ function RateTypeRight({rateType}: IRateTypeRight) {
         />
         <TextInput
           id='unit'
-          label={'Длительность тарифа*'}
+          label={'Длительность тарифа'}
           value={unit}
           change={(e) => dispatch(setRateTypeField(['unit', e.target.value]))}
           required

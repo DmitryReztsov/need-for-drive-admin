@@ -87,7 +87,7 @@ function OrderRight({order}: IOrderRight) {
       <Box>
         <AutocompleteInput
           id="cityId"
-          label={'Город*'}
+          label={'Город *'}
           value={cityId}
           options={(cities?.data || [])}
           action={setOrderField}
@@ -99,7 +99,7 @@ function OrderRight({order}: IOrderRight) {
         />
         <AutocompleteInput
           id="pointId"
-          label={'Пункт выдачи*'}
+          label={'Пункт выдачи *'}
           value={pointId}
           options={pointFilter()}
           action={setOrderField}
@@ -115,7 +115,7 @@ function OrderRight({order}: IOrderRight) {
       <Box>
         <DateInput
           id="dateFrom"
-          label={'Начало поездки*'}
+          label={'Начало поездки *'}
           value={dateFrom || 0}
           action={setOrderField}
           required
@@ -123,7 +123,7 @@ function OrderRight({order}: IOrderRight) {
         />
         <DateInput
           id="dateTo"
-          label={'Конец поездки*'}
+          label={'Конец поездки *'}
           value={dateTo || 0}
           action={setOrderField}
           required
@@ -133,7 +133,7 @@ function OrderRight({order}: IOrderRight) {
       <Box>
         <AutocompleteInput
           id="categoryId"
-          label={'Категория автомобиля*'}
+          label={'Категория автомобиля *'}
           value={categoryId}
           options={(categories?.data || [])}
           action={setOrderField}
@@ -144,7 +144,7 @@ function OrderRight({order}: IOrderRight) {
         />
         <AutocompleteInput
           id="carId"
-          label={'Машина*'}
+          label={'Машина *'}
           value={carId}
           options={carFilter()}
           action={setOrderField}
@@ -160,7 +160,7 @@ function OrderRight({order}: IOrderRight) {
       <Box>
         <RadioGroupInput
           id="color"
-          label={'Цвет машины*'}
+          label={'Цвет машины *'}
           value={color}
           items={carId ? carId?.colors : []}
           toggleRadio={
@@ -180,7 +180,7 @@ function OrderRight({order}: IOrderRight) {
       <Box>
         <AutocompleteInput
           id="orderStatusId"
-          label={'Статус заказа*'}
+          label={'Статус заказа *'}
           value={orderStatusId}
           options={(orderStatuses?.data || [])}
           action={setOrderField}
@@ -190,7 +190,7 @@ function OrderRight({order}: IOrderRight) {
         />
         <TextInput
           id='price'
-          label={'Цена заказа*'}
+          label={'Цена заказа'}
           value={price}
           change={(e) => dispatch(setOrderField(['price', +e.target.value]))}
           required
@@ -201,7 +201,7 @@ function OrderRight({order}: IOrderRight) {
       <Box>
         <AutocompleteInput
           id="rateTypeId"
-          label={'Тип тарифа*'}
+          label={'Тип тарифа *'}
           value={rateTypeId}
           options={(rateTypes?.data || [])}
           action={setOrderField}
@@ -213,7 +213,7 @@ function OrderRight({order}: IOrderRight) {
         />
         <AutocompleteInput
           id="rateId"
-          label={'Тарифный план (в ₽)*'}
+          label={'Тарифный план (в ₽) *'}
           value={rateId}
           options={rateFilter()}
           action={setOrderField}
