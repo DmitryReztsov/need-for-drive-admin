@@ -2,6 +2,7 @@ import CheckBoxOutlineBlankOutlinedIcon from '@mui/icons-material/CheckBoxOutlin
 import {createTheme} from '@mui/material';
 import React from 'react';
 import {DropdownIcon} from '../../content/svg/Icons';
+import {shadows} from './shadows';
 
 export const theme = createTheme({
   breakpoints: {
@@ -39,19 +40,24 @@ export const theme = createTheme({
   },
   palette: {
     primary: {
-      main: '#0EC261',
+      main: '#007BFF',
     },
     secondary: {
-      main: '#007BFF',
+      main: '#E9ECEF',
+      contrastText: 'text.primary',
     },
     error: {
       main: '#C4183C',
+    },
+    success: {
+      main: '#0EC261',
     },
     grey: {
       100: '#F5F6F8',
       200: '#FBFBFB',
       300: '#CACEDB',
       400: '#BECAD6',
+      500: '#E0E2E8',
       600: '#5A6169',
       700: '#818EA3',
       800: '#889098',
@@ -137,14 +143,74 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           minWidth: '110.5px',
-          fontSize: '0.6875rem',
-          lineHeight: '0.8125rem',
+          fontSize: '0.7rem',
+          lineHeight: '0.8rem',
           letterSpacing: '-0.345714px',
           color: '#868E96',
           borderColor: '#BECAD6',
+          '& input': {
+            padding: '8px 5px 8.5px 11.5px',
+          },
           '& div.MuiSelect-outlined.MuiSelect-select': {
             padding: '8px 14px',
             minHeight: '0px',
+          },
+          '&.MuiInputBase-multiline': {
+            padding: '8px 5px 8.5px 11.5px',
+            minHeight: '100px',
+            alignItems: 'baseline',
+          },
+        },
+      },
+    },
+    MuiMenuItem: {
+      styleOverrides: {
+        root: {
+          minWidth: '110.5px',
+          fontSize: '0.7rem',
+          lineHeight: '0.8rem',
+          letterSpacing: '-0.345714px',
+          color: '#868E96',
+          borderColor: '#BECAD6',
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          '& label': {
+            marginBottom: '8.5px',
+            fontSize: '0.675rem',
+            lineHeight: '0.75rem',
+          },
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          marginLeft: '0px',
+          marginTop: '4px',
+          fontSize: '0.675rem',
+          lineHeight: '0.75rem',
+        },
+      },
+    },
+    MuiAutocomplete: {
+      styleOverrides: {
+        root: {
+          '&>div': {
+            '&>div': {
+              '&.MuiAutocomplete-inputRoot': {
+                padding: '0px',
+                '& input.MuiAutocomplete-input': {
+                  padding: '8px 5px 8.5px 11.5px',
+                },
+              },
+            },
+          },
+          '& legend, label': {
+            width: '0',
           },
         },
       },
@@ -171,10 +237,43 @@ export const theme = createTheme({
         },
       },
     },
+    MuiButtonGroup: {
+      styleOverrides: {
+        root: {
+          '&.MuiButtonGroup-outlined': {
+            borderColor: '#BECAD6',
+            '& span': {
+              color: '#495057',
+            },
+          },
+        },
+      },
+    },
+    MuiFormGroup: {
+      styleOverrides: {
+        root: {
+          '& label': {
+            marginLeft: '0px',
+          },
+        },
+      },
+    },
     MuiCheckbox: {
       defaultProps: {
         icon: <CheckBoxOutlineBlankOutlinedIcon color={'disabled'}/>,
-        color: 'secondary',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: {
+          padding: '3.5px',
+          '& svg': {
+            fontSize: '0.8125rem',
+          },
+        },
+      },
+    },
+    MuiRadio: {
+      defaultProps: {
       },
       styleOverrides: {
         root: {
@@ -194,31 +293,20 @@ export const theme = createTheme({
             fontFamily: 'Roboto',
             lineHeight: '0.73rem',
             letterSpacing: '-0.175439px',
-            color: '#121212',
+          },
+        },
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          '&.MuiLinearProgress-colorPrimary': {
+            backgroundColor: '#FFFFFF',
           },
         },
       },
     },
   },
 });
-theme.shadows.push(
-  '0px 1px 0px rgba(90, 97, 105, 0.11),' +
-  ' 0px 2px 4px rgba(90, 97, 105, 0.12),' +
-  ' 0px 5px 5px rgba(90, 97, 105, 0.06),' +
-  ' 0px 3.5px 35px rgba(90, 97, 105, 0.1)', // 25
-  'inset 0px -1px 0px #E1E5EB', // 26
-  'inset 0px -1px 0px #E1E5EB, inset 4px 0px 0px #007BFF', // 27
-  '0px 1px 75px rgba(90, 97, 105, 0.11),' +
-  '0px 2px 4px rgba(90, 97, 105, 0.12),' +
-  '0px 7.5px 11px rgba(90, 97, 105, 0.1),' +
-  '0px 3.5px 17.5px rgba(165, 182, 201, 0.1)', // 28
-  '0.5px 0px 0px #CACEDB, -0.5px 0px 0px #CACEDB', // 29
-  '0px 2.5px 9.5px rgba(90, 97, 105, 0.12)', // 30
-  '0px -0.5px 0px #D7DAE3', // 31
-  '0px 2px 0px rgba(90, 97, 105, 0.11),' +
-  ' 0px 4px 8px rgba(90, 97, 105, 0.12),' +
-  ' 0px 10px 10px rgba(90, 97, 105, 0.06),' +
-  ' 0px 7px 70px rgba(90, 97, 105, 0.1)', // 32
-  '0px -0.5px 0px #E0E2E8, 0px 0.5px 0px #E0E2E8', // 33
-);
 
+theme.shadows.push(...shadows);

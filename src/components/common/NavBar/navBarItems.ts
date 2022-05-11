@@ -1,21 +1,24 @@
 import {
   BlogIcon,
   BlogPostsIcon,
-  ErrorIcon,
   FormsIcon,
   OverviewIcon,
-  PersonIcon,
   PostIcon,
 } from '../../../content/svg/Icons';
+import AddIcon from '@mui/icons-material/Add';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
+import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 
 export const navItems = [
   {
     icon: BlogIcon,
     text: 'Карточка автомобиля',
-    href: 'admin/car/1',
+    href: 'admin/car/new',
   },
   {
-    icon: BlogPostsIcon,
+    icon: DirectionsCarFilledIcon,
     text: 'Список авто',
     href: 'admin/car',
   },
@@ -25,23 +28,38 @@ export const navItems = [
     href: 'admin/order',
   },
   {
-    icon: OverviewIcon,
-    text: 'Menu 4',
-    href: '',
+    icon: LocationCityIcon,
+    text: 'Список городов',
+    href: 'admin/city',
+  },
+  {
+    icon: LocationOnIcon,
+    text: 'Пункты выдачи',
+    href: 'admin/point',
+  },
+  {
+    icon: CurrencyRubleIcon,
+    text: 'Тарифы',
+    href: 'admin/rate',
   },
   {
     icon: FormsIcon,
-    text: 'Menu 5',
-    href: '',
+    text: 'Типы тарифов',
+    href: 'admin/rateType',
   },
   {
-    icon: PersonIcon,
-    text: 'Menu 6',
-    href: '',
+    icon: OverviewIcon,
+    text: 'Список статусов',
+    href: 'admin/orderStatus',
   },
   {
-    icon: ErrorIcon,
-    text: 'Menu 7',
-    href: '',
+    icon: BlogPostsIcon,
+    text: 'Категории авто',
+    href: 'admin/category',
+  },
+  {
+    icon: AddIcon,
+    text: 'Создать сущность',
+    href: 'admin/new',
   },
 ];

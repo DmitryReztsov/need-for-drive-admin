@@ -12,6 +12,7 @@ export const pageFiltersContainer = {
 
 export const pageFiltersBody = {
   ...flexbox('space-between', 'center'),
+  columnGap: '8px',
   [theme.breakpoints.down('sm')]: {
     ...flexbox('center', 'center', 'column'),
     rowGap: '8px',
@@ -24,17 +25,18 @@ export const pageFiltersBox = {
   rowGap: '8px',
   flexWrap: 'wrap',
   [theme.breakpoints.down('sm')]: {
-    ...flexbox('center'),
     rowGap: '8px',
     '&>div': {
-      ...flex(1, 1, '40%'),
+      ...flex(1, 1, '45%'),
     },
   },
 };
 
-export const pageFiltersButton = {
+export const pageFiltersButtons = {
+  columnGap: '15px',
+  ...flexbox(),
   alignSelf: 'baseline',
   [theme.breakpoints.down('sm')]: {
-    alignSelf: 'stretch',
+    alignSelf: 'center',
   },
 };

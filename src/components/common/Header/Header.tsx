@@ -4,7 +4,7 @@ import Container from '../containers/Container/Container';
 import {
   header, headerAvatar, headerBadge, headerBody, headerBurgerIcon, headerNotification,
   headerNotificationIcon, headerProfile, headerSearch, headerSearchIcon,
-  headerSearchInput, headerSelect,
+  headerSearchInput, headerSelect, headerSelectLi,
 } from './HeaderStyle';
 import SearchIcon from '@mui/icons-material/Search';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -12,6 +12,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import avatar from '../../../content/png/avatar.png';
 import {useNavigate} from 'react-router-dom';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import {deleteStorageTokenData, getToken} from '../../../utils/localStorage';
+import {authApi} from '../../../services/endpoints/auth';
 
 interface IHeaderProps {
   openMenu: () => void,
@@ -20,6 +22,12 @@ interface IHeaderProps {
 function Header({openMenu}: IHeaderProps) {
   const navigate = useNavigate();
   const matches = useMediaQuery('(max-width:600px)');
+  const [authLogout, {}] = authApi.useAuthLogoutMutation();
+  function clickHandler() {
+    navigate('/');
+    authLogout(getToken()!);
+    deleteStorageTokenData();
+  }
   return (
     <Box component={'header'} sx={header}>
       <Container>
@@ -56,12 +64,16 @@ function Header({openMenu}: IHeaderProps) {
               defaultValue={'Admin'}
               IconComponent={ArrowDropDownIcon}
             >
-              <MenuItem value={'Admin'}>
+              <MenuItem
+                sx={headerSelectLi}
+                value={'Admin'}
+              >
                 Admin
               </MenuItem>
               <MenuItem
                 value={'Выйти'}
-                onClick={() => navigate('/')}
+                onClick={clickHandler}
+                sx={headerSelectLi}
               >
                 Выйти
               </MenuItem>

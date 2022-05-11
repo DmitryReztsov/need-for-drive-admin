@@ -5,17 +5,8 @@ import {
   footer, footerBody, footerCopyright, footerMenu,
 } from './FooterStyle';
 import CustomLink from '../Link/CustomLink';
-import {deleteStorageTokenData, getToken} from '../../../utils/localStorage';
-import {api} from '../../../services/Api';
 
 function Footer() {
-  const [authLogout, {}] = api.useAuthLogoutMutation();
-
-  function clickHandler() {
-    authLogout(getToken()!);
-    deleteStorageTokenData();
-  }
-
   return (
     <Box component={'footer'} sx={footer}>
       <Container>
@@ -24,12 +15,14 @@ function Footer() {
             <CustomLink href={'admin'}>
               Главная страница
             </CustomLink>
-            <CustomLink click={clickHandler}>
-              Ссылка
+            <CustomLink
+              externalHref={'https://dmitryreztsov.github.io/need-for-drive'}
+            >
+              Сервис каршеринга
             </CustomLink>
           </Box>
           <Typography sx={footerCopyright}>
-            Copyright © 2020 Simbirsoft
+            Copyright © 2022 DmitryReztsov
           </Typography>
         </Box>
       </Container>
