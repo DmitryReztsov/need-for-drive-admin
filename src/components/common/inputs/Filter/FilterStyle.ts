@@ -1,3 +1,1 @@
-export const filter = {
-
-};
+export const filter = {};

@@ -1,4 +1,5 @@
 export interface IOrderStatus {
-  name: string,
+  [key: string]: any,
+  name?: string,
   id: string,
 }

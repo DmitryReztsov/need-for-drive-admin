@@ -4,17 +4,20 @@ import {
   pageFilters,
   pageFiltersBody,
   pageFiltersBox,
-  pageFiltersButton,
+  pageFiltersButtons,
   pageFiltersContainer,
 } from './PageFiltersStyle';
 import Container from '../../common/containers/Container/Container';
 import Filter from '../../common/inputs/Filter/Filter';
+import {IFilter} from '../../../models/IFilter';
 
 interface IPageFiltersProps {
-  filters: any,
+  filters: IFilter [],
+  apply: () => void,
+  reset: () => void,
 }
 
-function PageFilters({filters}: IPageFiltersProps) {
+function PageFilters({filters, apply, reset}: IPageFiltersProps) {
   return (
     <Box sx={pageFilters}>
       <Container sx={pageFiltersContainer}>
@@ -27,16 +30,26 @@ function PageFilters({filters}: IPageFiltersProps) {
                 value={filter.value}
                 change={filter.cb}
                 data={filter.data}
+                all={filter.all}
               />;
             })}
           </Box>
-          <Button
-            variant="contained"
-            color={'secondary'}
-            sx={pageFiltersButton}
-          >
-            Применить
-          </Button>
+          <Box sx={pageFiltersButtons}>
+            <Button
+              variant="contained"
+              color={'error'}
+              onClick={reset}
+            >
+              Сбросить
+            </Button>
+            <Button
+              variant="contained"
+              color={'primary'}
+              onClick={apply}
+            >
+              Применить
+            </Button>
+          </Box>
         </Box>
       </Container>
     </Box>

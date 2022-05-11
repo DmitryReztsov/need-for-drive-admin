@@ -27,17 +27,8 @@ export const loginFormFields = {
 };
 
 export const loginFormField = {
-  '& label': {
-    mb: '8.5px',
-    fontSize: '0.65rem',
-    lineHeight: '0.75rem',
-  },
   '& input': {
     borderRadius: '3px',
-    p: '8px 0 8.5px 11.5px',
-    fontSize: '0.7rem',
-    lineHeight: '0.81rem',
-    letterSpacing: '-0.19px',
     color: 'text.primary',
   },
 };
@@ -50,7 +41,4 @@ export const loginFormFooter = {
 export const loginFormLink = {
   fontSize: '0.65rem',
   lineHeight: '0.75rem',
-};
-
-export const loginFormButton = {
 };

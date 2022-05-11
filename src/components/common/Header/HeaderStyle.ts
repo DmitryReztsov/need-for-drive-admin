@@ -58,7 +58,7 @@ export const headerNotification = {
   cursor: 'pointer',
   '&:hover': {
     '& svg': {
-      color: 'secondary.main',
+      color: 'primary.main',
     },
   },
   [theme.breakpoints.down('sm')]: {
@@ -114,6 +114,11 @@ export const headerSelect = {
       color: 'transparent',
     },
   },
+};
+
+export const headerSelectLi = {
+  fontSize: '0.9375rem',
+  lineHeight: '1.078rem',
 };
 
 

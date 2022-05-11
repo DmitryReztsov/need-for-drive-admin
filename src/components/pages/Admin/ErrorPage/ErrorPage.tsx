@@ -21,7 +21,7 @@ function ErrorPage() {
           </Typography>
           <Button
             variant="contained"
-            color={'secondary'}
+            color={'primary'}
             sx={errorPageButton}
             onClick={() => window.history.back()}
           >
